@@ -11,3 +11,6 @@ func smooth_step(start, goal, alpha: float, dt: float):
 ## rounds `x` to the nearest multiple of `m`
 func round_multiple(x,m):
 	return round(x/m) * m
+
+func wait(seconds: float):
+	await get_tree().create_timer(seconds).timeout

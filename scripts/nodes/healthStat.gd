@@ -26,6 +26,6 @@ var last_damaged_at = -INF
 
 func damage(amount: float):
 	# if it has been long enough since the last damage that you are no longer invulnerable
-	if Time.get_ticks_msec() - last_damaged_at > invulnerability_time:
+	if Time.get_ticks_msec() - last_damaged_at > invulnerability_time*1000:
 		current = clampf(current - amount,0,INF)
 		last_damaged_at = Time.get_ticks_msec()

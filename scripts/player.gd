@@ -9,6 +9,18 @@ var facing_direction = 1.0
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
+func damage_flash_loop():
+	while true:
+		# only go transparent if invulnerability is active
+		if Time.get_ticks_msec() < $Health.last_damaged_at + $Health.invulnerability_time*1000:
+			modulate = Color(1,1,1,0.5) # modulate = funny word for color
+		await Util.wait(0.1)
+		modulate = Color(1,1,1,1)
+		await Util.wait(0.1)
+
+func _ready():
+	damage_flash_loop()
+
 func _physics_process(delta: float) -> void:
 	# gravity
 	if not is_on_floor():
