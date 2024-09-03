@@ -1,0 +1,125 @@
+[gd_scene load_steps=17 format=3 uid="uid://nktlunqpq8sl"]
+
+[ext_resource type="Script" path="res://scripts/moose.gd" id="1_pkpn5"]
+[ext_resource type="Script" path="res://scripts/nodes/healthStat.gd" id="2_rjkso"]
+[ext_resource type="Texture2D" uid="uid://cncl36gid72xc" path="res://textures/moose/animation_walk.png" id="3_uo17p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6pyp"]
+atlas = ExtResource("3_uo17p")
+region = Rect2(0, 0, 41, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yua2"]
+atlas = ExtResource("3_uo17p")
+region = Rect2(42, 0, 41, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brtik"]
+atlas = ExtResource("3_uo17p")
+region = Rect2(84, 0, 41, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sphtr"]
+atlas = ExtResource("3_uo17p")
+region = Rect2(126, 0, 41, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_715sh"]
+atlas = ExtResource("3_uo17p")
+region = Rect2(168, 0, 41, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih28d"]
+atlas = ExtResource("3_uo17p")
+region = Rect2(210, 0, 41, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i614"]
+atlas = ExtResource("3_uo17p")
+region = Rect2(252, 0, 41, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bjog"]
+atlas = ExtResource("3_uo17p")
+region = Rect2(294, 0, 41, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n765"]
+atlas = ExtResource("3_uo17p")
+region = Rect2(336, 0, 41, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfh5g"]
+atlas = ExtResource("3_uo17p")
+region = Rect2(378, 0, 41, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ia26s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6pyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yua2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brtik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sphtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_715sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih28d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i614")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bjog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n765")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfh5g")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rbk5"]
+size = Vector2(28, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0cqg"]
+size = Vector2(20, 26)
+
+[node name="Moose" type="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(1, 0)
+collision_layer = 4
+script = ExtResource("1_pkpn5")
+START_DIRECTION = -1
+metadata/_edit_group_ = true
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_rjkso")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Animations" type="AnimatedSprite2D" parent="Visuals"]
+position = Vector2(3.5, -22)
+sprite_frames = SubResource("SpriteFrames_ia26s")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.67344
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -15)
+shape = SubResource("RectangleShape2D_5rbk5")
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+position = Vector2(2, -10)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_c0cqg")
+debug_color = Color(0.993401, 0, 0.238143, 0.42)
+
+[connection signal="body_entered" from="DamageHitbox" to="." method="_on_damage_hitbox_body_entered"]

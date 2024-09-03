@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
 ## how fast the moose should move
-@export var SPEED = 100;
+@export var SPEED = 100.0;
+
+## how much damage to deal to the player when hitting them
+@export var DAMAGE = 1;
 
 ## what direction to start out moving. [br]
 ## -1 is left, 1 is right
@@ -26,3 +29,8 @@ func _physics_process(delta: float) -> void:
 	$Visuals.scale.x = direction
 	
 	move_and_slide()
+
+# runs whenever the damage hitbox touches something
+func _on_damage_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		body.get_node("Health").current -= 1

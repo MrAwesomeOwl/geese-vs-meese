@@ -42,12 +42,10 @@ func update_heart_state(heart_number: int):
 	
 	# figure out if this heart should be full or empty
 	var should_be_full = health.current >= heart_number
-	
-	print(health.current,heart_number)
+
 	
 	# if this heart was just added, dont bother to do animations
 	if current_heart_state == "just_created":
-		print("a")
 		# self modulate is just a fancy way of saying color
 		if should_be_full:
 			heart.get_node("BackgroundFull").self_modulate = Color(1,1,1,1)
@@ -58,17 +56,13 @@ func update_heart_state(heart_number: int):
 		current_heart_state = "full" if should_be_full else "empty"
 	# if the fill animation needs to be played
 	elif current_heart_state == "empty" and should_be_full == true:
-		print("a")
 		heart.get_node("AnimationPlayer").play("fill")
 		current_heart_state = "full"
 	# if the empty animation needs to bee played
 	elif current_heart_state == "full" and should_be_full == false:
-		print(heart_number)
 		heart.get_node("AnimationPlayer").play("empty")
 		current_heart_state = "empty"
-		
-	print(current_heart_state,should_be_full)
-	
+			
 	# make sure to re-store the state
 	heart.set_meta("state",current_heart_state)
 			
