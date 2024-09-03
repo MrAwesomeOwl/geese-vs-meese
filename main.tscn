@@ -478,7 +478,6 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="Moose" parent="." instance=ExtResource("8_ibx4r")]
 position = Vector2(836, -512)
-DAMAGE = 2
 
 [node name="CanvasLayer" parent="." instance=ExtResource("7_iq480")]
 visible = false
