@@ -277,7 +277,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Animations:position")
+tracks/0/path = NodePath("Body/Animations:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -293,7 +293,7 @@ length = 0.55
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Animations")
+tracks/0/path = NodePath("Body/Animations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -307,7 +307,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Animations:position")
+tracks/1/path = NodePath("Body/Animations:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -323,7 +323,7 @@ step = 1.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Animations")
+tracks/0/path = NodePath("Body/Animations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -337,7 +337,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Animations:position")
+tracks/1/path = NodePath("Body/Animations:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -353,7 +353,7 @@ step = 1.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Animations")
+tracks/0/path = NodePath("Body/Animations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -367,7 +367,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Animations:position")
+tracks/1/path = NodePath("Body/Animations:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -415,6 +415,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1o0vd"]
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_abp8s"]
 states/Start/position = Vector2(154.4, 100.96)
@@ -455,9 +456,9 @@ metadata/_edit_group_ = true
 script = ExtResource("3_64mmg")
 invulnerability_time = 1.0
 
-[node name="Visuals" type="Node2D" parent="Player"]
+[node name="Body" type="Node2D" parent="Player"]
 
-[node name="Animations" type="AnimatedSprite2D" parent="Player/Visuals"]
+[node name="Animations" type="AnimatedSprite2D" parent="Player/Body"]
 position = Vector2(0.5, -12.5)
 sprite_frames = SubResource("SpriteFrames_xbmr4")
 animation = &"attack"
