@@ -22,6 +22,7 @@ func _ready():
 	damage_flash_loop()
 
 func _physics_process(delta: float) -> void:
+	print("dingus")
 	# gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
