@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://burtnq8qlhew0"]
+
+[ext_resource type="Script" path="res://scripts/gui/health.gd" id="1_2ycjt"]
+
+[sub_resource type="GDScript" id="GDScript_vpe2q"]
+resource_name = "enable"
+script/source = "extends CanvasLayer
+
+func _ready() -> void:
+	visible = true
+"
+
+[node name="CanvasLayer" type="CanvasLayer"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+script = SubResource("GDScript_vpe2q")
+
+[node name="GUI" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 42.0
+offset_bottom = 42.0
+
+[node name="Health" type="HBoxContainer" parent="GUI"]
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 36.0
+theme_override_constants/separation = 2
+script = ExtResource("1_2ycjt")
