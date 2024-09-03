@@ -31,11 +31,6 @@ window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
-[editor]
-
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
-
 [global_group]
 
 player="Contains the player character"
