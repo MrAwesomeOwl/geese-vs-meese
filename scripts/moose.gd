@@ -6,11 +6,14 @@ extends CharacterBody2D
 ## how much damage to deal to the player when hitting them
 @export var DAMAGE = 1;
 
+## how much knockback to deal to the player when hitting them
+@export var KNOCKBACK = 250.0
+
 ## what direction to start out moving. [br]
 ## -1 is left, 1 is right
 @export_range(-1,1) var START_DIRECTION: int = 1;
 
-@onready var direction = START_DIRECTION
+@onready var direction = START_DIRECTION	
 
 func _physics_process(delta: float) -> void:
 	# gravity
@@ -33,3 +36,5 @@ func _physics_process(delta: float) -> void:
 func _on_damage_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.get_node("Health").damage(DAMAGE)
+		print(Vector2(sign(body.global_position.x - global_position.x),0.5))
+		body.knockback(Vector2(sign(body.global_position.x - global_position.x),-0.5) * KNOCKBACK,0.1)
