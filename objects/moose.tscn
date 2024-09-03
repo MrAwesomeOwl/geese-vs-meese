@@ -82,11 +82,11 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rbk5"]
-size = Vector2(28, 30)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0cqg"]
 size = Vector2(20, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rbk5"]
+size = Vector2(28, 30)
 
 [node name="Moose" type="CharacterBody2D"]
 texture_filter = 1
@@ -99,27 +99,28 @@ metadata/_edit_group_ = true
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_rjkso")
 
-[node name="Visuals" type="Node2D" parent="."]
+[node name="Body" type="Node2D" parent="."]
 
-[node name="Animations" type="AnimatedSprite2D" parent="Visuals"]
+[node name="Animations" type="AnimatedSprite2D" parent="Body"]
 position = Vector2(3.5, -22)
 sprite_frames = SubResource("SpriteFrames_ia26s")
 animation = &"walk"
 autoplay = "walk"
 frame_progress = 0.67344
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -15)
-shape = SubResource("RectangleShape2D_5rbk5")
-
-[node name="DamageHitbox" type="Area2D" parent="."]
+[node name="DamageHitbox" type="Area2D" parent="Body"]
 position = Vector2(2, -10)
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/DamageHitbox"]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_c0cqg")
 debug_color = Color(0.993401, 0, 0.238143, 0.42)
 
-[connection signal="body_entered" from="DamageHitbox" to="." method="_on_damage_hitbox_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -15)
+shape = SubResource("RectangleShape2D_5rbk5")
+
+[connection signal="body_entered" from="Body/DamageHitbox" to="." method="_on_damage_hitbox_body_entered"]

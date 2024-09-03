@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=4 uid="uid://c3fp4mhbb3k7g"]
+[gd_scene load_steps=69 format=4 uid="uid://c3fp4mhbb3k7g"]
 
 [ext_resource type="TileSet" uid="uid://qbjyjk17yc7p" path="res://tilesets/blocks.tres" id="1_ocfji"]
 [ext_resource type="Texture2D" uid="uid://cj7majaofixnf" path="res://textures/goose/animation_idle.png" id="2_8sq52"]
@@ -7,9 +7,8 @@
 [ext_resource type="Script" path="res://scripts/nodes/healthStat.gd" id="3_64mmg"]
 [ext_resource type="Texture2D" uid="uid://bsrb4h20iifeo" path="res://textures/goose/animation_run.png" id="4_a8lam"]
 [ext_resource type="Texture2D" uid="uid://cuq3fyft80hyx" path="res://textures/goose/animation_attack.png" id="5_7e46l"]
-[ext_resource type="Texture2D" uid="uid://cncl36gid72xc" path="res://textures/moose/animation_walk.png" id="5_h6osa"]
 [ext_resource type="PackedScene" uid="uid://burtnq8qlhew0" path="res://scenes/gui.tscn" id="7_iq480"]
-[ext_resource type="Script" path="res://scripts/moose.gd" id="7_j0u7m"]
+[ext_resource type="PackedScene" uid="uid://nktlunqpq8sl" path="res://objects/moose.tscn" id="8_ibx4r"]
 [ext_resource type="Texture2D" uid="uid://cibth5qsv046q" path="res://textures/powerups/poison.png" id="9_imowt"]
 [ext_resource type="Texture2D" uid="uid://buun8bqysp1ga" path="res://textures/powerups/health.png" id="10_kwwqd"]
 [ext_resource type="Script" path="res://scripts/dingus.gd" id="10_qwwkp"]
@@ -426,87 +425,6 @@ states/movement/position = Vector2(310, 99.5392)
 transitions = ["Start", "movement", SubResource("AnimationNodeStateMachineTransition_r2vsr"), "movement", "attack", SubResource("AnimationNodeStateMachineTransition_kp71p"), "attack", "movement", SubResource("AnimationNodeStateMachineTransition_1o0vd")]
 graph_offset = Vector2(-366, -98)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p6pyp"]
-atlas = ExtResource("5_h6osa")
-region = Rect2(0, 0, 41, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6yua2"]
-atlas = ExtResource("5_h6osa")
-region = Rect2(42, 0, 41, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_brtik"]
-atlas = ExtResource("5_h6osa")
-region = Rect2(84, 0, 41, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sphtr"]
-atlas = ExtResource("5_h6osa")
-region = Rect2(126, 0, 41, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_715sh"]
-atlas = ExtResource("5_h6osa")
-region = Rect2(168, 0, 41, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ih28d"]
-atlas = ExtResource("5_h6osa")
-region = Rect2(210, 0, 41, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7i614"]
-atlas = ExtResource("5_h6osa")
-region = Rect2(252, 0, 41, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0bjog"]
-atlas = ExtResource("5_h6osa")
-region = Rect2(294, 0, 41, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8n765"]
-atlas = ExtResource("5_h6osa")
-region = Rect2(336, 0, 41, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rfh5g"]
-atlas = ExtResource("5_h6osa")
-region = Rect2(378, 0, 41, 44)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ia26s"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p6pyp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6yua2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_brtik")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sphtr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_715sh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ih28d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7i614")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0bjog")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8n765")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rfh5g")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 15.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rbk5"]
-size = Vector2(28, 30)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfyi2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suiov"]
@@ -535,6 +453,7 @@ metadata/_edit_group_ = true
 
 [node name="Health" type="Node" parent="Player"]
 script = ExtResource("3_64mmg")
+invulnerability_time = 1.0
 
 [node name="Visuals" type="Node2D" parent="Player"]
 
@@ -557,29 +476,9 @@ autoplay = "idle"
 tree_root = SubResource("AnimationNodeStateMachine_abp8s")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="Moose" type="CharacterBody2D" parent="."]
+[node name="Moose" parent="." instance=ExtResource("8_ibx4r")]
 position = Vector2(836, -512)
-collision_layer = 4
-script = ExtResource("7_j0u7m")
-SPEED = 50
-START_DIRECTION = -1
-metadata/_edit_group_ = true
-
-[node name="Health" type="Node" parent="Moose"]
-script = ExtResource("3_64mmg")
-
-[node name="Visuals" type="Node2D" parent="Moose"]
-
-[node name="Animations" type="AnimatedSprite2D" parent="Moose/Visuals"]
-position = Vector2(3.5, -22)
-sprite_frames = SubResource("SpriteFrames_ia26s")
-animation = &"walk"
-autoplay = "walk"
-frame_progress = 0.67344
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Moose"]
-position = Vector2(-2, -15)
-shape = SubResource("RectangleShape2D_5rbk5")
+DAMAGE = 2
 
 [node name="CanvasLayer" parent="." instance=ExtResource("7_iq480")]
 visible = false
