@@ -29,7 +29,7 @@ func knockback(velocity: Vector2,seconds: float):
 func damage_flash_loop():
 	while true:
 		# only go transparent if invulnerability is active
-		if Time.get_ticks_msec() < $Health.last_damaged_at + $Health.invulnerability_time*1000:
+		if $Health.is_invulnerable:
 			modulate = Color(1,1,1,0.1) # modulate = funny word for color
 		await Util.wait(0.1)
 		modulate = Color(1,1,1,1)

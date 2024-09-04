@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dacv7ef1hdk8o"]
+[gd_scene load_steps=3 format=3 uid="uid://dalgpvc28d6bk"]
 
-[ext_resource type="FontFile" uid="uid://cgxhmrtw4tmfh" path="res://Fonts/Handjet/static/Handjet-Medium.ttf" id="1_fjh8l"]
+[ext_resource type="FontFile" uid="uid://cgxhmrtw4tmfh" path="res://fonts/handjet/static/Handjet-Medium.ttf" id="1_fjh8l"]
 [ext_resource type="Script" path="res://scripts/levelswitching/starttoplay.gd" id="2_8ehml"]
 
 [node name="Control" type="Control"]

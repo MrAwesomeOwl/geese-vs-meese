@@ -36,5 +36,4 @@ func _physics_process(delta: float) -> void:
 func _on_damage_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.get_node("Health").damage(DAMAGE)
-		print(Vector2(sign(body.global_position.x - global_position.x),0.5))
 		body.knockback(Vector2(sign(body.global_position.x - global_position.x),-0.5) * KNOCKBACK,0.1)
