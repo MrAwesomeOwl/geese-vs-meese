@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqwiglj3hrfrm"]
+
+[ext_resource type="Theme" uid="uid://dywsmtbccqa1r" path="res://themes/button.tres" id="1_xcb8x"]
+
+[node name="Button" type="Button"]
+texture_filter = 1
+offset_right = 83.0
+offset_bottom = 46.0
+theme = ExtResource("1_xcb8x")
+text = "dingus"
+metadata/_edit_group_ = true

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://burtnq8qlhew0"]
+[gd_scene load_steps=4 format=3 uid="uid://burtnq8qlhew0"]
 
 [ext_resource type="Script" path="res://scripts/gui/health.gd" id="1_2ycjt"]
+[ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/button.tscn" id="2_46fpr"]
 
 [sub_resource type="GDScript" id="GDScript_vpe2q"]
 resource_name = "enable"
@@ -30,3 +31,17 @@ offset_right = 128.0
 offset_bottom = 36.0
 theme_override_constants/separation = 2
 script = ExtResource("1_2ycjt")
+
+[node name="Button" parent="." instance=ExtResource("2_46fpr")]
+offset_left = 418.0
+offset_top = 5.0
+offset_right = 505.0
+offset_bottom = 51.0
+
+[node name="Button2" parent="." instance=ExtResource("2_46fpr")]
+offset_left = 422.0
+offset_top = 55.0
+offset_right = 488.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 16
+text = "dingus lite"
