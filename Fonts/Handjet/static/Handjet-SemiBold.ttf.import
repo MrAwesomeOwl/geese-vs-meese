@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cbqgc26gdu6bo"
-path="res://.godot/imported/Handjet-SemiBold.ttf-67ea32e6020ed426d6a14025b311292c.fontdata"
+path="res://.godot/imported/Handjet-SemiBold.ttf-b512a5519735996b47a93f5d10e28a62.fontdata"
 
 [deps]
 
-source_file="res://fonts/handjet/static/Handjet-SemiBold.ttf"
-dest_files=["res://.godot/imported/Handjet-SemiBold.ttf-67ea32e6020ed426d6a14025b311292c.fontdata"]
+source_file="res://Fonts/Handjet/static/Handjet-SemiBold.ttf"
+dest_files=["res://.godot/imported/Handjet-SemiBold.ttf-b512a5519735996b47a93f5d10e28a62.fontdata"]
 
 [params]
 
