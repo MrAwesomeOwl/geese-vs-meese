@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpccfvmalc1ea"]
+
+[ext_resource type="Script" path="res://scripts/levelswitching/WinCollisionDetection.gd" id="1_mk202"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8b53k"]
+
+[node name="WinArea" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8b53k")
+script = ExtResource("1_mk202")
+scene_path = "res://scenes/StartScene.tscn"
+
+[connection signal="body_entered" from="." to="CollisionShape2D" method="_on_win_area_body_entered"]
