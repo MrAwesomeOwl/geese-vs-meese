@@ -102,11 +102,6 @@ position = Vector2(1055, -542)
 
 [node name="PoisonPowerup" parent="." instance=ExtResource("10_kuuos")]
 position = Vector2(715, -542)
-EFFECT_LENGTH = 1
-
-[node name="PoisonPowerup2" parent="." instance=ExtResource("10_kuuos")]
-position = Vector2(756, -543)
-EFFECT_LENGTH = 1
 
 [node name="Player" parent="." instance=ExtResource("3_qwjkn")]
 position = Vector2(537, -513)
