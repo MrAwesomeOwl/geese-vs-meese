@@ -15,6 +15,7 @@ var facing_direction = 1.0
 
 var knockback_vector: Vector2 = Vector2(0,0)
 var time_knockback_expire: int = 0 #msec
+@onready var last_is_on_floor = is_on_floor()
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
@@ -57,6 +58,11 @@ func attack():
 
 func _ready():
 	damage_flash_loop()
+	
+func _process(delta: float) -> void:
+	# make player face correct direction
+	$Body.scale.x = Util.smooth_step($Body.scale.x,facing_direction,0.5,delta)
+	$Body.scale.y = Util.smooth_step($Body.scale.y,1,0.8,delta)
 
 func _physics_process(delta: float) -> void:
 	# gravity
@@ -66,6 +72,9 @@ func _physics_process(delta: float) -> void:
 	# jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = -JUMP_STRENGTH
+		# make player squash
+		# this scale change is canceled out in _process()
+		$Body.scale.y += 0.25
 
 	# left/right movement
 	var direction := Input.get_axis("left", "right")
@@ -87,11 +96,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		animation_tree["parameters/playback"].travel("attack")
 		
-	# make player face correct direction
-	$Body.scale.x = Util.smooth_step($Body.scale.x,facing_direction,0.5,delta)
 	
 	move_and_slide()
 	
 	# fix player appearing to float above the floor
 	if is_on_floor():
 		position.y = Util.round_multiple(position.y,0.1)
+	
+	# squish animation when landing from a fall
+	if is_on_floor() and not last_is_on_floor:
+		$Body.scale.y = 0.6
+		
+	last_is_on_floor = is_on_floor()
