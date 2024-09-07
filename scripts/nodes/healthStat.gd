@@ -9,15 +9,17 @@ signal on_death()
 ## maximum health
 @export var maximum = 3.0:
 	set(new):
+		var old = maximum
 		maximum = new
 		current = min(current,maximum)
-		on_max_changed.emit(new,max)
+		on_max_changed.emit(new,old)
 		
 ## current health
 @export var current = 3.0:
 	set(new):	
+		var old = current
 		current = new
-		on_current_changed.emit(new,current)
+		on_current_changed.emit(new,old)
 		if current <= 0:
 			is_dead = true
 			on_death.emit()

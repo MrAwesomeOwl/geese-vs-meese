@@ -124,5 +124,6 @@ debug_color = Color(0.993401, 0, 0.238143, 0.42)
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_5rbk5")
 
+[connection signal="on_current_changed" from="Health" to="." method="_on_health_changed"]
 [connection signal="on_death" from="Health" to="." method="_on_death"]
 [connection signal="body_entered" from="Body/DamageHitbox" to="." method="_on_damage_hitbox_body_entered"]

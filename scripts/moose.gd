@@ -67,3 +67,11 @@ func _on_death() -> void:
 	# despawn once completely faded out
 	await Util.wait(1)
 	queue_free()
+
+# flash red when taking damage
+func _on_health_changed(new_health: float, old_health: float) -> void:
+	print(new_health,old_health)
+	if new_health < old_health:
+		modulate = Color(100,0.5,0.5,1)
+		await Util.wait(0.1)
+		modulate = Color(1,1,1,1)
