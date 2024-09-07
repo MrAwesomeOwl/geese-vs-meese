@@ -58,21 +58,21 @@ region = Rect2(480, 0, 47, 32)
 atlas = ExtResource("3_e00ir")
 region = Rect2(528, 0, 47, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vwshf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5s8g"]
 atlas = ExtResource("4_h3nmj")
 region = Rect2(0, 0, 21, 25)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vqxam"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuekr"]
 atlas = ExtResource("4_h3nmj")
-region = Rect2(21, 0, 21, 25)
+region = Rect2(22, 0, 21, 25)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_67va0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjeyt"]
 atlas = ExtResource("4_h3nmj")
-region = Rect2(42, 0, 21, 25)
+region = Rect2(44, 0, 21, 25)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0244y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0054"]
 atlas = ExtResource("4_h3nmj")
-region = Rect2(63, 0, 21, 25)
+region = Rect2(66, 0, 21, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ogiq"]
 atlas = ExtResource("5_khvh1")
@@ -191,16 +191,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vwshf")
+"texture": SubResource("AtlasTexture_m5s8g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vqxam")
+"texture": SubResource("AtlasTexture_kuekr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_67va0")
+"texture": SubResource("AtlasTexture_rjeyt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0244y")
+"texture": SubResource("AtlasTexture_v0054")
 }],
 "loop": true,
 "name": &"idle",
@@ -628,7 +628,7 @@ invulnerability_time = 1.0
 position = Vector2(0.5, -12.5)
 sprite_frames = SubResource("SpriteFrames_xbmr4")
 animation = &"idle"
-frame_progress = 0.00188765
+frame_progress = 0.58385
 
 [node name="DamageHitbox" type="Area2D" parent="Body"]
 position = Vector2(10, -4)
