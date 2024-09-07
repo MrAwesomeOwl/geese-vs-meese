@@ -11,8 +11,8 @@ func _on_body_entered(body: Node2D) -> void:
 		has_been_collected = true
 		var health: HealthStat = body.get_node("Health")
 		
+		body.max_poison_time = max(body.poison_time_remaining,0) + EFFECT_LENGTH
 		body.poison_time_remaining += EFFECT_LENGTH
-		body.max_poison_time += EFFECT_LENGTH
 			
 		# play despawn animation
 		$AnimationPlayer.play("collect")
