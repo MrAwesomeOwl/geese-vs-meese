@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://c3fp4mhbb3k7g"]
+[gd_scene load_steps=14 format=4 uid="uid://c3fp4mhbb3k7g"]
 
 [ext_resource type="TileSet" uid="uid://qbjyjk17yc7p" path="res://tilesets/blocks.tres" id="1_ocfji"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_pansx"]
 [ext_resource type="PackedScene" uid="uid://dhrvokr7jba57" path="res://objects/player.tscn" id="3_qwjkn"]
 [ext_resource type="PackedScene" uid="uid://burtnq8qlhew0" path="res://scenes/gui.tscn" id="7_iq480"]
+[ext_resource type="PackedScene" uid="uid://c6x6ypygcib4j" path="res://objects/powerups/heal_powerup.tscn" id="7_t7feu"]
 [ext_resource type="PackedScene" uid="uid://nktlunqpq8sl" path="res://objects/moose.tscn" id="8_ibx4r"]
 [ext_resource type="Texture2D" uid="uid://cibth5qsv046q" path="res://textures/powerups/poison.png" id="9_imowt"]
 [ext_resource type="Texture2D" uid="uid://buun8bqysp1ga" path="res://textures/powerups/health.png" id="10_kwwqd"]
@@ -43,14 +44,8 @@ offset_right = 1244.0
 offset_bottom = 1677.0
 text = "owie"
 
-[node name="Player" parent="." instance=ExtResource("3_qwjkn")]
-position = Vector2(537, -513)
-
 [node name="Moose" parent="." instance=ExtResource("8_ibx4r")]
 position = Vector2(836, -512)
-
-[node name="CanvasLayer" parent="." instance=ExtResource("7_iq480")]
-visible = false
 
 [node name="Poison" type="Sprite2D" parent="."]
 position = Vector2(534.5, -556)
@@ -97,3 +92,12 @@ script = ExtResource("10_qwwkp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health2/mp"]
 shape = SubResource("RectangleShape2D_8l8xd")
+
+[node name="HealPowerup2" parent="." instance=ExtResource("7_t7feu")]
+position = Vector2(1055, -542)
+
+[node name="Player" parent="." instance=ExtResource("3_qwjkn")]
+position = Vector2(537, -513)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("7_iq480")]
+visible = false
