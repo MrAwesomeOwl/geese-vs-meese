@@ -9,12 +9,16 @@ extends CharacterBody2D
 @export var KNOCKBACK = 300.0
 
 @export_group("Internal stuff (ignore)")
-var facing_direction = 1.0
 ## if true, facing_direction won't automatically change
 @export var facing_direction_locked: bool
 
+var facing_direction = 1.0
 var knockback_vector: Vector2 = Vector2(0,0)
 var time_knockback_expire: int = 0 #msec
+var poison_time_remaining = 0.0
+var max_poison_time = 0.0
+var poison_bar_enabled = false
+
 @onready var last_is_on_floor = is_on_floor()
 
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -37,9 +41,9 @@ func damage_flash_loop():
 	while true:
 		# only go transparent if invulnerability is active
 		if $Health.is_invulnerable:
-			modulate = Color(1,1,1,0.1) # modulate = funny word for color
+			$Body.modulate = Color(1,1,1,0.1) # modulate = funny word for color
 		await Util.wait(0.1)
-		modulate = Color(1,1,1,1)
+		$Body.modulate = Color(1,1,1,1)
 		await Util.wait(0.1)
 	
 ## main attack code	
@@ -55,6 +59,10 @@ func attack():
 		# if the thing can take knockback, do that
 		if hit_body.has_method("take_knockback") and not (hit_health and hit_health.is_dead):
 			hit_body.take_knockback(Vector2(sign(hit_body.global_position.x - global_position.x),-0.5) * KNOCKBACK,0.2)
+			
+		# if the thing can be poisoned (and you have poison active), poison it
+		if "queued_poison_damage" in hit_body and poison_time_remaining > 0:
+			hit_body.queued_poison_damage += 2
 
 func _ready():
 	damage_flash_loop()
@@ -63,6 +71,28 @@ func _process(delta: float) -> void:
 	# make player face correct direction
 	$Body.scale.x = Util.smooth_step($Body.scale.x,facing_direction,0.5,delta)
 	$Body.scale.y = Util.smooth_step($Body.scale.y,1,0.8,delta)
+	
+	# poison powerup stuff
+	poison_time_remaining = max(poison_time_remaining - delta, 0)
+	if poison_time_remaining > 0:
+		# if its just now being enabled, play enable animation
+		if poison_bar_enabled == false: $PoisonBar/AnimationPlayer.play("enable")
+		poison_bar_enabled = true
+		
+		$PoisonBar/Fill.region_rect.size.x = ceil(remap(poison_time_remaining,0.0,max_poison_time,0,12))
+		$PoisonBar/Fill.position.x = 3 - (12 - $PoisonBar/Fill.region_rect.size.x)/2.0
+		$PoisonBar/Fill.visible = true
+		$PoisonParticles.emitting = true
+	else:
+		# if its just now being disabled, play disable animation
+		if poison_bar_enabled == true: $PoisonBar/AnimationPlayer.play("disable")
+		poison_bar_enabled = false
+		
+		$PoisonBar/Fill.visible = false
+		$PoisonParticles.emitting = false
+		
+		max_poison_time = 0
+	
 
 func _physics_process(delta: float) -> void:
 	# gravity

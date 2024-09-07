@@ -15,11 +15,34 @@ extends CharacterBody2D
 
 @onready var direction = START_DIRECTION	
 
+var queued_poison_damage: int = 0
 var last_frame_velocity: Vector2
+
+## really scuffed way to have poison damage flicker green
+## since actual damage causes are beyond this project's scope
+var damage_caused_by_poison = false
 
 func take_knockback(kb_velocity: Vector2, seconds: float):
 	velocity = kb_velocity
 	
+## loop for taking poison damage
+func poison_damage_loop():
+	while true:
+		# if not poisoned, wait until next frame to check again
+		if queued_poison_damage == 0:
+			await get_tree().process_frame
+			$PoisonDamageParticles.amount_ratio = 0
+		# if poisoned, damage and wait longer
+		else:
+			$PoisonDamageParticles.amount_ratio = 1
+			await Util.wait(1)
+			damage_caused_by_poison = true
+			$Health.current -= 1
+			damage_caused_by_poison = false
+			queued_poison_damage -= 1
+			
+func _ready():
+	poison_damage_loop()
 
 func _physics_process(delta: float) -> void:
 	if $Health.is_dead:
@@ -71,6 +94,9 @@ func _on_death() -> void:
 # flash red when taking damage
 func _on_health_changed(new_health: float, old_health: float) -> void:
 	if new_health < old_health:
-		modulate = Color(100,0.5,0.5,1)
+		if damage_caused_by_poison:
+			$Body.modulate = Color(0.5,2,0.5,1)
+		else:
+			$Body.modulate = Color(100,0.5,0.5,1)
 		await Util.wait(0.1)
-		modulate = Color(1,1,1,1)
+		$Body.modulate = Color(1,1,1,1)

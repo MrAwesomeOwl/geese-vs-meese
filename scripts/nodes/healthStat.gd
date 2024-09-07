@@ -19,10 +19,11 @@ signal on_death()
 	set(new):	
 		var old = current
 		current = new
-		on_current_changed.emit(new,old)
-		if current <= 0:
-			is_dead = true
-			on_death.emit()
+		if not is_dead:
+			on_current_changed.emit(new,old)
+			if current <= 0:
+				is_dead = true
+				on_death.emit()
 
 ## how many seconds to be invulnerable for after taking damage
 @export var invulnerability_time = 0.0
