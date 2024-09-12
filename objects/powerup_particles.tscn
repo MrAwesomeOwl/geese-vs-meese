@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://q68lms13xp80"]
+
+[ext_resource type="Texture2D" uid="uid://ba5q3ge6p8tc3" path="res://textures/particles/powerup_particle.png" id="1_eie8t"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oopya"]
+light_mode = 1
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfg1f"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 20, 20)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+spread = 0.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+radial_accel_min = 10.0
+radial_accel_max = 10.0
+damping_min = 5.0
+damping_max = 5.0
+scale_min = 0.5
+anim_speed_min = 4.0
+anim_speed_max = 4.0
+
+[node name="PowerupParticles" type="GPUParticles2D"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_oopya")
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wfg1f")
+texture = ExtResource("1_eie8t")
+lifetime = 2.0
+preprocess = 6.0

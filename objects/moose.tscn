@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://nktlunqpq8sl"]
+[gd_scene load_steps=24 format=3 uid="uid://nktlunqpq8sl"]
 
 [ext_resource type="Script" path="res://scripts/moose.gd" id="1_pkpn5"]
 [ext_resource type="Script" path="res://scripts/nodes/healthStat.gd" id="2_rjkso"]
 [ext_resource type="Texture2D" uid="uid://cncl36gid72xc" path="res://textures/moose/animation_walk.png" id="3_uo17p"]
+[ext_resource type="Texture2D" uid="uid://b1qu4g4j42evk" path="res://textures/particles/poison_damage_particle.png" id="4_vdnuy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6pyp"]
 atlas = ExtResource("3_uo17p")
@@ -85,6 +86,49 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0cqg"]
 size = Vector2(25, 23)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_anhsx"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_dpn0u"]
+offsets = PackedFloat32Array(0, 0.505128, 1)
+colors = PackedColorArray(0.4032, 0.72, 0.52464, 1, 0.928078, 0.966256, 0.942713, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_02iin"]
+gradient = SubResource("Gradient_dpn0u")
+
+[sub_resource type="Gradient" id="Gradient_gx84e"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(0.752941, 1, 0.882353, 1, 0.31598, 0.582185, 0.428326, 1, 0.744501, 0.936161, 0.829197, 1, 0.2583, 0.63, 0.450345, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0kvux"]
+gradient = SubResource("Gradient_gx84e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_034fm"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 31.61
+inherit_velocity_ratio = 0.5
+direction = Vector3(1, -1, 0)
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+radial_accel_min = -2.23517e-06
+radial_accel_max = 5.0
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+color_ramp = SubResource("GradientTexture1D_0kvux")
+color_initial_ramp = SubResource("GradientTexture1D_02iin")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+turbulence_noise_speed = Vector3(0, 10, 0)
+turbulence_influence_min = 1.0
+turbulence_influence_max = 1.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rbk5"]
 size = Vector2(28, 30)
 
@@ -97,6 +141,8 @@ metadata/_edit_group_ = true
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_rjkso")
+maximum = 5.0
+current = 5.0
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -118,8 +164,18 @@ position = Vector2(2.5, -1.5)
 shape = SubResource("RectangleShape2D_c0cqg")
 debug_color = Color(0.993401, 0, 0.238143, 0.42)
 
+[node name="PoisonDamageParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_anhsx")
+position = Vector2(0, -16)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_034fm")
+texture = ExtResource("4_vdnuy")
+lifetime = 0.7
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_5rbk5")
 
+[connection signal="on_current_changed" from="Health" to="." method="_on_health_changed"]
+[connection signal="on_death" from="Health" to="." method="_on_death"]
 [connection signal="body_entered" from="Body/DamageHitbox" to="." method="_on_damage_hitbox_body_entered"]
