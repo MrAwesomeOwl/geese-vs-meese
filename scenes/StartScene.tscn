@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dalgpvc28d6bk"]
+[gd_scene load_steps=5 format=3 uid="uid://dalgpvc28d6bk"]
 
 [ext_resource type="FontFile" uid="uid://cgxhmrtw4tmfh" path="res://fonts/handjet/static/Handjet-Medium.ttf" id="1_fjh8l"]
 [ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/button.tscn" id="2_6ckym"]
 [ext_resource type="Script" path="res://scripts/levelswitching/starttoplay.gd" id="2_8ehml"]
+[ext_resource type="FontFile" uid="uid://gpom1v01vrhy" path="res://fonts/handjet/Handjet-VariableFont_ELGR,ELSH,wght.ttf" id="2_ekxpr"]
 
 [node name="Control" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,6 +34,29 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="Info" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.423828
+anchor_top = 0.888021
+anchor_right = 0.423828
+anchor_bottom = 0.888021
+offset_left = -422.0
+offset_top = -118.5
+offset_right = 422.0
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ekxpr")
+theme_override_font_sizes/font_size = 34
+text = "A & D to move
+Space to jump
+Left click to attack
+M to mute music"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="Button2" parent="." instance=ExtResource("2_6ckym")]
 layout_mode = 1
 anchors_preset = -1
@@ -45,7 +70,7 @@ offset_right = -40.5
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3, 3)
+scale = Vector2(3, 2.9806)
 text = "PLAY"
 script = ExtResource("2_8ehml")
 

@@ -646,6 +646,7 @@ shape = SubResource("RectangleShape2D_5lt3r")
 [node name="PoisonParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_defgx")
 position = Vector2(0, -13)
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_1iiq4")
 texture = ExtResource("9_jveqn")
 

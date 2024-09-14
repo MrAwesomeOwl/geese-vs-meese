@@ -167,6 +167,7 @@ debug_color = Color(0.993401, 0, 0.238143, 0.42)
 [node name="PoisonDamageParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_anhsx")
 position = Vector2(0, -16)
+emitting = false
 amount = 10
 process_material = SubResource("ParticleProcessMaterial_034fm")
 texture = ExtResource("4_vdnuy")
