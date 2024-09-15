@@ -12,6 +12,9 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		# heal player to full health
 		health.current = min(health.maximum,health.current + HEALTH_REWARD)
+		
+		# play pickup sound
+		$CollectSound.play()
 	
 		# play despawn animation
 		$AnimationPlayer.play("collect")

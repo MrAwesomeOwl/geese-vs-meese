@@ -14,5 +14,8 @@ func _on_body_entered(body: Node2D) -> void:
 		body.max_poison_time = max(body.poison_time_remaining,0) + EFFECT_LENGTH
 		body.poison_time_remaining += EFFECT_LENGTH
 			
+		# play pickup sound
+		$CollectSound.play()
+			
 		# play despawn animation
 		$AnimationPlayer.play("collect")

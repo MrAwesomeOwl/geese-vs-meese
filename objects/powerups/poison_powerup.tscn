@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpb0cuurg75mw"]
+[gd_scene load_steps=10 format=3 uid="uid://cpb0cuurg75mw"]
 
 [ext_resource type="Script" path="res://scripts/powerups/poison_powerup.gd" id="1_5dxqk"]
 [ext_resource type="PackedScene" uid="uid://q68lms13xp80" path="res://objects/powerup_particles.tscn" id="2_7sjdw"]
 [ext_resource type="Texture2D" uid="uid://cibth5qsv046q" path="res://textures/powerups/poison.png" id="3_p8dal"]
 [ext_resource type="Script" path="res://float_script.gd" id="4_s21bk"]
+[ext_resource type="AudioStream" uid="uid://cp3jylysx86v6" path="res://sounds/heal_powerup.mp3" id="5_26e8t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ajre"]
 size = Vector2(30, 30)
@@ -113,5 +114,9 @@ shape = SubResource("RectangleShape2D_3ajre")
 libraries = {
 "": SubResource("AnimationLibrary_sqcuw")
 }
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_26e8t")
+bus = &"sounds"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
