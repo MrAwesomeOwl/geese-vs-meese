@@ -1,3 +1,60 @@
-[gd_scene format=3 uid="uid://dykdje6uuw2og"]
+[gd_scene load_steps=9 format=4 uid="uid://dykdje6uuw2og"]
+
+[ext_resource type="Texture2D" uid="uid://b61q1b5aor7ny" path="res://textures/background/GvMWasteland.png" id="1_6c6db"]
+[ext_resource type="TileSet" uid="uid://qbjyjk17yc7p" path="res://tilesets/blocks.tres" id="1_qpg3n"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="2_he188"]
+[ext_resource type="PackedScene" uid="uid://dhrvokr7jba57" path="res://objects/player.tscn" id="3_v3txc"]
+[ext_resource type="PackedScene" uid="uid://burtnq8qlhew0" path="res://scenes/gui.tscn" id="4_45ngs"]
+[ext_resource type="PackedScene" uid="uid://nktlunqpq8sl" path="res://objects/moose.tscn" id="6_jd3br"]
+[ext_resource type="PackedScene" uid="uid://cclnayl672myg" path="res://objects/lose_area.tscn" id="7_yysgo"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_aj0xu"]
 
 [node name="Level1" type="Node2D"]
+
+[node name="Blue" type="MeshInstance2D" parent="."]
+position = Vector2(1535.84, -667.938)
+scale = Vector2(2832.31, -626.125)
+mesh = SubResource("QuadMesh_aj0xu")
+texture = ExtResource("1_6c6db")
+
+[node name="Blue2" type="MeshInstance2D" parent="."]
+position = Vector2(1536, -533)
+scale = Vector2(2832.31, -500)
+mesh = SubResource("QuadMesh_aj0xu")
+texture = ExtResource("1_6c6db")
+
+[node name="Bg" type="MeshInstance2D" parent="."]
+position = Vector2(828, -578)
+scale = Vector2(1416.62, -446.25)
+mesh = SubResource("QuadMesh_aj0xu")
+texture = ExtResource("1_6c6db")
+
+[node name="Bg2" type="MeshInstance2D" parent="."]
+position = Vector2(2243, -579)
+scale = Vector2(1416.62, -446.25)
+mesh = SubResource("QuadMesh_aj0xu")
+texture = ExtResource("1_6c6db")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAgAOD/AAAAAAAAAAAhAOD/AAABAAAAAAAiAOD/AAABAAAAAAAjAOD/AAABAAAAAAAkAOD/AAABAAAAAAAlAOD/AAABAAAAAAAmAOD/AAABAAAAAAAnAOD/AAABAAAAAAAoAOD/AAABAAAAAAAgAOH/AAAAAAIAAAAhAOH/AAABAAIAAAAiAOH/AAABAAIAAAAjAOH/AAABAAIAAAAkAOH/AAABAAIAAAAlAOH/AAABAAIAAAAmAOH/AAABAAIAAAAnAOH/AAABAAIAAAAoAOH/AAABAAIAAAApAOH/AAACAAIAAAApAOD/AAACAAAAAAAsAN7/AAAAAAMAAAAtAN7/AAABAAMAAAAuAN7/AAABAAMAAAAvAN7/AAACAAMAAAAqAN//AAADAAMAAAAxAN3/AAADAAMAAAAzAN7/AAADAAMAAAA1AN3/AAAAAAMAAAA2AN3/AAABAAMAAAA3AN3/AAACAAMAAAA4ANv/AAAAAAMAAAA5ANv/AAABAAIAAAA6ANv/AAABAAMAAAA7ANv/AAABAAMAAAA8ANv/AAABAAMAAAA9ANv/AAABAAMAAAA+ANv/AAABAAMAAAA/ANv/AAABAAMAAABAANv/AAABAAIAAABBANv/AAACAAMAAAA5ANr/AAADAAAAAABAANr/AAADAAAAAAA=")
+tile_set = ExtResource("1_qpg3n")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(765, -364.5)
+zoom = Vector2(2, 2)
+script = ExtResource("2_he188")
+
+[node name="Player" parent="." instance=ExtResource("3_v3txc")]
+position = Vector2(537, -513)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_45ngs")]
+visible = false
+
+[node name="Moose" parent="." instance=ExtResource("6_jd3br")]
+position = Vector2(946, -592)
+
+[node name="LoseArea" parent="." instance=ExtResource("7_yysgo")]
+position = Vector2(611, -522)
+collision_layer = 3
+collision_mask = 3
