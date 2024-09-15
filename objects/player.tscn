@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://dhrvokr7jba57"]
+[gd_scene load_steps=76 format=3 uid="uid://dhrvokr7jba57"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7j0db"]
 [ext_resource type="Script" path="res://scripts/nodes/healthStat.gd" id="2_fo48x"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://iw2yhbr6hn16" path="res://textures/ui/poison_bar_fill.png" id="7_cvts4"]
 [ext_resource type="Texture2D" uid="uid://isynoevlcexe" path="res://textures/ui/poison_bar_overlay.png" id="7_x4hnu"]
 [ext_resource type="Texture2D" uid="uid://bj0nfnlolaeqp" path="res://textures/particles/bubble_particle.png" id="9_jveqn"]
+[ext_resource type="AudioStream" uid="uid://2shluxtooyy" path="res://sounds/honk/honk1.mp3" id="10_q81yi"]
+[ext_resource type="AudioStream" uid="uid://523wwe7vc3he" path="res://sounds/honk/honk2.mp3" id="11_t254p"]
+[ext_resource type="AudioStream" uid="uid://cfgjsnx72rvr6" path="res://sounds/honk/honk3.mp3" id="12_03lq6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yc6rh"]
 atlas = ExtResource("3_e00ir")
@@ -58,21 +61,21 @@ region = Rect2(480, 0, 47, 32)
 atlas = ExtResource("3_e00ir")
 region = Rect2(528, 0, 47, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vwshf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5s8g"]
 atlas = ExtResource("4_h3nmj")
 region = Rect2(0, 0, 21, 25)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vqxam"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuekr"]
 atlas = ExtResource("4_h3nmj")
-region = Rect2(21, 0, 21, 25)
+region = Rect2(22, 0, 21, 25)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_67va0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjeyt"]
 atlas = ExtResource("4_h3nmj")
-region = Rect2(42, 0, 21, 25)
+region = Rect2(44, 0, 21, 25)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0244y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0054"]
 atlas = ExtResource("4_h3nmj")
-region = Rect2(63, 0, 21, 25)
+region = Rect2(66, 0, 21, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ogiq"]
 atlas = ExtResource("5_khvh1")
@@ -191,16 +194,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vwshf")
+"texture": SubResource("AtlasTexture_m5s8g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vqxam")
+"texture": SubResource("AtlasTexture_kuekr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_67va0")
+"texture": SubResource("AtlasTexture_rjeyt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0244y")
+"texture": SubResource("AtlasTexture_v0054")
 }],
 "loop": true,
 "name": &"idle",
@@ -446,6 +449,13 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wr5k4"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("10_q81yi")
+stream_1/stream = ExtResource("11_t254p")
+stream_2/stream = ExtResource("12_03lq6")
+
 [sub_resource type="Animation" id="Animation_8u8y1"]
 resource_name = "attack"
 length = 0.55
@@ -502,6 +512,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainSoundPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_wr5k4")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_gpk87"]
 resource_name = "idle"
@@ -628,7 +653,7 @@ invulnerability_time = 1.0
 position = Vector2(0.5, -12.5)
 sprite_frames = SubResource("SpriteFrames_xbmr4")
 animation = &"idle"
-frame_progress = 0.00188765
+frame_progress = 0.58385
 
 [node name="DamageHitbox" type="Area2D" parent="Body"]
 position = Vector2(10, -4)
@@ -646,6 +671,7 @@ shape = SubResource("RectangleShape2D_5lt3r")
 [node name="PoisonParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_defgx")
 position = Vector2(0, -13)
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_1iiq4")
 texture = ExtResource("9_jveqn")
 
@@ -669,6 +695,9 @@ texture = ExtResource("7_x4hnu")
 libraries = {
 "": SubResource("AnimationLibrary_ecve1")
 }
+
+[node name="MainSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"sounds"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
