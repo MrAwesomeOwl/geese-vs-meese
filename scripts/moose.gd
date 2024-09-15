@@ -30,7 +30,7 @@ func poison_damage_loop():
 	while true:
 		# if not poisoned, wait until next frame to check again
 		if queued_poison_damage == 0:
-			await get_tree().process_frame
+			await Util.wait(get_process_delta_time())
 			$PoisonDamageParticles.amount_ratio = 0
 		# if poisoned, damage and wait longer
 		else:
