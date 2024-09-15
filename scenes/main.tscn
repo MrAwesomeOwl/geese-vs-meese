@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dalgpvc28d6bk"]
 
-[ext_resource type="FontFile" uid="uid://cgxhmrtw4tmfh" path="res://fonts/handjet/static/Handjet-Medium.ttf" id="1_fjh8l"]
-[ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/button.tscn" id="2_6ckym"]
-[ext_resource type="Script" path="res://scripts/levelswitching/starttoplay.gd" id="2_8ehml"]
+[ext_resource type="FontFile" uid="uid://cgxhmrtw4tmfh" path="res://Fonts/Handjet/static/Handjet-Medium.ttf" id="1_wcikd"]
+[ext_resource type="PackedScene" path="res://objects/button.tscn" id="2_rgf25"]
+[ext_resource type="Script" path="res://scripts/levelswitching/starttoplay.gd" id="3_q14c5"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -25,14 +25,14 @@ offset_right = 422.0
 offset_bottom = 78.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_fjh8l")
+theme_override_fonts/font = ExtResource("1_wcikd")
 theme_override_font_sizes/font_size = 175
 text = "GEESE vs MEESE"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Button2" parent="." instance=ExtResource("2_6ckym")]
+[node name="Button2" parent="." instance=ExtResource("2_rgf25")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -47,6 +47,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
 text = "PLAY"
-script = ExtResource("2_8ehml")
+script = ExtResource("3_q14c5")
+scene_path = "res://scenes/Levels/level_1.tscn"
 
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
