@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm2g6g4p3vinv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38451"]
+size = Vector2(2, 20)
+
+[node name="MooseBlocker" type="StaticBody2D"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_38451")
+debug_color = Color(0.3, 0.135, 0, 0.419608)
