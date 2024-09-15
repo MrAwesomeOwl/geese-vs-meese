@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://dhrvokr7jba57"]
+[gd_scene load_steps=80 format=3 uid="uid://dhrvokr7jba57"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7j0db"]
 [ext_resource type="Script" path="res://scripts/nodes/healthStat.gd" id="2_fo48x"]
@@ -9,9 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://iw2yhbr6hn16" path="res://textures/ui/poison_bar_fill.png" id="7_cvts4"]
 [ext_resource type="Texture2D" uid="uid://isynoevlcexe" path="res://textures/ui/poison_bar_overlay.png" id="7_x4hnu"]
 [ext_resource type="Texture2D" uid="uid://bj0nfnlolaeqp" path="res://textures/particles/bubble_particle.png" id="9_jveqn"]
-[ext_resource type="AudioStream" uid="uid://2shluxtooyy" path="res://sounds/honk/honk1.mp3" id="10_q81yi"]
-[ext_resource type="AudioStream" uid="uid://523wwe7vc3he" path="res://sounds/honk/honk2.mp3" id="11_t254p"]
-[ext_resource type="AudioStream" uid="uid://cfgjsnx72rvr6" path="res://sounds/honk/honk3.mp3" id="12_03lq6"]
+[ext_resource type="AudioStream" uid="uid://du38vy17ohter" path="res://sounds/goose/damage1.mp3" id="10_8ie16"]
+[ext_resource type="AudioStream" uid="uid://2shluxtooyy" path="res://sounds/goose/honk1.mp3" id="10_q81yi"]
+[ext_resource type="AudioStream" uid="uid://cajrxyp2r1qy2" path="res://sounds/goose/damage2.mp3" id="11_a5wri"]
+[ext_resource type="AudioStream" uid="uid://523wwe7vc3he" path="res://sounds/goose/honk2.mp3" id="11_t254p"]
+[ext_resource type="AudioStream" uid="uid://cfgjsnx72rvr6" path="res://sounds/goose/honk3.mp3" id="12_03lq6"]
+[ext_resource type="AudioStream" uid="uid://cbdlohmycq3ir" path="res://sounds/goose/step.tres" id="15_xv45v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yc6rh"]
 atlas = ExtResource("3_e00ir")
@@ -422,6 +425,12 @@ _data = {
 "enable": SubResource("Animation_xfruv")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_iuqrk"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("10_8ie16")
+stream_1/stream = ExtResource("11_a5wri")
+
 [sub_resource type="Animation" id="Animation_6hqm7"]
 length = 0.001
 tracks/0/type = "value"
@@ -515,7 +524,7 @@ tracks/3/keys = {
 tracks/4/type = "audio"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainSoundPlayer")
+tracks/4/path = NodePath("AnimationSound")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -560,7 +569,9 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_6xnby"]
 resource_name = "run"
-step = 1.0
+length = 0.900005
+loop_mode = 1
+step = 0.05
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -652,8 +663,8 @@ invulnerability_time = 1.0
 [node name="Animations" type="AnimatedSprite2D" parent="Body"]
 position = Vector2(0.5, -12.5)
 sprite_frames = SubResource("SpriteFrames_xbmr4")
-animation = &"idle"
-frame_progress = 0.58385
+animation = &"run"
+frame_progress = 0.488238
 
 [node name="DamageHitbox" type="Area2D" parent="Body"]
 position = Vector2(10, -4)
@@ -696,7 +707,16 @@ libraries = {
 "": SubResource("AnimationLibrary_ecve1")
 }
 
-[node name="MainSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="AnimationSound" type="AudioStreamPlayer2D" parent="."]
+bus = &"sounds"
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_iuqrk")
+volume_db = 5.081
+bus = &"sounds"
+
+[node name="WalkSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_xv45v")
 bus = &"sounds"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -708,3 +728,5 @@ autoplay = "idle"
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_abp8s")
 anim_player = NodePath("../AnimationPlayer")
+
+[connection signal="on_current_changed" from="Health" to="." method="_on_health_changed"]

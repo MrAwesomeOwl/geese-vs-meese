@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://cbdlohmycq3ir"]
+
+[ext_resource type="AudioStream" uid="uid://b3rvbscvvyui1" path="res://sounds/goose/step.mp3" id="1_6m2pu"]
+
+[resource]
+playback_mode = 1
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("1_6m2pu")
