@@ -119,11 +119,11 @@ position = Vector2(1987, -512)
 position = Vector2(2099, -544)
 
 [node name="WinArea" parent="." instance=ExtResource("8_f31gj")]
-position = Vector2(609, -523)
+position = Vector2(2651, -524)
 collision_layer = 3
 collision_mask = 3
 
 [node name="AppleFritter" type="Sprite2D" parent="."]
-position = Vector2(2744, -541)
+position = Vector2(2646, -527)
 scale = Vector2(0.923077, 0.847826)
 texture = ExtResource("12_oinom")
