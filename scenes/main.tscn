@@ -39,7 +39,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 text = "PLAY"
 script = ExtResource("3_2jhqv")
-scene_path = "test.tscn"
+scene_path = "res://scenes/Levels/level_1.tscn"
 metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Label" parent="."]

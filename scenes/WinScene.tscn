@@ -32,7 +32,7 @@ offset_bottom = 335.0
 theme_override_font_sizes/font_size = 50
 text = "  Play Again  "
 script = ExtResource("3_si1qi")
-scene_path = "res://scenes/StartScene.tscn"
+scene_path = "res://scenes/main.tscn"
 
 [node name="QuitBtn" parent="." instance=ExtResource("2_qsxvk")]
 layout_mode = 0
