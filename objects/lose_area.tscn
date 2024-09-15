@@ -9,6 +9,6 @@
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8b53k")
 script = ExtResource("1_gkaf7")
-scene_path = "res://scenes/StartScene.tscn"
+scene_path = "res://scenes/LoseScene.tscn"
 
 [connection signal="body_entered" from="." to="CollisionShape2D" method="_on_win_area_body_entered"]
