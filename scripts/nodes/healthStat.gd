@@ -6,8 +6,6 @@ signal on_current_changed(new_health: float, old_health: float)
 signal on_max_changed(new_max_health: float, old_max_health: float)
 signal on_death()
 
-@export var scene_path : String
-
 ## maximum health
 @export var maximum = 3.0:
 	set(new):
@@ -46,7 +44,3 @@ func damage(amount: float):
 	if not is_invulnerable:
 		current = clampf(current - amount,0,INF)
 		last_damaged_at = Time.get_ticks_msec()
-
-
-func _on_on_death():
-	get_tree().call_deferred("change_scene_to_file", scene_path)

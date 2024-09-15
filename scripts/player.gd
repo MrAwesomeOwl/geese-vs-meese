@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var scene_path : String
 
 @export var SPEED = 150.0
 ## lower values result in slipperier movement (like ice)
@@ -152,3 +153,7 @@ func _physics_process(delta: float) -> void:
 func _on_health_changed(new_health: float, old_health: float) -> void:
 	if new_health < old_health:
 		$DamageSound.play()
+
+
+func _on_health_on_death():
+	get_tree().call_deferred("change_scene_to_file", scene_path)
