@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://dhrvokr7jba57"]
+[gd_scene load_steps=76 format=3 uid="uid://dhrvokr7jba57"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7j0db"]
 [ext_resource type="Script" path="res://scripts/nodes/healthStat.gd" id="2_fo48x"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://iw2yhbr6hn16" path="res://textures/ui/poison_bar_fill.png" id="7_cvts4"]
 [ext_resource type="Texture2D" uid="uid://isynoevlcexe" path="res://textures/ui/poison_bar_overlay.png" id="7_x4hnu"]
 [ext_resource type="Texture2D" uid="uid://bj0nfnlolaeqp" path="res://textures/particles/bubble_particle.png" id="9_jveqn"]
+[ext_resource type="AudioStream" uid="uid://2shluxtooyy" path="res://sounds/honk/honk1.mp3" id="10_q81yi"]
+[ext_resource type="AudioStream" uid="uid://523wwe7vc3he" path="res://sounds/honk/honk2.mp3" id="11_t254p"]
+[ext_resource type="AudioStream" uid="uid://cfgjsnx72rvr6" path="res://sounds/honk/honk3.mp3" id="12_03lq6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yc6rh"]
 atlas = ExtResource("3_e00ir")
@@ -446,6 +449,13 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wr5k4"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("10_q81yi")
+stream_1/stream = ExtResource("11_t254p")
+stream_2/stream = ExtResource("12_03lq6")
+
 [sub_resource type="Animation" id="Animation_8u8y1"]
 resource_name = "attack"
 length = 0.55
@@ -502,6 +512,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainSoundPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_wr5k4")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_gpk87"]
 resource_name = "idle"
@@ -670,6 +695,9 @@ texture = ExtResource("7_x4hnu")
 libraries = {
 "": SubResource("AnimationLibrary_ecve1")
 }
+
+[node name="MainSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"sounds"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
