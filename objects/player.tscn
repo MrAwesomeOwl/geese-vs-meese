@@ -656,6 +656,7 @@ metadata/_edit_group_ = true
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_fo48x")
+scene_path = "res://scenes/LoseScene.tscn"
 invulnerability_time = 1.0
 
 [node name="Body" type="Node2D" parent="."]
@@ -730,3 +731,4 @@ tree_root = SubResource("AnimationNodeStateMachine_abp8s")
 anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="on_current_changed" from="Health" to="." method="_on_health_changed"]
+[connection signal="on_death" from="Health" to="Health" method="_on_on_death"]
