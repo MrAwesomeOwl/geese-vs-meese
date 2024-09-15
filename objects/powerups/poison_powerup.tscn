@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/powerups/poison_powerup.gd" id="1_5dxqk"]
 [ext_resource type="PackedScene" uid="uid://q68lms13xp80" path="res://objects/powerup_particles.tscn" id="2_7sjdw"]
 [ext_resource type="Texture2D" uid="uid://cibth5qsv046q" path="res://textures/powerups/poison.png" id="3_p8dal"]
-[ext_resource type="Script" path="res://float_script.gd" id="4_s21bk"]
+[ext_resource type="Script" path="res://scripts/float_script.gd" id="4_s21bk"]
 [ext_resource type="AudioStream" uid="uid://cp3jylysx86v6" path="res://sounds/heal_powerup.mp3" id="5_26e8t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ajre"]

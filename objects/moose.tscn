@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://nktlunqpq8sl"]
+[gd_scene load_steps=26 format=3 uid="uid://nktlunqpq8sl"]
 
 [ext_resource type="Script" path="res://scripts/moose.gd" id="1_pkpn5"]
 [ext_resource type="Script" path="res://scripts/nodes/healthStat.gd" id="2_rjkso"]
@@ -87,6 +87,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0cqg"]
 size = Vector2(25, 23)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_co0jn"]
+size = Vector2(6, 12)
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_anhsx"]
 particles_animation = true
 particles_anim_h_frames = 8
@@ -165,6 +168,14 @@ monitorable = false
 position = Vector2(2.5, -1.5)
 shape = SubResource("RectangleShape2D_c0cqg")
 debug_color = Color(0.993401, 0, 0.238143, 0.42)
+
+[node name="FloorCheckHitbox" type="Area2D" parent="Body"]
+position = Vector2(15, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/FloorCheckHitbox"]
+position = Vector2(2, 7)
+shape = SubResource("RectangleShape2D_co0jn")
+debug_color = Color(0, 0.638058, 0.383847, 0.42)
 
 [node name="PoisonDamageParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_anhsx")

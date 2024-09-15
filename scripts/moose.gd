@@ -50,11 +50,18 @@ func _physics_process(delta: float) -> void:
 		modulate.r += delta/2
 		$Body/Animations.rotation_degrees += delta*20
 	else:
-			
 		# if moose is touching a wall, flip its move direction
 		if is_on_wall(): 
 			direction = get_wall_normal().x
 			velocity.x = last_frame_velocity.x * -1
+			
+		# if moose is about to fall off a platform, flip its move direction
+		if is_on_floor() and $Body/FloorCheckHitbox.get_overlapping_bodies().size() == 0:
+			# only do that if the moose was not recently damaged
+			# that way its easier to fling meese off of platforms
+			if Time.get_ticks_msec() - $Health.last_damaged_at > 500:
+				direction *= -1
+				velocity.x *= -1
 			
 		# actual movement
 		velocity.x = move_toward(velocity.x,direction * SPEED,SPEED * 10 * delta)

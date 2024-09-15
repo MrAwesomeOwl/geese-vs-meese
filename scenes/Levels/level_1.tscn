@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dykdje6uuw2og"]
+[gd_scene load_steps=12 format=4 uid="uid://dykdje6uuw2og"]
 
 [ext_resource type="Texture2D" uid="uid://b61q1b5aor7ny" path="res://textures/background/GvMWasteland.png" id="1_6c6db"]
 [ext_resource type="TileSet" uid="uid://qbjyjk17yc7p" path="res://tilesets/blocks.tres" id="1_qpg3n"]
@@ -8,10 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://nktlunqpq8sl" path="res://objects/moose.tscn" id="6_jd3br"]
 [ext_resource type="PackedScene" uid="uid://cclnayl672myg" path="res://objects/lose_area.tscn" id="7_yysgo"]
 [ext_resource type="PackedScene" uid="uid://cpccfvmalc1ea" path="res://objects/win_area.tscn" id="8_f31gj"]
-[ext_resource type="PackedScene" path="res://objects/moose_blocker.tscn" id="8_gpi8p"]
 [ext_resource type="PackedScene" uid="uid://c6x6ypygcib4j" path="res://objects/powerups/heal_powerup.tscn" id="9_jyb0n"]
 [ext_resource type="PackedScene" uid="uid://cpb0cuurg75mw" path="res://objects/powerups/poison_powerup.tscn" id="10_opakl"]
-[ext_resource type="Texture2D" uid="uid://c43h76t6igadf" path="res://textures/apple_fritter.png" id="12_oinom"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_aj0xu"]
 
@@ -69,38 +67,6 @@ position = Vector2(1199, -580)
 [node name="PoisonPowerup" parent="." instance=ExtResource("10_opakl")]
 position = Vector2(1791, -595)
 
-[node name="Moose Blockers" type="Node" parent="."]
-
-[node name="MooseBlocker" parent="Moose Blockers" instance=ExtResource("8_gpi8p")]
-position = Vector2(897, -583)
-
-[node name="MooseBlocker2" parent="Moose Blockers" instance=ExtResource("8_gpi8p")]
-position = Vector2(1055, -583)
-
-[node name="MooseBlocker3" parent="Moose Blockers" instance=ExtResource("8_gpi8p")]
-position = Vector2(1456, -503)
-
-[node name="MooseBlocker4" parent="Moose Blockers" instance=ExtResource("8_gpi8p")]
-position = Vector2(1600, -503)
-
-[node name="MooseBlocker5" parent="Moose Blockers" instance=ExtResource("8_gpi8p")]
-position = Vector2(1857, -535)
-
-[node name="MooseBlocker6" parent="Moose Blockers" instance=ExtResource("8_gpi8p")]
-position = Vector2(1935, -535)
-
-[node name="MooseBlocker7" parent="Moose Blockers" instance=ExtResource("8_gpi8p")]
-position = Vector2(1968, -503)
-
-[node name="MooseBlocker8" parent="Moose Blockers" instance=ExtResource("8_gpi8p")]
-position = Vector2(2047, -503)
-
-[node name="MooseBlocker9" parent="Moose Blockers" instance=ExtResource("8_gpi8p")]
-position = Vector2(2081, -535)
-
-[node name="MooseBlocker10" parent="Moose Blockers" instance=ExtResource("8_gpi8p")]
-position = Vector2(2175, -535)
-
 [node name="Meese" type="Node" parent="."]
 
 [node name="Moose" parent="Meese" instance=ExtResource("6_jd3br")]
@@ -119,11 +85,7 @@ position = Vector2(1987, -512)
 position = Vector2(2099, -544)
 
 [node name="WinArea" parent="." instance=ExtResource("8_f31gj")]
-position = Vector2(2651, -524)
+position = Vector2(2647, -533)
+scale = Vector2(1, 1)
 collision_layer = 3
 collision_mask = 3
-
-[node name="AppleFritter" type="Sprite2D" parent="."]
-position = Vector2(2646, -527)
-scale = Vector2(0.923077, 0.847826)
-texture = ExtResource("12_oinom")
