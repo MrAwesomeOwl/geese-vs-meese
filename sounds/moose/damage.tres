@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://bgber54m265nm"]
+
+[ext_resource type="AudioStream" uid="uid://b27q3gcnpje1r" path="res://sounds/moose/damage1.mp3" id="1_81gnp"]
+[ext_resource type="AudioStream" uid="uid://d00ycgegfyn35" path="res://sounds/moose/damage2.mp3" id="2_msg1q"]
+
+[resource]
+playback_mode = 1
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("1_81gnp")
+stream_1/stream = ExtResource("2_msg1q")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://nktlunqpq8sl"]
+[gd_scene load_steps=25 format=3 uid="uid://nktlunqpq8sl"]
 
 [ext_resource type="Script" path="res://scripts/moose.gd" id="1_pkpn5"]
 [ext_resource type="Script" path="res://scripts/nodes/healthStat.gd" id="2_rjkso"]
 [ext_resource type="Texture2D" uid="uid://cncl36gid72xc" path="res://textures/moose/animation_walk.png" id="3_uo17p"]
 [ext_resource type="Texture2D" uid="uid://b1qu4g4j42evk" path="res://textures/particles/poison_damage_particle.png" id="4_vdnuy"]
+[ext_resource type="AudioStream" uid="uid://bgber54m265nm" path="res://sounds/moose/damage.tres" id="5_lxbiw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6pyp"]
 atlas = ExtResource("3_uo17p")
@@ -177,6 +178,11 @@ lifetime = 0.7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_5rbk5")
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_lxbiw")
+volume_db = 5.261
+bus = &"sounds"
 
 [connection signal="on_current_changed" from="Health" to="." method="_on_health_changed"]
 [connection signal="on_death" from="Health" to="." method="_on_death"]

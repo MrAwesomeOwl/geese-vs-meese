@@ -91,9 +91,10 @@ func _on_death() -> void:
 	await Util.wait(1)
 	queue_free()
 
-# flash red when taking damage
+# flash red and play sound when taking damage
 func _on_health_changed(new_health: float, old_health: float) -> void:
 	if new_health < old_health:
+		$DamageSound.play()
 		if damage_caused_by_poison:
 			$Body.modulate = Color(0.5,2,0.5,1)
 		else:
