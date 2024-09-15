@@ -15,6 +15,7 @@ extends CharacterBody2D
 var facing_direction = 1.0
 var knockback_vector: Vector2 = Vector2(0,0)
 var time_knockback_expire: int = 0 #msec
+var time_last_walk_sound_played = 0 #msec
 var poison_time_remaining = 0.0
 var max_poison_time = 0.0
 var poison_bar_enabled = false
@@ -109,11 +110,19 @@ func _physics_process(delta: float) -> void:
 	# left/right movement
 	var direction := Input.get_axis("left", "right")
 	if direction:
+		velocity.x = move_toward(velocity.x, SPEED * direction, SPEED*SNAPPINESS * delta)
+		
+		# change facing direction
 		if not facing_direction_locked:
 			facing_direction = direction
+			
+		# play walk anim
 		animation_tree["parameters/movement/playback"].travel("run")
 		
-		velocity.x = move_toward(velocity.x, SPEED * direction, SPEED*SNAPPINESS * delta)
+		# play step sounds
+		if is_on_floor() and Time.get_ticks_msec() - time_last_walk_sound_played > 400:
+			$WalkSound.play()
+			time_last_walk_sound_played = Time.get_ticks_msec()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED*SNAPPINESS * delta)
 		animation_tree["parameters/movement/playback"].travel("idle")
@@ -138,3 +147,8 @@ func _physics_process(delta: float) -> void:
 		$Body.scale.y = 0.6
 		
 	last_is_on_floor = is_on_floor()
+
+# play scream sound when damaged
+func _on_health_changed(new_health: float, old_health: float) -> void:
+	if new_health < old_health:
+		$DamageSound.play()
