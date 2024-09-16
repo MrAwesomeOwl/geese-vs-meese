@@ -156,4 +156,5 @@ func _on_health_changed(new_health: float, old_health: float) -> void:
 
 
 func _on_health_on_death():
-	get_tree().call_deferred("change_scene_to_file", scene_path)
+	print("dingus")
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/LoseScene.tscn")

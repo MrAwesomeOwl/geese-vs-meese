@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dykdje6uuw2og"]
+[gd_scene load_steps=11 format=4 uid="uid://dykdje6uuw2og"]
 
 [ext_resource type="Texture2D" uid="uid://b61q1b5aor7ny" path="res://textures/background/GvMWasteland.png" id="1_6c6db"]
 [ext_resource type="TileSet" uid="uid://qbjyjk17yc7p" path="res://tilesets/blocks.tres" id="1_qpg3n"]
@@ -11,33 +11,16 @@
 [ext_resource type="PackedScene" uid="uid://c6x6ypygcib4j" path="res://objects/powerups/heal_powerup.tscn" id="9_jyb0n"]
 [ext_resource type="PackedScene" uid="uid://cpb0cuurg75mw" path="res://objects/powerups/poison_powerup.tscn" id="10_opakl"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_aj0xu"]
-
 [node name="Level1" type="Node2D"]
 texture_filter = 1
 
-[node name="Blue" type="MeshInstance2D" parent="."]
-position = Vector2(1535.84, -667.938)
-scale = Vector2(2832.31, -626.125)
-mesh = SubResource("QuadMesh_aj0xu")
-texture = ExtResource("1_6c6db")
+[node name="Background" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.25, 0.35)
+scroll_offset = Vector2(813, 9)
 
-[node name="Blue2" type="MeshInstance2D" parent="."]
-position = Vector2(1536, -533)
-scale = Vector2(2832.31, -500)
-mesh = SubResource("QuadMesh_aj0xu")
-texture = ExtResource("1_6c6db")
-
-[node name="Bg" type="MeshInstance2D" parent="."]
-position = Vector2(828, -578)
-scale = Vector2(1416.62, -446.25)
-mesh = SubResource("QuadMesh_aj0xu")
-texture = ExtResource("1_6c6db")
-
-[node name="Bg2" type="MeshInstance2D" parent="."]
-position = Vector2(2243, -579)
-scale = Vector2(1416.62, -446.25)
-mesh = SubResource("QuadMesh_aj0xu")
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+texture_filter = 6
+scale = Vector2(0.178442, 0.178442)
 texture = ExtResource("1_6c6db")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -45,12 +28,13 @@ tile_map_data = PackedByteArray("AAAgAOD/AAAAAAAAAAAhAOD/AAABAAAAAAAiAOD/AAABAAA
 tile_set = ExtResource("1_qpg3n")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(765, -364.5)
+position = Vector2(765, -450)
 zoom = Vector2(2, 2)
 script = ExtResource("2_he188")
 
 [node name="Player" parent="." instance=ExtResource("3_v3txc")]
 position = Vector2(537, -513)
+scene_path = ""
 
 [node name="CanvasLayer" parent="." instance=ExtResource("4_45ngs")]
 visible = false
