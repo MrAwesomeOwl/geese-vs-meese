@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dalgpvc28d6bk"]
 
 [ext_resource type="Texture2D" uid="uid://c8a2rfvdabfns" path="res://textures/background/GvMStart.png" id="1_8r356"]
-[ext_resource type="PackedScene" path="res://objects/button.tscn" id="2_q5hm5"]
+[ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/button.tscn" id="2_q5hm5"]
 [ext_resource type="Script" path="res://scripts/levelswitching/starttoplay.gd" id="3_2jhqv"]
-[ext_resource type="FontFile" uid="uid://cgxhmrtw4tmfh" path="res://Fonts/Handjet/static/Handjet-Medium.ttf" id="4_s5ni3"]
+[ext_resource type="FontFile" uid="uid://cgxhmrtw4tmfh" path="res://fonts/handjet/static/Handjet-Medium.ttf" id="4_s5ni3"]
 
 [node name="main" type="Control"]
 layout_mode = 3
