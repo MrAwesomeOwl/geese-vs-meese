@@ -57,11 +57,13 @@ func _physics_process(delta: float) -> void:
 			
 		# if moose is about to fall off a platform, flip its move direction
 		if is_on_floor() and $Body/FloorCheckHitbox.get_overlapping_bodies().size() == 0:
-			# only do that if the moose was not recently damaged
-			# that way its easier to fling meese off of platforms
-			if Time.get_ticks_msec() - $Health.last_damaged_at > 500:
-				direction *= -1
-				velocity.x *= -1
+			# prevent moose from having a stroke when standing on a 1 wide surface
+			if $Body/BackFloorCheckHitbox.get_overlapping_bodies().size() > 0:
+				# only do that if the moose was not recently damaged
+				# that way its easier to fling meese off of platforms
+				if Time.get_ticks_msec() - $Health.last_damaged_at > 500:
+					direction *= -1
+					velocity.x *= -1
 			
 		# actual movement
 		velocity.x = move_toward(velocity.x,direction * SPEED,SPEED * 10 * delta)

@@ -177,6 +177,14 @@ position = Vector2(2, 7)
 shape = SubResource("RectangleShape2D_co0jn")
 debug_color = Color(0, 0.638058, 0.383847, 0.42)
 
+[node name="BackFloorCheckHitbox" type="Area2D" parent="Body"]
+position = Vector2(-19, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/BackFloorCheckHitbox"]
+position = Vector2(2, 7)
+shape = SubResource("RectangleShape2D_co0jn")
+debug_color = Color(0, 0.638058, 0.383847, 0.42)
+
 [node name="PoisonDamageParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_anhsx")
 position = Vector2(0, -16)
