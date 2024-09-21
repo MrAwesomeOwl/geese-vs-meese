@@ -20,7 +20,8 @@ scroll_offset = Vector2(813, 9)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
 texture_filter = 6
-scale = Vector2(0.178442, 0.178442)
+position = Vector2(-3, -5)
+scale = Vector2(0.175796, 0.175796)
 texture = ExtResource("1_6c6db")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -28,8 +29,13 @@ tile_map_data = PackedByteArray("AAAgAOD/AgAAAAAAAAAhAOD/AgABAAAAAAAiAOD/AgABAAA
 tile_set = ExtResource("1_qpg3n")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(765, -450)
+position = Vector2(765, -452)
 zoom = Vector2(2, 2)
+limit_bottom = -340
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+editor_draw_limits = true
 script = ExtResource("2_he188")
 
 [node name="Player" parent="." instance=ExtResource("3_v3txc")]
@@ -40,7 +46,7 @@ scene_path = ""
 visible = false
 
 [node name="LoseArea" parent="." instance=ExtResource("7_yysgo")]
-position = Vector2(1537, -382)
+position = Vector2(1537, -305)
 scale = Vector2(150, 3)
 collision_layer = 3
 collision_mask = 3
