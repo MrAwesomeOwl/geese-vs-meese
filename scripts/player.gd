@@ -17,6 +17,7 @@ var facing_direction = 1.0
 var knockback_vector: Vector2 = Vector2(0,0)
 var time_knockback_expire: int = 0 #msec
 var time_last_walk_sound_played = 0 #msec
+var time_jump_buffered_until = 0 #msec
 var poison_time_remaining = 0.0
 var max_poison_time = 0.0
 var poison_bar_enabled = false
@@ -47,6 +48,16 @@ func damage_flash_loop():
 		await Util.wait(0.1)
 		$Body.modulate = Color(1,1,1,1)
 		await Util.wait(0.1)
+		
+func jump():
+	#apply upward velocity
+	velocity.y = -JUMP_STRENGTH
+	
+	# make player squash
+	# this scale change is canceled out in _process()
+	$Body.scale.y += 0.25
+	
+	time_jump_buffered_until = -INF
 	
 ## main attack code	
 func attack():
@@ -97,16 +108,18 @@ func _process(delta: float) -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	# gravity
-	if not is_on_floor():
+	if is_on_floor():
+		# jump if space is pressed
+		if Input.is_action_just_pressed("jump") or Time.get_ticks_msec() - time_jump_buffered_until < 0:
+			jump()
+	else:
+		# let player press space 80ms before hitting the ground and still have them jump
+		if Input.is_action_just_pressed("jump"):
+			time_jump_buffered_until = Time.get_ticks_msec() + 80
+			
+		# gravity
 		velocity += get_gravity() * delta
-
-	# jumping
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = -JUMP_STRENGTH
-		# make player squash
-		# this scale change is canceled out in _process()
-		$Body.scale.y += 0.25
+		
 
 	# left/right movement
 	var direction := Input.get_axis("left", "right")
@@ -147,6 +160,11 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and not last_is_on_floor:
 		$Body.scale.y = 0.6
 		
+		# play step sound when landing
+		if Time.get_ticks_msec() - time_last_walk_sound_played > 400:
+			$WalkSound.play()
+			time_last_walk_sound_played = Time.get_ticks_msec()
+		
 	last_is_on_floor = is_on_floor()
 
 # play scream sound when damaged
@@ -156,5 +174,4 @@ func _on_health_changed(new_health: float, old_health: float) -> void:
 
 
 func _on_health_on_death():
-	print("dingus")
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/LoseScene.tscn")
