@@ -17,6 +17,7 @@ texture_filter = 1
 [node name="Background" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.25, 0.35)
 scroll_offset = Vector2(685, 189)
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
 texture_filter = 6
@@ -42,7 +43,7 @@ script = ExtResource("2_he188")
 [node name="Player" parent="." instance=ExtResource("3_v3txc")]
 scene_path = ""
 
-[node name="CanvasLayer" parent="." instance=ExtResource("4_45ngs")]
+[node name="HUD" parent="." instance=ExtResource("4_45ngs")]
 visible = false
 
 [node name="LoseArea" parent="." instance=ExtResource("7_yysgo")]

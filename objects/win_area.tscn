@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scripts/float_script.gd" id="2_03cq2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8b53k"]
+size = Vector2(30, 30)
 
 [node name="WinArea" type="Area2D"]
 texture_filter = 1

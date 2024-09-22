@@ -651,6 +651,7 @@ graph_offset = Vector2(-366, -98)
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 texture_filter = 1
 collision_layer = 2
+collision_mask = 513
 script = ExtResource("1_7j0db")
 scene_path = "res://scenes/LoseScene.tscn"
 metadata/_edit_group_ = true

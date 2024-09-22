@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bemo8st3gyljg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38451"]
+
+[node name="InvisibleWall" type="StaticBody2D"]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_38451")
+debug_color = Color(0.79, 0.4503, 0.4503, 0.419608)

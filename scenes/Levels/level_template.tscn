@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=4 uid="uid://cmekctevlk1n7"]
+
+[ext_resource type="Texture2D" uid="uid://b61q1b5aor7ny" path="res://textures/background/GvMWasteland.png" id="1_hu0vv"]
+[ext_resource type="TileSet" uid="uid://qbjyjk17yc7p" path="res://tilesets/blocks.tres" id="2_m6a7o"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_xrym8"]
+[ext_resource type="PackedScene" uid="uid://dhrvokr7jba57" path="res://objects/player.tscn" id="4_y1p8n"]
+[ext_resource type="PackedScene" uid="uid://burtnq8qlhew0" path="res://scenes/gui.tscn" id="5_roic5"]
+[ext_resource type="PackedScene" uid="uid://cclnayl672myg" path="res://objects/lose_area.tscn" id="6_4lbyg"]
+[ext_resource type="PackedScene" uid="uid://c6x6ypygcib4j" path="res://objects/powerups/heal_powerup.tscn" id="7_ojelw"]
+[ext_resource type="PackedScene" uid="uid://cpb0cuurg75mw" path="res://objects/powerups/poison_powerup.tscn" id="8_tjy73"]
+[ext_resource type="PackedScene" uid="uid://nktlunqpq8sl" path="res://objects/moose.tscn" id="9_n04j5"]
+[ext_resource type="PackedScene" uid="uid://cpccfvmalc1ea" path="res://objects/win_area.tscn" id="10_evkjq"]
+
+[node name="Level1" type="Node2D"]
+texture_filter = 1
+
+[node name="Background" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.25, 0.35)
+scroll_offset = Vector2(686, 190)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+texture_filter = 6
+scale = Vector2(0.175796, 0.175796)
+texture = ExtResource("1_hu0vv")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+/wAAAAAAAAMAAAD//wAAAAAHAAQAAAAAAAAAAAAGAAQAAAABAAAAAAACAAMAAAD//wEAAAAAAAIAAAAAAAEAAAACAAIAAAD7/wAAAQAGAAQAAAD6/wAAAQAAAAAAAAD6/wEAAQAAAAEAAAD7/wEAAQACAAEAAAD7/wwAAQACAAIAAAD7/wsAAQACAAEAAAD7/woAAQACAAEAAAD7/wkAAQACAAEAAAD7/wgAAQACAAEAAAD7/wcAAQACAAEAAAD7/wYAAQACAAEAAAD7/wUAAQACAAEAAAD7/wQAAQACAAEAAAD7/wMAAQACAAEAAAD7/wIAAQACAAEAAAD6/wwAAQAAAAIAAAD6/wsAAQAAAAEAAAD6/woAAQAAAAEAAAD6/wkAAQAAAAEAAAD6/wgAAQAAAAEAAAD6/wcAAQAAAAEAAAD6/wYAAQAAAAEAAAD6/wUAAQAAAAEAAAD6/wQAAQAAAAEAAAD6/wMAAQAAAAEAAAD6/wIAAQAAAAEAAAD4/wIAAQACAAAAAAD4/wwAAQACAAIAAAD4/wsAAQACAAEAAAD4/woAAQACAAEAAAD4/wkAAQACAAEAAAD4/wgAAQACAAEAAAD4/wcAAQACAAEAAAD4/wYAAQACAAEAAAD4/wUAAQACAAEAAAD4/wQAAQACAAEAAAD4/wMAAQACAAEAAAD3/wwAAQAAAAIAAAD3/wsAAQAAAAEAAAD3/woAAQAAAAEAAAD3/wkAAQAAAAEAAAD3/wgAAQAAAAEAAAD3/wcAAQAAAAEAAAD3/wYAAQAAAAEAAAD3/wUAAQAAAAEAAAD3/wQAAQAAAAEAAAD3/wMAAQAAAAEAAAD3/wIAAQAAAAAAAAD1/wsAAQACAAEAAAD1/woAAQACAAEAAAD1/wkAAQACAAEAAAD1/wgAAQACAAEAAAD1/wcAAQACAAEAAAD1/wYAAQACAAEAAAD1/wUAAQACAAEAAAD1/wQAAQACAAEAAAD1/wMAAQACAAEAAAD1/wIAAQACAAEAAAD1/wEAAQACAAEAAAD1/wAAAQACAAAAAAD0/wsAAQAAAAEAAAD0/woAAQAAAAEAAAD0/wkAAQAAAAEAAAD0/wgAAQAAAAEAAAD0/wcAAQAAAAEAAAD0/wYAAQAAAAEAAAD0/wUAAQAAAAEAAAD0/wQAAQAAAAEAAAD0/wMAAQAAAAEAAAD0/wIAAQAAAAEAAAD0/wEAAQAAAAEAAAD0/wAAAQAAAAAAAAD1/wwAAQACAAIAAAD0/wwAAQAAAAIAAADy/wwAAQACAAIAAADy/wsAAQACAAEAAADy/woAAQACAAEAAADy/wkAAQACAAEAAADy/wgAAQACAAEAAADy/wcAAQACAAEAAADy/wYAAQACAAEAAADy/wUAAQACAAEAAADy/wQAAQACAAEAAADy/wMAAQACAAEAAADy/wIAAQACAAAAAADx/wwAAQAAAAIAAADx/wsAAQAAAAEAAADx/woAAQAAAAEAAADx/wkAAQAAAAEAAADx/wgAAQAAAAEAAADx/wcAAQAAAAEAAADx/wYAAQAAAAEAAADx/wUAAQAAAAEAAADx/wQAAQAAAAEAAADx/wMAAQAAAAEAAADx/wIAAQAAAAAAAADv/wwAAQACAAIAAADv/wsAAQACAAEAAADv/woAAQACAAEAAADv/wkAAQACAAEAAADv/wgAAQACAAEAAADv/wcAAQACAAEAAADv/wYAAQACAAEAAADv/wUAAQACAAEAAADv/wQAAQACAAEAAADv/wMAAQACAAEAAADv/wIAAQACAAEAAADv/wEAAQACAAEAAADv/wAAAQACAAAAAADu/wwAAQAAAAIAAADu/wsAAQAAAAEAAADu/woAAQAAAAEAAADu/wkAAQAAAAEAAADu/wgAAQAAAAEAAADu/wcAAQAAAAEAAADu/wYAAQAAAAEAAADu/wUAAQAAAAEAAADu/wQAAQAAAAEAAADu/wMAAQAAAAEAAADu/wIAAQAAAAEAAADu/wEAAQAAAAEAAADu/wAAAQAAAAAAAAAJAAAAAgACAAMAAAAIAAAAAgAGAAQAAAAHAAAAAgABAAAAAAAGAAAAAgABAAAAAAAFAAAAAgAHAAQAAAAEAAAAAgAAAAMAAAAHAAIAAgACAAEAAAAHAAEAAgAEAAAAAAAGAAIAAgAFAAAAAAAGAAEAAgABAAEAAAAFAAIAAgAAAAIAAAAFAAEAAgAAAAEAAAAHAAMAAgAHAAYAAAAGAAMAAgAAAAIAAAAIAAEAAgACAAIAAAAHAAQAAgADAAIAAAAPAP//AgAGAAUAAAAOAP//AgAHAAUAAAANAP//AgAAAAMAAAAQAP//AgACAAMAAAAPAP7/AQACAAAAAAAOAP7/AQAAAAAAAAA=")
+tile_set = ExtResource("2_m6a7o")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(237, 76)
+zoom = Vector2(2, 2)
+limit_left = -350
+limit_bottom = 160
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+editor_draw_limits = true
+script = ExtResource("3_xrym8")
+
+[node name="Player" parent="." instance=ExtResource("4_y1p8n")]
+scene_path = ""
+
+[node name="HUD" parent="." instance=ExtResource("5_roic5")]
+visible = false
+
+[node name="LoseArea" parent="." instance=ExtResource("6_4lbyg")]
+position = Vector2(1009, 223)
+scale = Vector2(150, 3)
+collision_layer = 3
+collision_mask = 3
+
+[node name="HealPowerup" parent="." instance=ExtResource("7_ojelw")]
+position = Vector2(-128, 17)
+
+[node name="PoisonPowerup" parent="." instance=ExtResource("8_tjy73")]
+position = Vector2(-224, 17)
+EFFECT_LENGTH = 10
+
+[node name="Meese" type="Node2D" parent="."]
+position = Vector2(-528, 528)
+
+[node name="Moose" parent="Meese" instance=ExtResource("9_n04j5")]
+position = Vector2(642, -528)
+
+[node name="WinArea" parent="." instance=ExtResource("10_evkjq")]
+position = Vector2(240, -52)
+collision_layer = 3
+collision_mask = 3

@@ -67,7 +67,7 @@ func attack():
 			
 		# if the thing has health, damage it
 		if hit_health:
-			hit_health.damage(1)
+			hit_health.damage(DAMAGE)
 		
 		# if the thing can take knockback, do that
 		if hit_body.has_method("take_knockback") and not (hit_health and hit_health.is_dead):

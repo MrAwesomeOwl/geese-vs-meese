@@ -10,7 +10,7 @@ func _ready() -> void:
 	visible = true
 "
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer"]
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
 script = SubResource("GDScript_vpe2q")
