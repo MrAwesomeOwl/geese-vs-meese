@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var SPEED = 150.0
 ## lower values result in slipperier movement (like ice)
 @export_range(0,10) var SNAPPINESS = 5
-@export var JUMP_STRENGTH = 300.0
+@export var JUMP_STRENGTH = 325.0
 @export var DAMAGE = 1.0
 @export var KNOCKBACK = 300.0
 
