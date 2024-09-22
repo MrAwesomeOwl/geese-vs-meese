@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://diqop64ayexi3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38451"]
+
+[node name="MooseWalkAllower" type="Area2D" groups=["moose_walk_allower"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_38451")
+debug_color = Color(0, 0.7, 0.221667, 0.419608)

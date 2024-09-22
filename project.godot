@@ -33,6 +33,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 player="Contains the player character"
+moose_walk_allower="Contains all moose walk allower objects"
 
 [input]
 

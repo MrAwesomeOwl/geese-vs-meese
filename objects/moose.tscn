@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://nktlunqpq8sl"]
+[gd_scene load_steps=27 format=3 uid="uid://nktlunqpq8sl"]
 
 [ext_resource type="Script" path="res://scripts/moose.gd" id="1_pkpn5"]
 [ext_resource type="Script" path="res://scripts/nodes/healthStat.gd" id="2_rjkso"]
@@ -89,6 +89,9 @@ size = Vector2(25, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_co0jn"]
 size = Vector2(6, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0wtl"]
+size = Vector2(28, 30)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_anhsx"]
 particles_animation = true
@@ -185,6 +188,13 @@ position = Vector2(2, 7)
 shape = SubResource("RectangleShape2D_co0jn")
 debug_color = Color(0, 0.638058, 0.383847, 0.42)
 
+[node name="WalkAllowerHitbox" type="Area2D" parent="Body"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/WalkAllowerHitbox"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_y0wtl")
+debug_color = Color(0, 0.595, 0.7, 0)
+
 [node name="PoisonDamageParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_anhsx")
 position = Vector2(0, -16)
@@ -206,3 +216,5 @@ bus = &"sounds"
 [connection signal="on_current_changed" from="Health" to="." method="_on_health_changed"]
 [connection signal="on_death" from="Health" to="." method="_on_death"]
 [connection signal="body_entered" from="Body/DamageHitbox" to="." method="_on_damage_hitbox_body_entered"]
+[connection signal="area_entered" from="Body/WalkAllowerHitbox" to="." method="_on_walk_allower_hitbox_entered"]
+[connection signal="area_exited" from="Body/WalkAllowerHitbox" to="." method="_on_walk_allower_hitbox_exited"]

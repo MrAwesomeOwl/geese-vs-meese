@@ -13,9 +13,10 @@ extends CharacterBody2D
 ## -1 is left, 1 is right
 @export_range(-1,1) var START_DIRECTION: int = 1;
 
-@onready var direction = START_DIRECTION	
+@onready var direction: int = START_DIRECTION
 
 var queued_poison_damage: int = 0
+var active_moose_walk_allowers: int = 0
 var last_frame_velocity: Vector2
 
 ## really scuffed way to have poison damage flicker green
@@ -40,8 +41,14 @@ func poison_damage_loop():
 			$Health.current -= 1
 			damage_caused_by_poison = false
 			queued_poison_damage -= 1
+
+func change_direction():
+	if active_moose_walk_allowers < 1:
+		direction *= -1
+		velocity.x *= -1
 			
 func _ready():
+	$Body.scale.x = direction
 	poison_damage_loop()
 
 func _physics_process(delta: float) -> void:
@@ -62,8 +69,7 @@ func _physics_process(delta: float) -> void:
 				# only do that if the moose was not recently damaged
 				# that way its easier to fling meese off of platforms
 				if Time.get_ticks_msec() - $Health.last_damaged_at > 500:
-					direction *= -1
-					velocity.x *= -1
+					change_direction()
 			
 		# actual movement
 		velocity.x = move_toward(velocity.x,direction * SPEED,SPEED * 10 * delta)
@@ -83,6 +89,17 @@ func _on_damage_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and not $Health.is_dead:
 		body.get_node("Health").damage(DAMAGE)
 		body.take_knockback(Vector2(sign(body.global_position.x - global_position.x),-0.5) * KNOCKBACK,0.1)
+
+
+func _on_walk_allower_hitbox_entered(area: Area2D) -> void:
+	# re-using the damage hitbox for walk allowers because im lazy
+	if area.is_in_group("moose_walk_allower"):
+		active_moose_walk_allowers += 1
+		
+		
+func _on_walk_allower_hitbox_exited(area: Area2D) -> void:
+	if area.is_in_group("moose_walk_allower"):
+		active_moose_walk_allowers -= 1
 
 
 func _on_death() -> void:
