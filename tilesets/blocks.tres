@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://qbjyjk17yc7p"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://qbjyjk17yc7p"]
 
 [ext_resource type="Texture2D" uid="uid://b84x5yb8rb6ts" path="res://textures/tilesets/grass.png" id="1_1tpk6"]
 [ext_resource type="Texture2D" uid="uid://bbmovuk6gwipf" path="res://textures/tilesets/brick.png" id="2_j3jkf"]
 [ext_resource type="Texture2D" uid="uid://byfie5o2c6eta" path="res://textures/tilesets/sand.png" id="3_6bnqk"]
+[ext_resource type="Texture2D" uid="uid://crll7enb06sjh" path="res://textures/tilesets/platform.png" id="4_2dlh4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3246"]
 resource_name = "grass"
@@ -1142,6 +1143,33 @@ texture = ExtResource("3_6bnqk")
 0:4/0/terrains_peering_bit/left_side = 2
 0:4/0/terrains_peering_bit/top_side = 2
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qd4ay"]
+texture = ExtResource("4_2dlh4")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 3
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+0:0/0/terrains_peering_bit/right_side = 3
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 3
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_0/one_way = true
+1:0/0/terrains_peering_bit/right_side = 3
+1:0/0/terrains_peering_bit/left_side = 3
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 3
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/physics_layer_0/polygon_0/one_way = true
+2:0/0/terrains_peering_bit/left_side = 3
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 3
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0/physics_layer_0/polygon_0/one_way = true
+
 [resource]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
@@ -1151,6 +1179,9 @@ terrain_set_0/terrain_1/name = "brick"
 terrain_set_0/terrain_1/color = Color(0.67, 0.67, 0.67, 1)
 terrain_set_0/terrain_2/name = "sand"
 terrain_set_0/terrain_2/color = Color(0.5, 0.25, 0.25, 1)
+terrain_set_0/terrain_3/name = "platform"
+terrain_set_0/terrain_3/color = Color(0.144779, 0.377291, 1, 1)
 sources/0 = SubResource("TileSetAtlasSource_k3246")
 sources/1 = SubResource("TileSetAtlasSource_jsjbk")
 sources/2 = SubResource("TileSetAtlasSource_p10tx")
+sources/3 = SubResource("TileSetAtlasSource_qd4ay")
