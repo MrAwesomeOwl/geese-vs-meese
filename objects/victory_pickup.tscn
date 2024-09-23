@@ -1,0 +1,94 @@
+[gd_scene load_steps=16 format=3 uid="uid://cpccfvmalc1ea"]
+
+[ext_resource type="Script" path="res://scripts/win_trigger.gd" id="1_08jp4"]
+[ext_resource type="Texture2D" uid="uid://dv07rqmvl02jj" path="res://textures/particles/godray_particle.png" id="1_f05xa"]
+[ext_resource type="Texture2D" uid="uid://c43h76t6igadf" path="res://textures/apple_fritter.png" id="1_w2im4"]
+[ext_resource type="Script" path="res://scripts/float_script.gd" id="2_03cq2"]
+[ext_resource type="PackedScene" uid="uid://q68lms13xp80" path="res://objects/powerup_particles.tscn" id="5_cov0i"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wskr5"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_ppskn"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.560465, 1)
+colors = PackedColorArray(0.996078, 0.952941, 0.752941, 1, 0.999228, 0.955397, 0.75861, 0.196973, 1, 0.956, 0.76, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r5x5j"]
+gradient = SubResource("Gradient_ppskn")
+width = 128
+height = 128
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cpvk4"]
+blend_mode = 1
+light_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_xleh2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.154118, 1), 0.0, 0.0, 0, 0, Vector2(0.502353, 1), 0.0, 0.0, 0, 0, Vector2(0.848235, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_4stu3"]
+curve = SubResource("Curve_xleh2")
+
+[sub_resource type="Curve" id="Curve_x64nl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(2e-05, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_mhkj6"]
+curve = SubResource("Curve_x64nl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k7jpw"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 720.0
+angular_velocity_min = -15.0
+angular_velocity_max = -15.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.3
+color = Color(1, 0.956, 0.76, 0.286275)
+alpha_curve = SubResource("CurveTexture_4stu3")
+emission_curve = SubResource("CurveTexture_mhkj6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8b53k"]
+size = Vector2(30, 30)
+
+[node name="VictoryPickup" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_08jp4")
+
+[node name="Glow" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_wskr5")
+scale = Vector2(0.80817, 0.80817)
+texture = SubResource("GradientTexture2D_r5x5j")
+
+[node name="PowerupParticles" parent="." instance=ExtResource("5_cov0i")]
+modulate = Color(0.996078, 0.952941, 0.752941, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_cpvk4")
+process_material = SubResource("ParticleProcessMaterial_k7jpw")
+texture = ExtResource("1_f05xa")
+lifetime = 4.0
+
+[node name="AppleFritter" type="Sprite2D" parent="."]
+texture = ExtResource("1_w2im4")
+offset = Vector2(0, 0.5)
+script = ExtResource("2_03cq2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_8b53k")
+
+[connection signal="body_entered" from="." to="CollisionShape2D" method="_on_win_area_body_entered"]

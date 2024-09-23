@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c3lgl44jh5ekr"]
+
+[ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://fonts/jersey_10/Jersey10-Regular.ttf" id="1_fb24l"]
+
+[resource]
+default_font = ExtResource("1_fb24l")
+default_font_size = 80
+Label/colors/font_shadow_color = Color(0.22, 0.22, 0.22, 1)
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 9
+Label/constants/shadow_outline_size = 0

@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://50rkvmuqhadq"]
+
+[ext_resource type="Texture2D" uid="uid://cajqb6s5oa2pi" path="res://textures/background/GvMWin.png" id="1_27l73"]
+[ext_resource type="Script" path="res://scripts/nodes/unfade_on_load.gd" id="1_c4h7v"]
+[ext_resource type="Theme" uid="uid://c3lgl44jh5ekr" path="res://themes/title_text.tres" id="2_3jve0"]
+[ext_resource type="Script" path="res://scripts/gui/text_flash_script.gd" id="3_6h4od"]
+[ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/gui/button.tscn" id="3_mekhi"]
+[ext_resource type="Script" path="res://scripts/gui/scene_changer_button.gd" id="4_yva4s"]
+
+[sub_resource type="Gradient" id="Gradient_mr4dj"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.8005, 1, 0.79, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8mksx"]
+gradient = SubResource("Gradient_mr4dj")
+
+[node name="Title" type="CanvasLayer"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="UnfadeOnLoad" type="Node" parent="."]
+script = ExtResource("1_c4h7v")
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 288.0
+
+[node name="Background" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_27l73")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 1
+offset_left = 15.5
+offset_top = -5.5
+offset_right = 721.5
+offset_bottom = 132.5
+theme = ExtResource("2_3jve0")
+text = "VICTORY!"
+script = ExtResource("3_6h4od")
+loops_per_second = 2.0
+colors = SubResource("GradientTexture1D_8mksx")
+
+[node name="Splash" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+offset_left = 15.5
+offset_top = 139.5
+offset_right = 721.5
+offset_bottom = 277.5
+theme = ExtResource("2_3jve0")
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 40
+text = "Splash text"
+vertical_alignment = 2
+
+[node name="Menu" parent="Control" instance=ExtResource("3_mekhi")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.5
+offset_top = 84.0
+offset_right = -115.5
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MENU"
+script = ExtResource("4_yva4s")
+scene_path = "res://scenes/menus/title.tscn"

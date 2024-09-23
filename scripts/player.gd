@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@export var scene_path : String
-
 @export var SPEED = 150.0
 ## lower values result in slipperier movement (like ice)
 @export_range(0,10) var SNAPPINESS = 5
@@ -174,4 +172,4 @@ func _on_health_changed(new_health: float, old_health: float) -> void:
 
 
 func _on_health_on_death():
-	get_tree().call_deferred("change_scene_to_file", "res://scenes/LoseScene.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/menus/lose.tscn")

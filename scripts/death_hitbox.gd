@@ -1,5 +1,6 @@
-extends Button
+extends CollisionShape2D
 
+@export var scene_path : String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,5 +12,6 @@ func _process(delta):
 	pass
 
 
-func _on_pressed():
-	get_tree().quit()
+func _on_win_area_body_entered(body):
+	if body.is_in_group("player"):
+		body.get_node("Health").current = 0

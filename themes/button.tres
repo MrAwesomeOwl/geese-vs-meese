@@ -1,19 +1,20 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://dywsmtbccqa1r"]
 
-[ext_resource type="FontFile" uid="uid://gpom1v01vrhy" path="res://fonts/handjet/Handjet-VariableFont_ELGR,ELSH,wght.ttf" id="1_bxudr"]
 [ext_resource type="StyleBox" uid="uid://vcjm2gk52dl5" path="res://styles/button_hovered.tres" id="1_jtcvs"]
+[ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://fonts/jersey_10/Jersey10-Regular.ttf" id="1_tvgv3"]
 [ext_resource type="StyleBox" uid="uid://bko6cvifnmbih" path="res://styles/button_normal.tres" id="2_kwcbx"]
 [ext_resource type="StyleBox" uid="uid://c4mugtgyukuwv" path="res://styles/button_pressed.tres" id="3_ppksk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erbq8"]
 
 [resource]
-default_font = ExtResource("1_bxudr")
-default_font_size = 34
+default_font = ExtResource("1_tvgv3")
+default_font_size = 37
 Button/colors/font_color = Color(0.258824, 0.223529, 0.203922, 1)
 Button/colors/font_focus_color = Color(0.258824, 0.223529, 0.203922, 1)
 Button/colors/font_hover_color = Color(0.26, 0.1976, 0.1976, 1)
 Button/colors/font_pressed_color = Color(1, 0.982, 0.82, 1)
+Button/fonts/font = ExtResource("1_tvgv3")
 Button/styles/focus = SubResource("StyleBoxEmpty_erbq8")
 Button/styles/hover = ExtResource("1_jtcvs")
 Button/styles/normal = ExtResource("2_kwcbx")

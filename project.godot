@@ -11,14 +11,16 @@ config_version=5
 [application]
 
 config/name="geese vs meese"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/menus/title.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Util="*res://scripts/autoload/util.gd"
-MusicManager="*res://scenes/music_manager.tscn"
+Util="*res://autoload/util.gd"
+MusicManager="*res://autoload/music_manager.tscn"
+LevelTracker="*res://autoload/level_tracker.gd"
+Fader="*res://autoload/fader.tscn"
 
 [debug]
 

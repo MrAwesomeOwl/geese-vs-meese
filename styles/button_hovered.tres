@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cmf2old6qqp3w" path="res://textures/ui/button_hovered.png" id="1_i4pfq"]
 
 [resource]
-content_margin_left = 5.0
+content_margin_left = 10.0
 content_margin_top = 3.0
-content_margin_right = 5.0
+content_margin_right = 10.0
 content_margin_bottom = 5.0
 texture = ExtResource("1_i4pfq")
 texture_margin_left = 3.0

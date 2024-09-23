@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcev8y1k8wu1b"]
+
+[ext_resource type="Script" path="res://scripts/nodes/unfade_on_load.gd" id="1_aviif"]
+[ext_resource type="Texture2D" uid="uid://c8a2rfvdabfns" path="res://textures/background/GvMStart.png" id="1_ll3xa"]
+[ext_resource type="Theme" uid="uid://c3lgl44jh5ekr" path="res://themes/title_text.tres" id="2_udted"]
+[ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/gui/button.tscn" id="3_5yphp"]
+[ext_resource type="Script" path="res://scripts/gui/scene_changer_button.gd" id="4_8ufey"]
+[ext_resource type="Script" path="res://scripts/gui/quit_button.gd" id="5_wjqx1"]
+
+[node name="Title" type="CanvasLayer"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="UnfadeOnLoad" type="Node" parent="."]
+script = ExtResource("1_aviif")
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 288.0
+
+[node name="Background" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ll3xa")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -353.0
+offset_right = 353.0
+offset_bottom = 138.0
+grow_horizontal = 2
+theme = ExtResource("2_udted")
+text = "GEESE VS. MEESE"
+horizontal_alignment = 1
+
+[node name="2x" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="Play" parent="Control/2x" instance=ExtResource("3_5yphp")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -24.0
+offset_right = 43.5
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+script = ExtResource("4_8ufey")
+scene_path = "res://scenes/levels/desert.tscn"
+
+[node name="Quit" parent="Control/2x" instance=ExtResource("3_5yphp")]
+modulate = Color(1, 0.56, 0.56, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = 30.5
+offset_right = 43.5
+offset_bottom = 61.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 21
+text = "QUIT"
+script = ExtResource("5_wjqx1")

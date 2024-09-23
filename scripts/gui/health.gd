@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-const heart_template = preload("res://objects/heart_template.tscn")
+const heart_template = preload("res://objects/gui/heart_template.tscn")
 
 @onready var player: CharacterBody2D = get_tree().get_nodes_in_group("player")[0]
 @onready var health: HealthStat = player.get_node("Health")

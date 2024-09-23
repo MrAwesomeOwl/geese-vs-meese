@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cclnayl672myg"]
 
-[ext_resource type="Script" path="res://scripts/levelswitching/LoseCollisionDetection.gd" id="1_gkaf7"]
+[ext_resource type="Script" path="res://scripts/death_hitbox.gd" id="1_gkaf7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8b53k"]
 
