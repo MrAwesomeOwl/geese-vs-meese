@@ -1168,6 +1168,7 @@ tile_map_data = PackedByteArray("AAAGAPv/AQACAAEAAAAFAPv/AQABAAEAAAALAPj/AQACAAI
 tile_set = ExtResource("4_ex73l")
 
 [node name="Player" parent="." instance=ExtResource("8_kwney")]
+z_index = 5
 position = Vector2(3, -325)
 
 [node name="VictoryPickup" parent="." instance=ExtResource("11_o0u25")]

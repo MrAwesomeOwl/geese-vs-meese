@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcev8y1k8wu1b"]
+[gd_scene load_steps=9 format=3 uid="uid://bcev8y1k8wu1b"]
 
 [ext_resource type="Script" path="res://scripts/nodes/unfade_on_load.gd" id="1_aviif"]
 [ext_resource type="Texture2D" uid="uid://c8a2rfvdabfns" path="res://textures/background/GvMStart.png" id="1_ll3xa"]
 [ext_resource type="Theme" uid="uid://c3lgl44jh5ekr" path="res://themes/title_text.tres" id="2_udted"]
 [ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/gui/button.tscn" id="3_5yphp"]
+[ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://fonts/jersey_10/Jersey10-Regular.ttf" id="4_2jp0o"]
 [ext_resource type="Script" path="res://scripts/gui/scene_changer_button.gd" id="4_8ufey"]
 [ext_resource type="Script" path="res://scripts/gui/quit_button.gd" id="5_wjqx1"]
+
+[sub_resource type="FontVariation" id="FontVariation_mmlqc"]
+base_font = ExtResource("4_2jp0o")
+spacing_glyph = 1
 
 [node name="Title" type="CanvasLayer"]
 scale = Vector2(2, 2)
@@ -42,6 +47,23 @@ offset_bottom = 138.0
 grow_horizontal = 2
 theme = ExtResource("2_udted")
 text = "GEESE VS. MEESE"
+horizontal_alignment = 1
+
+[node name="Info" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -353.0
+offset_top = 79.5
+offset_right = 353.0
+offset_bottom = 217.5
+grow_horizontal = 2
+theme = ExtResource("2_udted")
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = SubResource("FontVariation_mmlqc")
+theme_override_font_sizes/font_size = 18
+text = "WASD + SPACE TO MOVE, CLICK TO ATTACK, M TO MUTE MUSIC"
 horizontal_alignment = 1
 
 [node name="2x" type="Control" parent="Control"]
