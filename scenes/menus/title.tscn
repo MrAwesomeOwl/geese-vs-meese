@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcev8y1k8wu1b"]
+[gd_scene load_steps=12 format=3 uid="uid://bcev8y1k8wu1b"]
 
 [ext_resource type="Script" path="res://scripts/nodes/unfade_on_load.gd" id="1_aviif"]
 [ext_resource type="Texture2D" uid="uid://c8a2rfvdabfns" path="res://textures/background/GvMStart.png" id="1_ll3xa"]
@@ -10,6 +10,18 @@
 [ext_resource type="Script" path="res://scripts/gui/quit_button.gd" id="5_wjqx1"]
 [ext_resource type="Script" path="res://scripts/gui/speedrun_toggle_checkbox.gd" id="7_j7lvc"]
 
+[sub_resource type="GDScript" id="GDScript_tbb45"]
+resource_name = "menu_rearranger"
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if OS.has_feature(\"web\"):
+		get_node(\"../Control/2x/Quit\").visible = false
+		get_node(\"../Control/2x/Play\").position.y += 20
+"
+
 [sub_resource type="FontVariation" id="FontVariation_mmlqc"]
 base_font = ExtResource("4_2jp0o")
 spacing_glyph = 1
@@ -17,6 +29,9 @@ spacing_glyph = 1
 [node name="Title" type="CanvasLayer"]
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="MenuRearranger" type="Node" parent="."]
+script = SubResource("GDScript_tbb45")
 
 [node name="UnfadeOnLoad" type="Node" parent="."]
 script = ExtResource("1_aviif")
