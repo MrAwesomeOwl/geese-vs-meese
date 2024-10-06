@@ -13,7 +13,7 @@ script/source = "extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Fader.fade(Color(1,0,0,0),0.5,Color(1,0,0,1))
+	Fader.fade(Color(1,0,0,0),0.5,Color(1,0,0,1),Color(0,0,0,0))
 "
 
 [sub_resource type="Gradient" id="Gradient_dfop4"]
@@ -88,6 +88,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "RETRY"
 script = ExtResource("5_78wo0")
+scene_path = null
 
 [node name="Menu" parent="Control" instance=ExtResource("3_4ccfx")]
 layout_mode = 1

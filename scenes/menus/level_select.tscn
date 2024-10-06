@@ -1,0 +1,270 @@
+[gd_scene load_steps=7 format=3 uid="uid://bv1wfd0r4rq0n"]
+
+[ext_resource type="Script" path="res://scripts/nodes/unfade_on_load.gd" id="1_tn2qw"]
+[ext_resource type="Texture2D" uid="uid://c8a2rfvdabfns" path="res://textures/background/GvMStart.png" id="2_wqxx5"]
+[ext_resource type="Theme" uid="uid://c3lgl44jh5ekr" path="res://themes/title_text.tres" id="3_clcbd"]
+[ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/gui/button.tscn" id="5_rvear"]
+[ext_resource type="Script" path="res://scripts/gui/scene_changer_button.gd" id="6_jvl0k"]
+[ext_resource type="Script" path="res://scripts/gui/button_mover.gd" id="6_pqhbt"]
+
+[node name="Title" type="CanvasLayer"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="UnfadeOnLoad" type="Node" parent="."]
+script = ExtResource("1_tn2qw")
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 288.0
+
+[node name="Background" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wqxx5")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -353.0
+offset_top = -6.5
+offset_right = 353.0
+offset_bottom = 131.5
+grow_horizontal = 2
+scale = Vector2(1.00154, 1)
+theme = ExtResource("3_clcbd")
+text = "LEVEL SELECT"
+horizontal_alignment = 1
+
+[node name="2x" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="GridContainer" type="GridContainer" parent="Control/2x"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -36.0
+offset_right = 73.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Original1" parent="Control/2x/GridContainer" instance=ExtResource("5_rvear")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "DESERT"
+script = ExtResource("6_jvl0k")
+scene_path = "res://scenes/levels/desert.tscn"
+
+[node name="ButtonMover" type="Node" parent="Control/2x/GridContainer/Original1" node_paths=PackedStringArray("update_position", "update_color_labels")]
+script = ExtResource("6_pqhbt")
+update_position = [NodePath("../Control")]
+update_color_labels = [NodePath("../Control/Label")]
+
+[node name="Control" type="Control" parent="Control/2x/GridContainer/Original1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Control/2x/GridContainer/Original1/Control"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.5
+offset_top = -27.5
+offset_right = 81.5
+offset_bottom = -4.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.258824, 0.223529, 0.203922, 1)
+theme_override_font_sizes/font_size = 21
+text = "By Pritha & Joey"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Original2" parent="Control/2x/GridContainer" instance=ExtResource("5_rvear")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = " ARENA "
+script = ExtResource("6_jvl0k")
+scene_path = "res://scenes/levels/castle.tscn"
+
+[node name="ButtonMover" type="Node" parent="Control/2x/GridContainer/Original2" node_paths=PackedStringArray("update_position", "update_color_labels")]
+script = ExtResource("6_pqhbt")
+update_position = [NodePath("../Control")]
+update_color_labels = [NodePath("../Control/Label")]
+
+[node name="Control" type="Control" parent="Control/2x/GridContainer/Original2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Control/2x/GridContainer/Original2/Control"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.5
+offset_top = -27.5
+offset_right = 81.5
+offset_bottom = -4.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.258824, 0.223529, 0.203922, 1)
+theme_override_font_sizes/font_size = 21
+text = "By Pritha & Joey"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Desert" parent="Control/2x/GridContainer" instance=ExtResource("5_rvear")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "CASTLE"
+script = ExtResource("6_jvl0k")
+scene_path = "res://scenes/levels/submitted/eshans.tscn"
+
+[node name="ButtonMover" type="Node" parent="Control/2x/GridContainer/Desert" node_paths=PackedStringArray("update_position", "update_color_labels")]
+script = ExtResource("6_pqhbt")
+update_position = [NodePath("../Control")]
+update_color_labels = [NodePath("../Control/Label")]
+
+[node name="Control" type="Control" parent="Control/2x/GridContainer/Desert"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Control/2x/GridContainer/Desert/Control"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.5
+offset_top = -27.5
+offset_right = 81.5
+offset_bottom = -4.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.258824, 0.223529, 0.203922, 1)
+theme_override_font_sizes/font_size = 21
+text = "By Eshan"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Castle" parent="Control/2x/GridContainer" instance=ExtResource("5_rvear")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "DESERT"
+script = ExtResource("6_jvl0k")
+scene_path = "res://scenes/levels/submitted/rams.tscn"
+
+[node name="ButtonMover" type="Node" parent="Control/2x/GridContainer/Castle" node_paths=PackedStringArray("update_position", "update_color_labels")]
+script = ExtResource("6_pqhbt")
+update_position = [NodePath("../Control")]
+update_color_labels = [NodePath("../Control/Label")]
+
+[node name="Control" type="Control" parent="Control/2x/GridContainer/Castle"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Control/2x/GridContainer/Castle/Control"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.5
+offset_top = -27.5
+offset_right = 81.5
+offset_bottom = -4.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.258824, 0.223529, 0.203922, 1)
+theme_override_font_sizes/font_size = 21
+text = "By Ram"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Back" parent="Control/2x" instance=ExtResource("5_rvear")]
+modulate = Color(1, 0.56, 0.56, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = 33.0
+offset_right = 27.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 21
+text = "BACK"
+script = ExtResource("6_jvl0k")
+scene_path = "res://scenes/menus/title.tscn"

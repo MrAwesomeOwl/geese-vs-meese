@@ -66,6 +66,8 @@ size = Vector2(30, 30)
 
 [node name="VictoryPickup" type="Area2D"]
 texture_filter = 1
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_08jp4")
 
 [node name="Glow" type="Sprite2D" parent="."]

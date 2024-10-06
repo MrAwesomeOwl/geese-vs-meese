@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://c3fp4mhbb3k7g"]
+[gd_scene load_steps=15 format=4 uid="uid://iq87cyf2ecr3"]
 
 [ext_resource type="TileSet" uid="uid://qbjyjk17yc7p" path="res://tilesets/blocks.tres" id="1_2fp7g"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_krios"]

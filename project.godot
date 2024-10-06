@@ -21,6 +21,7 @@ Util="*res://autoload/util.gd"
 MusicManager="*res://autoload/music_manager.tscn"
 LevelTracker="*res://autoload/level_tracker.gd"
 Fader="*res://autoload/fader.tscn"
+SpeedrunTimer="*res://autoload/speedrun_timer.tscn"
 
 [debug]
 
@@ -36,6 +37,10 @@ window/stretch/mode="viewport"
 
 player="Contains the player character"
 moose_walk_allower="Contains all moose walk allower objects"
+
+[gui]
+
+theme/custom_font="res://fonts/jersey_10/Jersey10-Regular.ttf"
 
 [input]
 
@@ -78,3 +83,4 @@ toggle_music={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcev8y1k8wu1b"]
+[gd_scene load_steps=11 format=3 uid="uid://bcev8y1k8wu1b"]
 
 [ext_resource type="Script" path="res://scripts/nodes/unfade_on_load.gd" id="1_aviif"]
 [ext_resource type="Texture2D" uid="uid://c8a2rfvdabfns" path="res://textures/background/GvMStart.png" id="1_ll3xa"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/gui/button.tscn" id="3_5yphp"]
 [ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://fonts/jersey_10/Jersey10-Regular.ttf" id="4_2jp0o"]
 [ext_resource type="Script" path="res://scripts/gui/scene_changer_button.gd" id="4_8ufey"]
+[ext_resource type="PackedScene" uid="uid://dinnpq31cv1pj" path="res://objects/gui/checkbox.tscn" id="5_hnrwj"]
 [ext_resource type="Script" path="res://scripts/gui/quit_button.gd" id="5_wjqx1"]
+[ext_resource type="Script" path="res://scripts/gui/speedrun_toggle_checkbox.gd" id="7_j7lvc"]
 
 [sub_resource type="FontVariation" id="FontVariation_mmlqc"]
 base_font = ExtResource("4_2jp0o")
@@ -66,6 +68,30 @@ theme_override_font_sizes/font_size = 18
 text = "WASD + SPACE TO MOVE, CLICK TO ATTACK, M TO MUTE MUSIC"
 horizontal_alignment = 1
 
+[node name="TimerText" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -235.0
+offset_top = 265.5
+offset_right = 170.0
+offset_bottom = 285.5
+grow_horizontal = 2
+theme = ExtResource("2_udted")
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = SubResource("FontVariation_mmlqc")
+theme_override_font_sizes/font_size = 18
+text = "SPEEDRUN TIMER"
+
+[node name="SpeedrunTimerToggle" parent="Control" instance=ExtResource("5_hnrwj")]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 267.0
+offset_right = 19.0
+offset_bottom = 285.0
+script = ExtResource("7_j7lvc")
+
 [node name="2x" type="Control" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -94,7 +120,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "PLAY"
 script = ExtResource("4_8ufey")
-scene_path = "res://scenes/levels/desert.tscn"
+scene_path = "res://scenes/menus/level_select.tscn"
 
 [node name="Quit" parent="Control/2x" instance=ExtResource("3_5yphp")]
 modulate = Color(1, 0.56, 0.56, 1)
@@ -113,3 +139,5 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 21
 text = "QUIT"
 script = ExtResource("5_wjqx1")
+
+[connection signal="on_value_changed" from="Control/SpeedrunTimerToggle" to="Control/SpeedrunTimerToggle" method="_on_value_changed"]

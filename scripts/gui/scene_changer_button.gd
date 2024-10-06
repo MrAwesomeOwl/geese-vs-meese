@@ -7,7 +7,7 @@ var has_been_pressed: bool = false
 func _on_pressed():
 	if has_been_pressed: return
 	has_been_pressed = true
-	await Fader.fade(Color(0,0,0),1,Color(0,0,0,0))
+	await Fader.fade(Color(0,0,0),1)
 	get_tree().call_deferred("change_scene_to_file", scene_path)
 
 # Called when the node enters the scene tree for the first time.

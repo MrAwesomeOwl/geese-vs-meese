@@ -4,9 +4,10 @@ var started_at_msec: int = -INF
 var length_msec: int = 0
 @onready var start_color: Color = $ColorRect.color
 var goal_color: Color
+var idle_color: Color = Color(0,0,0,0)
 
-func fade(color: Color, time_sec: float, from_color = null):
-	
+func fade(color: Color, time_sec: float, from_color = null, color_when_finished = null):
+	if color_when_finished: idle_color = color_when_finished
 	if from_color != null:
 		start_color = from_color
 		$ColorRect.color = start_color
@@ -33,4 +34,7 @@ func _process(delta: float) -> void:
 	elif t < 0:
 		$ColorRect.color = start_color
 	else:
-		$ColorRect.color = goal_color
+		if goal_color.a == 0:
+			$ColorRect.color = idle_color
+		else:
+			$ColorRect.color = goal_color

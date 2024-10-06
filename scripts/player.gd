@@ -172,4 +172,5 @@ func _on_health_changed(new_health: float, old_health: float) -> void:
 
 
 func _on_health_on_death():
+	SpeedrunTimer.end_timer(SpeedrunTimer.TIMER_COLOR.LOST)
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/menus/lose.tscn")

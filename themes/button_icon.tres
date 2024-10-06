@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cmsx7o4hobgk3"]
+
+[ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://fonts/jersey_10/Jersey10-Regular.ttf" id="1_o2xp7"]
+[ext_resource type="StyleBox" uid="uid://fj4mn0c2kv5m" path="res://styles/icon_button_hovered.tres" id="2_jocxi"]
+[ext_resource type="StyleBox" uid="uid://dq3l7cxfr1ocp" path="res://styles/icon_button_normal.tres" id="3_4hr67"]
+[ext_resource type="StyleBox" uid="uid://fe72mq4v45k6" path="res://styles/icon_button_pressed.tres" id="4_ax5uo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erbq8"]
+
+[resource]
+default_font = ExtResource("1_o2xp7")
+default_font_size = 37
+Button/colors/font_color = Color(0.258824, 0.223529, 0.203922, 1)
+Button/colors/font_focus_color = Color(0.258824, 0.223529, 0.203922, 1)
+Button/colors/font_hover_color = Color(0.26, 0.1976, 0.1976, 1)
+Button/colors/font_pressed_color = Color(1, 0.982, 0.82, 1)
+Button/colors/icon_focus_color = Color(0.258824, 0.223529, 0.203922, 1)
+Button/colors/icon_hover_color = Color(0.258824, 0.196078, 0.196078, 1)
+Button/colors/icon_normal_color = Color(0.258824, 0.223529, 0.203922, 1)
+Button/colors/icon_pressed_color = Color(1, 0.980392, 0.819608, 1)
+Button/fonts/font = ExtResource("1_o2xp7")
+Button/styles/focus = SubResource("StyleBoxEmpty_erbq8")
+Button/styles/hover = ExtResource("2_jocxi")
+Button/styles/normal = ExtResource("3_4hr67")
+Button/styles/pressed = ExtResource("4_ax5uo")

@@ -7,4 +7,4 @@ class_name UnfadeOnLoad
 func _ready() -> void:
 	var color = Fader.goal_color
 	color.a = 0
-	Fader.fade(color,1)
+	await Fader.fade(color,1)

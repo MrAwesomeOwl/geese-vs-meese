@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvkp6iplqevia"]
+
+[ext_resource type="Script" path="res://autoload/speedrun_timer.gd" id="1_ijrt0"]
+[ext_resource type="FontFile" uid="uid://bwu06ofw0ktuo" path="res://fonts/speedrun_timer/speedrun-timer.ttf" id="2_wt38e"]
+
+[sub_resource type="Gradient" id="Gradient_vrhcf"]
+colors = PackedColorArray(0.91, 0.91, 0.91, 1, 0.58, 0.58, 0.58, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h5spo"]
+gradient = SubResource("Gradient_vrhcf")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[node name="SpeedrunTimer" type="CanvasLayer"]
+layer = 20
+visible = false
+script = ExtResource("1_ijrt0")
+
+[node name="Main" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+
+[node name="Background" type="ColorRect" parent="Main"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_bottom = 25.0
+grow_horizontal = 0
+color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[node name="Label" type="RichTextLabel" parent="Main"]
+modulate = Color(0.38, 0.762333, 1, 1)
+clip_children = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -134.0
+offset_top = 2.0
+offset_right = -1.0
+offset_bottom = 22.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("2_wt38e")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "0[font_size=9].00"
+fit_content = true
+text_direction = 2
+
+[node name="TextureRect" type="TextureRect" parent="Main/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_h5spo")
+expand_mode = 1

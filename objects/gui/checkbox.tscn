@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dinnpq31cv1pj"]
+
+[ext_resource type="Theme" uid="uid://cmsx7o4hobgk3" path="res://themes/button_icon.tres" id="1_l4kmb"]
+[ext_resource type="Texture2D" uid="uid://btd7q35l25ml3" path="res://textures/ui/check.png" id="2_a3tes"]
+[ext_resource type="Script" path="res://scripts/gui/checkbox.gd" id="2_h8b81"]
+
+[node name="Checkbox" type="Button"]
+texture_filter = 1
+offset_right = 16.0
+offset_bottom = 18.0
+theme = ExtResource("1_l4kmb")
+icon = ExtResource("2_a3tes")
+icon_alignment = 1
+script = ExtResource("2_h8b81")
+is_checked = true
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
