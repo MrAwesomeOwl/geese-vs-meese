@@ -1,5 +1,8 @@
 extends Node
 
+func _ready():
+	Input.set_use_accumulated_input(false)
+
 
 ## framerate-independent lerp for smoothing effects[br]
 ## alpha works opposite to normal lerp (alpha 1 = no change, alpha 0 = full change)

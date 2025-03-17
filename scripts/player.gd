@@ -83,6 +83,23 @@ func _process(delta: float) -> void:
 	$Body.scale.x = Util.smooth_step($Body.scale.x,facing_direction,0.5,delta)
 	$Body.scale.y = Util.smooth_step($Body.scale.y,1,0.8,delta)
 	
+	if Time.get_ticks_msec() > 2000:
+		var tile_map = get_tree().get_current_scene().get_node("TileMapLayer") as TileMapLayer
+		var player_tile_coord = tile_map.local_to_map(tile_map.to_local(global_position + Vector2(0,-2)))
+		#var floor_tile_data = tile_map.get_cell_tile_data(player_tile_coord + Vector2i(0,1))
+		if (tile_map.get_cell_tile_data(player_tile_coord + Vector2i(0,1)) or tile_map.get_cell_tile_data(player_tile_coord + Vector2i(-1,1)) or tile_map.get_cell_tile_data(player_tile_coord + Vector2i(1,1))) and $StuckDetector.get_overlapping_bodies().size() > 0:
+			var layerBit:int = 1<<16
+			global_position += Vector2(0,1)
+			#tile_map.tile_set["physics_layer_1/collision_mask"] = tile_map.tile_set["physics_layer_1/collision_mask"]# | (1<<16)
+			print("COLLISION DETECTED! ")
+		#else:
+			#tile_map.tile_set["physics_layer_1/collision_mask"] = tile_map.tile_set["physics_layer_1/collision_mask"]# & ~(1<<16)
+			#print()
+	
+	# restart button
+	if Input.is_action_just_pressed("restart"):
+		get_tree().call_deferred("change_scene_to_file", LevelInfo.current_level_path)
+	
 	# poison powerup stuff
 	poison_time_remaining = max(poison_time_remaining - delta, 0)
 	if poison_time_remaining > 0:

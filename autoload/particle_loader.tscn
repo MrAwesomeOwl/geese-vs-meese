@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cut55f28nm8u"]
+
+[ext_resource type="PackedScene" uid="uid://q68lms13xp80" path="res://objects/powerup_particles.tscn" id="2_uhslj"]
+[ext_resource type="PackedScene" uid="uid://b2vkafcyo37eg" path="res://objects/godray_particles.tscn" id="3_p31gv"]
+[ext_resource type="PackedScene" uid="uid://cwnvqab55qjkq" path="res://objects/poison_particles.tscn" id="3_uicnr"]
+
+[node name="ParticleLoader" type="CanvasLayer"]
+scale = Vector2(0.001, 0.001)
+transform = Transform2D(0.001, 0, 0, 0.001, 0, 0)
+
+[node name="PowerupParticles" parent="." instance=ExtResource("2_uhslj")]
+position = Vector2(66, 56.5)
+
+[node name="PoisonParticles" parent="." instance=ExtResource("3_uicnr")]
+position = Vector2(102, 49)
+emitting = true
+
+[node name="GodrayParticles" parent="." instance=ExtResource("3_p31gv")]
+position = Vector2(130, 48)

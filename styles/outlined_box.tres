@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://bwt8jbcft3gyw"]
+
+[ext_resource type="Texture2D" uid="uid://bf2nkr1tlrt52" path="res://textures/ui/outlined_box.png" id="1_e2pyg"]
+
+[resource]
+texture = ExtResource("1_e2pyg")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 9.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

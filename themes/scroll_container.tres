@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://ce3cv6ixppkrm"]
+
+[ext_resource type="StyleBox" uid="uid://dbnymqjd7rxru" path="res://styles/scroll_container_background.tres" id="1_ac4qi"]
+[ext_resource type="StyleBox" uid="uid://by0ac4lrv6ire" path="res://styles/scroll_bar_grabber_vert.tres" id="2_ioog1"]
+[ext_resource type="StyleBox" uid="uid://cd7umqb715fwm" path="res://styles/scroll_bar_grabber_vert_hovered.tres" id="3_oqoah"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u65xj"]
+content_margin_left = 5.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[resource]
+default_font_size = 19
+Panel/styles/panel = ExtResource("1_ac4qi")
+VScrollBar/styles/grabber = ExtResource("2_ioog1")
+VScrollBar/styles/grabber_highlight = ExtResource("3_oqoah")
+VScrollBar/styles/grabber_pressed = ExtResource("3_oqoah")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_u65xj")

@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://jrsicwri0eyv"]
+
+[ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://fonts/jersey_10/Jersey10-Regular.ttf" id="1_28cux"]
+[ext_resource type="Script" path="res://scripts/init_script.gd" id="1_famsl"]
+[ext_resource type="Texture2D" uid="uid://dxj03cqxq54q4" path="res://splash.png" id="3_r5glp"]
+
+[sub_resource type="SystemFont" id="SystemFont_ktgsw"]
+font_names = PackedStringArray("Times New Roman")
+
+[sub_resource type="FontVariation" id="FontVariation_kwx2g"]
+fallbacks = Array[Font]([SubResource("SystemFont_ktgsw")])
+base_font = ExtResource("1_28cux")
+
+[node name="Init" type="CanvasLayer"]
+script = ExtResource("1_famsl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -333.0
+offset_top = -29.5
+offset_right = 333.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_kwx2g")
+theme_override_font_sizes/font_size = 52
+text = "don't wanna get my github blocked :("
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r5glp")
+expand_mode = 2
+stretch_mode = 5

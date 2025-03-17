@@ -1,0 +1,185 @@
+[gd_scene load_steps=4 format=3 uid="uid://bta1sth2n8vv2"]
+
+[ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/gui/button.tscn" id="1_51fl4"]
+[ext_resource type="Theme" uid="uid://c3lgl44jh5ekr" path="res://themes/title_text.tres" id="1_oq5rf"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_08r5o"]
+
+[node name="Control" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.0347222
+anchor_right = 0.5
+anchor_bottom = 0.0347222
+offset_left = -353.0
+offset_right = 353.0
+offset_bottom = 138.0
+grow_horizontal = 2
+theme = ExtResource("1_oq5rf")
+text = "LEADERBOARD"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuBtn" parent="." instance=ExtResource("1_51fl4")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.985352
+anchor_top = 0.967014
+anchor_right = 0.985352
+anchor_bottom = 0.967014
+offset_left = -151.0
+offset_top = -74.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreBoard" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -335.0
+offset_top = -186.0
+offset_right = 401.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_08r5o")
+
+[node name="Scrollbar" type="HScrollBar" parent="ScoreBoard"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.98797
+anchor_bottom = 0.978261
+offset_right = 8.0
+offset_bottom = 8.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Players" type="VBoxContainer" parent="ScoreBoard/Scrollbar"]
+layout_mode = 0
+offset_right = 735.0
+offset_bottom = 368.0
+
+[node name="Player1" type="HBoxContainer" parent="ScoreBoard/Scrollbar/Players"]
+layout_mode = 2
+
+[node name="Button" parent="ScoreBoard/Scrollbar/Players/Player1" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Place ##"
+
+[node name="Button2" parent="ScoreBoard/Scrollbar/Players/Player1" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Player Name"
+
+[node name="Button3" parent="ScoreBoard/Scrollbar/Players/Player1" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Time
+"
+
+[node name="Player2" type="HBoxContainer" parent="ScoreBoard/Scrollbar/Players"]
+layout_mode = 2
+
+[node name="Button" parent="ScoreBoard/Scrollbar/Players/Player2" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Place ##"
+
+[node name="Button2" parent="ScoreBoard/Scrollbar/Players/Player2" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Player Name"
+
+[node name="Button3" parent="ScoreBoard/Scrollbar/Players/Player2" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Time
+"
+
+[node name="Player3" type="HBoxContainer" parent="ScoreBoard/Scrollbar/Players"]
+layout_mode = 2
+
+[node name="Button" parent="ScoreBoard/Scrollbar/Players/Player3" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Place ##"
+
+[node name="Button2" parent="ScoreBoard/Scrollbar/Players/Player3" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Player Name"
+
+[node name="Button3" parent="ScoreBoard/Scrollbar/Players/Player3" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Time
+"
+
+[node name="Levels" type="HScrollBar" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 103.0
+offset_right = 168.0
+offset_bottom = 470.0
+
+[node name="Level Holder" type="VBoxContainer" parent="Levels"]
+layout_mode = 0
+offset_left = 13.0
+offset_right = 153.0
+offset_bottom = 308.0
+
+[node name="Level1" parent="Levels/Level Holder" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Level 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Level2" parent="Levels/Level Holder" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Level 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Level3" parent="Levels/Level Holder" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Level 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Level4" parent="Levels/Level Holder" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Level 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Level5" parent="Levels/Level Holder" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Level 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Level6" parent="Levels/Level Holder" instance=ExtResource("1_51fl4")]
+layout_mode = 2
+text = "Level 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -269.0
+offset_top = -89.0
+offset_right = 291.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_oq5rf")
+theme_override_font_sizes/font_size = 50
+placeholder_text = "  Name  "

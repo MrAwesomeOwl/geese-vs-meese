@@ -11,17 +11,23 @@ config_version=5
 [application]
 
 config/name="geese vs meese"
-run/main_scene="res://scenes/menus/title.tscn"
+run/main_scene="res://scenes/init.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/image="res://splash.png"
+config/icon="res://icon.png"
 
 [autoload]
 
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+DataManager="*res://autoload/data_manager.gd"
 Util="*res://autoload/util.gd"
 MusicManager="*res://autoload/music_manager.tscn"
-LevelTracker="*res://autoload/level_tracker.gd"
 Fader="*res://autoload/fader.tscn"
 SpeedrunTimer="*res://autoload/speedrun_timer.tscn"
+UUID="*res://addons/godot-uuid-8cc945f72f1d238cd1ddea5739e3ef963e5e6cbc/uuid.gd"
+ObjectNameGenerator="*res://autoload/object_name_generator.gd"
+LevelInfo="*res://autoload/level_info.gd"
+ParticleLoader="*res://autoload/particle_loader.tscn"
 
 [debug]
 
@@ -32,6 +38,7 @@ gdscript/warnings/unused_parameter=0
 window/size/viewport_width=1024
 window/size/viewport_height=576
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=2
 
 [global_group]
 
@@ -71,6 +78,11 @@ toggle_music={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":77,"key_label":0,"unicode":109,"location":0,"echo":false,"script":null)
 ]
 }
+restart={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"location":0,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -79,6 +91,7 @@ toggle_music={
 2d_physics/layer_3="enemies"
 2d_physics/layer_9="enemyBlocker"
 2d_physics/layer_10="playerBlocker"
+2d_physics/layer_17="solid_tiles"
 
 [rendering]
 

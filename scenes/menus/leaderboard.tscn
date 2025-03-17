@@ -1,0 +1,871 @@
+[gd_scene load_steps=20 format=3 uid="uid://dicb6bupwsr3"]
+
+[ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/gui/button.tscn" id="1_51fl4"]
+[ext_resource type="Script" path="res://scripts/nodes/unfade_on_load.gd" id="1_difke"]
+[ext_resource type="Theme" uid="uid://c3lgl44jh5ekr" path="res://themes/title_text.tres" id="1_oq5rf"]
+[ext_resource type="Texture2D" uid="uid://c8a2rfvdabfns" path="res://textures/background/GvMStart.png" id="2_3wasl"]
+[ext_resource type="Theme" uid="uid://cmsx7o4hobgk3" path="res://themes/button_icon.tres" id="5_oowh4"]
+[ext_resource type="Script" path="res://scripts/gui/scene_changer_button.gd" id="5_rv8u1"]
+[ext_resource type="Script" path="res://scripts/gui/button_mover.gd" id="6_81egt"]
+[ext_resource type="Script" path="res://scripts/gui/leaderboard.gd" id="8_1xwtl"]
+[ext_resource type="PackedScene" uid="uid://css1k1nb8e6fh" path="res://objects/gui/scroll_container.tscn" id="8_wagvr"]
+[ext_resource type="FontFile" uid="uid://bwu06ofw0ktuo" path="res://fonts/speedrun_timer/speedrun-timer.ttf" id="9_6wwcx"]
+[ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://fonts/jersey_10/Jersey10-Regular.ttf" id="9_ctxhx"]
+[ext_resource type="Texture2D" uid="uid://jrf844c5okwe" path="res://textures/ui/trophy.png" id="9_pckvk"]
+[ext_resource type="Texture2D" uid="uid://t05urjm5niye" path="res://textures/ui/refresh_icon.png" id="12_ew7sc"]
+[ext_resource type="Texture2D" uid="uid://b7160ll8tcyqr" path="res://textures/ui/leaderboard_hint_arrow.png" id="12_xhght"]
+[ext_resource type="Texture2D" uid="uid://bban1737dden0" path="res://textures/ui/back_icon.png" id="13_6pytb"]
+
+[sub_resource type="Gradient" id="Gradient_vrhcf"]
+colors = PackedColorArray(0.91, 0.91, 0.91, 1, 0.58, 0.58, 0.58, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n630p"]
+gradient = SubResource("Gradient_vrhcf")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="GDScript" id="GDScript_4vd5r"]
+resource_name = "loading_text"
+script/source = "extends Label
+
+@export var anim_rate = 0.1
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	while true:
+		text = \"Loading\"
+		await Util.wait(anim_rate)
+		for i in range(3):
+			text += \".\"
+			await Util.wait(anim_rate)
+"
+
+[sub_resource type="FontVariation" id="FontVariation_kp6uw"]
+base_font = ExtResource("9_ctxhx")
+spacing_glyph = 1
+
+[node name="Leaderboard" type="CanvasLayer"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="UnfadeOnLoad" type="Node" parent="."]
+script = ExtResource("1_difke")
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 288.0
+
+[node name="Background" type="TextureRect" parent="Control"]
+modulate = Color(0.24, 0.24, 0.24, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3wasl")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -422.0
+offset_top = -16.5
+offset_right = 284.0
+offset_bottom = 121.5
+grow_horizontal = 2
+scale = Vector2(1.00154, 1)
+theme = ExtResource("1_oq5rf")
+text = "LEADERBOARD"
+horizontal_alignment = 1
+
+[node name="KJGFH" parent="Control" instance=ExtResource("1_51fl4")]
+visible = false
+layout_mode = 2
+offset_left = -180.0
+offset_top = 40.5
+offset_right = -124.0
+offset_bottom = 65.5
+theme = ExtResource("5_oowh4")
+theme_override_font_sizes/font_size = 21
+text = "
+"
+script = ExtResource("5_rv8u1")
+scene_path = "res://scenes/levels/desert.tscn"
+
+[node name="ButtonMover" type="Node" parent="Control/KJGFH" node_paths=PackedStringArray("update_position", "update_color_labels")]
+script = ExtResource("6_81egt")
+update_position = [null]
+update_color_labels = [null]
+
+[node name="Control" type="Control" parent="Control/KJGFH"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="Name" type="Label" parent="Control/KJGFH/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.258824, 0.223529, 0.203922, 1)
+theme_override_font_sizes/font_size = 35
+text = "Dongus"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Author" type="Label" parent="Control/KJGFH/Control"]
+modulate = Color(1, 1, 1, 0.756863)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -3.5
+offset_right = 35.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.258824, 0.223529, 0.203922, 1)
+theme_override_font_sizes/font_size = 19
+text = "By Pritha"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Leaderboard" type="Control" parent="Control" node_paths=PackedStringArray("LevelsVBox", "LeaderboardVBox")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("8_1xwtl")
+LevelsVBox = NodePath("Levels/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer")
+LeaderboardVBox = NodePath("Players/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer")
+
+[node name="LevelButtonTemplate" parent="Control/Leaderboard" instance=ExtResource("1_51fl4")]
+visible = false
+custom_minimum_size = Vector2(0, 17)
+layout_mode = 2
+offset_left = -204.25
+offset_top = -55.0
+offset_right = -146.25
+offset_bottom = -38.0
+theme = ExtResource("5_oowh4")
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_font_sizes/font_size = 13
+toggle_mode = true
+text = ""
+text_overrun_behavior = 1
+
+[node name="ButtonMover" type="Node" parent="Control/Leaderboard/LevelButtonTemplate" node_paths=PackedStringArray("update_position", "update_color_labels")]
+script = ExtResource("6_81egt")
+update_position = [NodePath("../Control")]
+update_color_labels = [NodePath("../Control/Level")]
+
+[node name="Control" type="Control" parent="Control/Leaderboard/LevelButtonTemplate"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="Level" type="Label" parent="Control/Leaderboard/LevelButtonTemplate/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -14.0
+offset_right = 34.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.258824, 0.223529, 0.203922, 1)
+theme_override_font_sizes/font_size = 19
+text = "lvl name here"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="SeparatorTemplate" type="ColorRect" parent="Control/Leaderboard"]
+visible = false
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+offset_left = -32.0
+offset_top = -26.0
+offset_right = 106.0
+offset_bottom = -25.0
+color = Color(0.352941, 0.305882, 0.266667, 1)
+
+[node name="SkillIssueTemplate" type="MarginContainer" parent="Control/Leaderboard"]
+visible = false
+layout_mode = 2
+offset_left = -32.0
+offset_top = -30.0
+offset_right = 106.0
+offset_bottom = 29.0
+theme_override_constants/margin_top = 25
+
+[node name="Label" type="Label" parent="Control/Leaderboard/SkillIssueTemplate"]
+modulate = Color(0.47451, 0.403922, 0.333333, 1)
+layout_mode = 2
+theme_override_constants/line_spacing = -10
+text = "Skill issues abound!
+(no victors yet)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ErrorTemplate" type="MarginContainer" parent="Control/Leaderboard"]
+visible = false
+layout_mode = 2
+offset_left = -32.0
+offset_top = -30.0
+offset_right = 106.0
+offset_bottom = 29.0
+theme_override_constants/margin_top = 25
+
+[node name="Label" type="Label" parent="Control/Leaderboard/ErrorTemplate"]
+modulate = Color(1, 0.49, 0.49, 1)
+layout_mode = 2
+theme_override_constants/line_spacing = -10
+text = "Error:
+Slow down!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BigSeparatorTemplate" type="MarginContainer" parent="Control/Leaderboard"]
+visible = false
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+offset_left = -32.0
+offset_top = -30.0
+offset_right = 106.0
+offset_bottom = -27.0
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="ColorRect" type="ColorRect" parent="Control/Leaderboard/BigSeparatorTemplate"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.352941, 0.305882, 0.266667, 1)
+
+[node name="BigSeparatorBottomTemplate" type="MarginContainer" parent="Control/Leaderboard"]
+visible = false
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+offset_left = -32.0
+offset_top = -26.0
+offset_right = 106.0
+offset_bottom = -23.0
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="ColorRect" type="ColorRect" parent="Control/Leaderboard/BigSeparatorBottomTemplate"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.352941, 0.305882, 0.266667, 1)
+
+[node name="FirstPlaceTemplate" type="MarginContainer" parent="Control/Leaderboard"]
+visible = false
+modulate = Color(1, 1, 0.4, 1)
+layout_mode = 2
+offset_left = -32.0
+offset_top = -30.0
+offset_right = 106.0
+offset_bottom = -20.0
+theme_override_constants/margin_right = -1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control/Leaderboard/FirstPlaceTemplate"]
+layout_mode = 2
+
+[node name="Place" type="Control" parent="Control/Leaderboard/FirstPlaceTemplate/VBoxContainer"]
+custom_minimum_size = Vector2(13, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Anchor" type="Control" parent="Control/Leaderboard/FirstPlaceTemplate/VBoxContainer/Place"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/FirstPlaceTemplate/VBoxContainer/Place/Anchor"]
+z_index = 1
+layout_mode = 0
+offset_top = -10.0
+offset_right = 28.0
+offset_bottom = 18.0
+texture = ExtResource("9_pckvk")
+
+[node name="Place" type="Label" parent="Control/Leaderboard/FirstPlaceTemplate/VBoxContainer/Place/Anchor"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+z_index = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -20.0
+offset_right = 27.5
+offset_bottom = 16.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_6wwcx")
+theme_override_font_sizes/font_size = 9
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" type="Control" parent="Control/Leaderboard/FirstPlaceTemplate/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Anchor" type="Control" parent="Control/Leaderboard/FirstPlaceTemplate/VBoxContainer/Player"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="Player" type="Label" parent="Control/Leaderboard/FirstPlaceTemplate/VBoxContainer/Player/Anchor"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 140.0
+offset_bottom = 11.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 19
+text = "Chromebook Test asj"
+vertical_alignment = 1
+clip_text = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/FirstPlaceTemplate/VBoxContainer/Player/Anchor/Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 6.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_n630p")
+expand_mode = 1
+
+[node name="Time" type="Label" parent="Control/Leaderboard/FirstPlaceTemplate/VBoxContainer"]
+clip_children = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_6wwcx")
+theme_override_font_sizes/font_size = 9
+text = "0.21"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/FirstPlaceTemplate/VBoxContainer/Time"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_n630p")
+expand_mode = 1
+
+[node name="SecondPlaceTemplate" type="MarginContainer" parent="Control/Leaderboard"]
+visible = false
+layout_mode = 2
+offset_left = -32.0
+offset_top = -30.0
+offset_right = 106.0
+offset_bottom = -20.0
+theme_override_constants/margin_right = -1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control/Leaderboard/SecondPlaceTemplate"]
+layout_mode = 2
+
+[node name="Place" type="Control" parent="Control/Leaderboard/SecondPlaceTemplate/VBoxContainer"]
+custom_minimum_size = Vector2(13, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Anchor" type="Control" parent="Control/Leaderboard/SecondPlaceTemplate/VBoxContainer/Place"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/SecondPlaceTemplate/VBoxContainer/Place/Anchor"]
+z_index = 1
+layout_mode = 0
+offset_top = -10.0
+offset_right = 28.0
+offset_bottom = 18.0
+texture = ExtResource("9_pckvk")
+
+[node name="Place" type="Label" parent="Control/Leaderboard/SecondPlaceTemplate/VBoxContainer/Place/Anchor"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+z_index = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -1.5
+offset_top = -20.5
+offset_right = 29.5
+offset_bottom = 15.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_6wwcx")
+theme_override_font_sizes/font_size = 9
+text = "2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" type="Control" parent="Control/Leaderboard/SecondPlaceTemplate/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Anchor" type="Control" parent="Control/Leaderboard/SecondPlaceTemplate/VBoxContainer/Player"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="Player" type="Label" parent="Control/Leaderboard/SecondPlaceTemplate/VBoxContainer/Player/Anchor"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 122.0
+offset_bottom = 11.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 19
+text = "Lord o' the Seas (yar)"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/SecondPlaceTemplate/VBoxContainer/Player/Anchor/Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 6.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_n630p")
+expand_mode = 1
+
+[node name="Time" type="Label" parent="Control/Leaderboard/SecondPlaceTemplate/VBoxContainer"]
+clip_children = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_6wwcx")
+theme_override_font_sizes/font_size = 9
+text = "10.52"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/SecondPlaceTemplate/VBoxContainer/Time"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_n630p")
+expand_mode = 1
+
+[node name="ThirdPlaceTemplate" type="MarginContainer" parent="Control/Leaderboard"]
+visible = false
+modulate = Color(1, 0.576333, 0.38, 1)
+layout_mode = 2
+offset_left = -32.0
+offset_top = -26.0
+offset_right = 106.0
+offset_bottom = -16.0
+theme_override_constants/margin_right = -1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control/Leaderboard/ThirdPlaceTemplate"]
+layout_mode = 2
+
+[node name="Place" type="Control" parent="Control/Leaderboard/ThirdPlaceTemplate/VBoxContainer"]
+custom_minimum_size = Vector2(13, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Anchor" type="Control" parent="Control/Leaderboard/ThirdPlaceTemplate/VBoxContainer/Place"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/ThirdPlaceTemplate/VBoxContainer/Place/Anchor"]
+z_index = 1
+layout_mode = 0
+offset_top = -10.0
+offset_right = 28.0
+offset_bottom = 18.0
+texture = ExtResource("9_pckvk")
+
+[node name="Place" type="Label" parent="Control/Leaderboard/ThirdPlaceTemplate/VBoxContainer/Place/Anchor"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+z_index = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -1.5
+offset_top = -20.5
+offset_right = 29.5
+offset_bottom = 15.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_6wwcx")
+theme_override_font_sizes/font_size = 9
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" type="Control" parent="Control/Leaderboard/ThirdPlaceTemplate/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Anchor" type="Control" parent="Control/Leaderboard/ThirdPlaceTemplate/VBoxContainer/Player"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="Player" type="Label" parent="Control/Leaderboard/ThirdPlaceTemplate/VBoxContainer/Player/Anchor"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 122.0
+offset_bottom = 11.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 19
+text = "You're Mother"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/ThirdPlaceTemplate/VBoxContainer/Player/Anchor/Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 6.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_n630p")
+expand_mode = 1
+
+[node name="Time" type="Label" parent="Control/Leaderboard/ThirdPlaceTemplate/VBoxContainer"]
+clip_children = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_6wwcx")
+theme_override_font_sizes/font_size = 9
+text = "12.55"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/ThirdPlaceTemplate/VBoxContainer/Time"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_n630p")
+expand_mode = 1
+
+[node name="NthPlaceTemplate" type="MarginContainer" parent="Control/Leaderboard"]
+visible = false
+modulate = Color(0.74, 0.74, 0.74, 1)
+layout_mode = 2
+offset_left = -32.0
+offset_top = -26.0
+offset_right = 106.0
+offset_bottom = -16.0
+theme_override_constants/margin_right = -1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control/Leaderboard/NthPlaceTemplate"]
+layout_mode = 2
+
+[node name="Place" type="Control" parent="Control/Leaderboard/NthPlaceTemplate/VBoxContainer"]
+custom_minimum_size = Vector2(13, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Anchor" type="Control" parent="Control/Leaderboard/NthPlaceTemplate/VBoxContainer/Place"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="Place" type="Label" parent="Control/Leaderboard/NthPlaceTemplate/VBoxContainer/Place/Anchor"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -18.0
+offset_right = 31.0
+offset_bottom = 18.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_6wwcx")
+theme_override_font_sizes/font_size = 9
+text = "04"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" type="Control" parent="Control/Leaderboard/NthPlaceTemplate/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Anchor" type="Control" parent="Control/Leaderboard/NthPlaceTemplate/VBoxContainer/Player"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="Player" type="Label" parent="Control/Leaderboard/NthPlaceTemplate/VBoxContainer/Player/Anchor"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 122.0
+offset_bottom = 11.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 19
+text = "Greg from Walmart"
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="Control/Leaderboard/NthPlaceTemplate/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_6wwcx")
+theme_override_font_sizes/font_size = 9
+text = "22.84"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Levels" parent="Control/Leaderboard" instance=ExtResource("8_wagvr")]
+layout_mode = 0
+offset_left = -125.0
+offset_top = -37.0
+offset_right = -42.0
+offset_bottom = 65.0
+
+[node name="Players" parent="Control/Leaderboard" instance=ExtResource("8_wagvr")]
+layout_mode = 0
+offset_left = -39.0
+offset_top = -37.0
+offset_right = 124.0
+offset_bottom = 65.0
+
+[node name="SelectionHint" type="MarginContainer" parent="Control/Leaderboard/Players/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="Label" type="Label" parent="Control/Leaderboard/Players/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SelectionHint"]
+modulate = Color(0.47451, 0.403922, 0.333333, 1)
+layout_mode = 2
+theme_override_constants/line_spacing = -10
+text = "Select a level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/Players/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SelectionHint/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 17.0
+offset_right = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_xhght")
+
+[node name="Refresh" parent="Control/Leaderboard" instance=ExtResource("1_51fl4")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 71.0
+offset_top = -74.0
+offset_right = 96.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 17
+text = ""
+icon_alignment = 1
+
+[node name="ButtonMover" type="Node" parent="Control/Leaderboard/Refresh" node_paths=PackedStringArray("update_position", "update_color_modulates")]
+script = ExtResource("6_81egt")
+update_position = [NodePath("../TextureRect")]
+update_color_modulates = [NodePath("../TextureRect")]
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/Refresh"]
+modulate = Color(0.258824, 0.223529, 0.203922, 1)
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 22.0
+offset_bottom = 22.0
+texture = ExtResource("12_ew7sc")
+
+[node name="Exit" parent="Control/Leaderboard" instance=ExtResource("1_51fl4")]
+modulate = Color(1, 0.560784, 0.560784, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 99.0
+offset_top = -74.0
+offset_right = 124.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 17
+text = ""
+icon_alignment = 1
+script = ExtResource("5_rv8u1")
+scene_path = "res://scenes/menus/title.tscn"
+
+[node name="ButtonMover" type="Node" parent="Control/Leaderboard/Exit" node_paths=PackedStringArray("update_position", "update_color_modulates")]
+script = ExtResource("6_81egt")
+update_position = [NodePath("../TextureRect")]
+update_color_modulates = [NodePath("../TextureRect")]
+
+[node name="TextureRect" type="TextureRect" parent="Control/Leaderboard/Exit"]
+modulate = Color(0.258824, 0.223529, 0.203922, 1)
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 22.0
+offset_bottom = 22.0
+texture = ExtResource("13_6pytb")
+
+[node name="Loading" type="Label" parent="Control/Leaderboard"]
+visible = false
+modulate = Color(0.47451, 0.403922, 0.333333, 1)
+layout_mode = 0
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 245.0
+offset_bottom = 143.0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/line_spacing = -10
+theme_override_font_sizes/font_size = 40
+text = "Loading"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_4vd5r")
+anim_rate = 0.5
+
+[node name="Info" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -506.0
+offset_top = 57.5
+offset_right = -339.0
+offset_bottom = 77.5
+grow_horizontal = 2
+theme = ExtResource("1_oq5rf")
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = SubResource("FontVariation_kp6uw")
+theme_override_font_sizes/font_size = 18
+text = "LEVELS"
+horizontal_alignment = 1
+
+[node name="Info2" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -334.0
+offset_top = 58.0
+offset_right = -8.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme = ExtResource("1_oq5rf")
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = SubResource("FontVariation_kp6uw")
+theme_override_font_sizes/font_size = 18
+text = "PLAYERS"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Control/Leaderboard/Refresh" to="Control/Leaderboard" method="_on_refresh_pressed"]
+
+[editable path="Control/Leaderboard/Levels"]
+[editable path="Control/Leaderboard/Players"]

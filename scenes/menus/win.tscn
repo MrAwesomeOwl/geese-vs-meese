@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://50rkvmuqhadq"]
+[gd_scene load_steps=12 format=3 uid="uid://50rkvmuqhadq"]
 
 [ext_resource type="Texture2D" uid="uid://cajqb6s5oa2pi" path="res://textures/background/GvMWin.png" id="1_27l73"]
 [ext_resource type="Script" path="res://scripts/nodes/unfade_on_load.gd" id="1_c4h7v"]
+[ext_resource type="Script" path="res://scripts/submit_scores.gd" id="1_gb8ln"]
 [ext_resource type="Theme" uid="uid://c3lgl44jh5ekr" path="res://themes/title_text.tres" id="2_3jve0"]
 [ext_resource type="Script" path="res://scripts/gui/text_flash_script.gd" id="3_6h4od"]
 [ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/gui/button.tscn" id="3_mekhi"]
 [ext_resource type="Script" path="res://scripts/gui/scene_changer_button.gd" id="4_yva4s"]
+[ext_resource type="Script" path="res://scripts/gui/restart_level_button.gd" id="8_xxaek"]
 
 [sub_resource type="Gradient" id="Gradient_mr4dj"]
 interpolation_mode = 2
@@ -17,9 +19,29 @@ metadata/_snap_enabled = true
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8mksx"]
 gradient = SubResource("Gradient_mr4dj")
 
+[sub_resource type="GDScript" id="GDScript_xeu64"]
+resource_name = "level_name"
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	text = \"in \" + SpeedrunTimer.get_time_string(SpeedrunTimer.current_time,false,true)
+	if LevelInfo.current_level_path && LevelInfo.scene_to_id_map.has(LevelInfo.current_level_path):
+		text = LevelInfo.levels[LevelInfo.scene_to_id_map[LevelInfo.current_level_path]].display_name + \"\\n\" + text
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="Title" type="CanvasLayer"]
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="SubmitScores" type="Node" parent="."]
+script = ExtResource("1_gb8ln")
 
 [node name="UnfadeOnLoad" type="Node" parent="."]
 script = ExtResource("1_c4h7v")
@@ -54,31 +76,49 @@ loops_per_second = 2.0
 colors = SubResource("GradientTexture1D_8mksx")
 
 [node name="Splash" type="Label" parent="Control"]
-visible = false
 layout_mode = 1
 offset_left = 15.5
-offset_top = 139.5
+offset_top = 62.5
 offset_right = 721.5
-offset_bottom = 277.5
+offset_bottom = 200.5
 theme = ExtResource("2_3jve0")
+theme_override_constants/line_spacing = -16
 theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 40
-text = "Splash text"
-vertical_alignment = 2
+text = "Level Name
+in XX:XX.XX"
+script = SubResource("GDScript_xeu64")
 
-[node name="Menu" parent="Control" instance=ExtResource("3_mekhi")]
+[node name="2x" type="Control" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -240.5
-offset_top = 84.0
-offset_right = -115.5
-offset_bottom = 132.0
+offset_left = -240.0
+offset_top = 71.5
+offset_right = -240.0
+offset_bottom = 71.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="Menu" parent="Control/2x" instance=ExtResource("3_mekhi")]
+layout_mode = 1
+offset_right = 48.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 21
 text = "MENU"
 script = ExtResource("4_yva4s")
 scene_path = "res://scenes/menus/title.tscn"
+
+[node name="Restart" parent="Control/2x" instance=ExtResource("3_mekhi")]
+layout_mode = 1
+offset_left = 54.75
+offset_right = 108.75
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 21
+text = "AGAIN!"
+script = ExtResource("8_xxaek")
+scene_path = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcdyw0dtvt3u4"]
+[gd_scene load_steps=11 format=3 uid="uid://dcdyw0dtvt3u4"]
 
 [ext_resource type="Texture2D" uid="uid://dq7dpbn74a0p0" path="res://textures/background/GvMLose.png" id="1_ayfcx"]
 [ext_resource type="Theme" uid="uid://c3lgl44jh5ekr" path="res://themes/title_text.tres" id="2_habry"]
@@ -25,6 +25,22 @@ metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_h3vyb"]
 gradient = SubResource("Gradient_dfop4")
+
+[sub_resource type="GDScript" id="GDScript_vrdq7"]
+resource_name = "reset_on_r"
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"restart\"):
+		get_tree().call_deferred(\"change_scene_to_file\", LevelInfo.current_level_path)
+"
 
 [node name="Lose" type="CanvasLayer"]
 scale = Vector2(2, 2)
@@ -73,37 +89,40 @@ theme_override_font_sizes/font_size = 40
 text = "Splash text"
 vertical_alignment = 2
 
-[node name="Restart" parent="Control" instance=ExtResource("3_4ccfx")]
+[node name="2x" type="Control" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -240.5
-offset_top = -57.5
-offset_right = -143.5
-offset_bottom = -9.5
+offset_left = -240.0
+offset_top = -57.0
+offset_right = -240.0
+offset_bottom = -57.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="Restart" parent="Control/2x" instance=ExtResource("3_4ccfx")]
+layout_mode = 1
+offset_right = 80.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 21
 text = "RETRY"
 script = ExtResource("5_78wo0")
 scene_path = null
 
-[node name="Menu" parent="Control" instance=ExtResource("3_4ccfx")]
+[node name="Menu" parent="Control/2x" instance=ExtResource("3_4ccfx")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -240.5
-offset_top = -4.5
-offset_right = -143.5
-offset_bottom = 43.5
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = 36.75
+offset_right = 80.0
+offset_bottom = 68.75
+theme_override_font_sizes/font_size = 21
 text = "MENU
 "
 script = ExtResource("4_xnrw4")
 scene_path = "res://scenes/menus/title.tscn"
+
+[node name="ResetOnR" type="Node" parent="."]
+script = SubResource("GDScript_vrdq7")

@@ -1,17 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://dinnpq31cv1pj"]
+[gd_scene load_steps=5 format=3 uid="uid://dinnpq31cv1pj"]
 
 [ext_resource type="Theme" uid="uid://cmsx7o4hobgk3" path="res://themes/button_icon.tres" id="1_l4kmb"]
 [ext_resource type="Texture2D" uid="uid://btd7q35l25ml3" path="res://textures/ui/check.png" id="2_a3tes"]
 [ext_resource type="Script" path="res://scripts/gui/checkbox.gd" id="2_h8b81"]
+[ext_resource type="Script" path="res://scripts/gui/button_mover.gd" id="3_3kn0c"]
 
 [node name="Checkbox" type="Button"]
 texture_filter = 1
 offset_right = 16.0
 offset_bottom = 18.0
 theme = ExtResource("1_l4kmb")
-icon = ExtResource("2_a3tes")
 icon_alignment = 1
 script = ExtResource("2_h8b81")
 is_checked = true
+
+[node name="ButtonMover" type="Node" parent="." node_paths=PackedStringArray("update_position", "update_color_modulates")]
+script = ExtResource("3_3kn0c")
+update_position = [NodePath("../TextureRect")]
+update_color_modulates = [NodePath("../TextureRect")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.258824, 0.223529, 0.203922, 1)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 12.0
+offset_bottom = 12.0
+texture = ExtResource("2_a3tes")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

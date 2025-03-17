@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dcan65osrljtw"]
+
+[ext_resource type="StyleBox" uid="uid://cow38mgdhi7ot" path="res://styles/invisible.tres" id="1_oc6hd"]
+
+[resource]
+LineEdit/constants/minimum_character_width = 0
+LineEdit/styles/focus = ExtResource("1_oc6hd")
+LineEdit/styles/normal = ExtResource("1_oc6hd")
+LineEdit/styles/read_only = ExtResource("1_oc6hd")

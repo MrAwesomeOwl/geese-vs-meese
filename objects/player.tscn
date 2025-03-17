@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://dhrvokr7jba57"]
+[gd_scene load_steps=75 format=3 uid="uid://dhrvokr7jba57"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7j0db"]
 [ext_resource type="Script" path="res://scripts/nodes/healthStat.gd" id="2_fo48x"]
@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://c5w8tg3dgy2q6" path="res://textures/ui/poison_bar.png" id="3_we1o2"]
 [ext_resource type="Texture2D" uid="uid://cj7majaofixnf" path="res://textures/goose/animation_idle.png" id="4_h3nmj"]
 [ext_resource type="Texture2D" uid="uid://bsrb4h20iifeo" path="res://textures/goose/animation_run.png" id="5_khvh1"]
+[ext_resource type="PackedScene" uid="uid://cwnvqab55qjkq" path="res://objects/poison_particles.tscn" id="6_mt8oh"]
 [ext_resource type="Texture2D" uid="uid://iw2yhbr6hn16" path="res://textures/ui/poison_bar_fill.png" id="7_cvts4"]
 [ext_resource type="Texture2D" uid="uid://isynoevlcexe" path="res://textures/ui/poison_bar_overlay.png" id="7_x4hnu"]
-[ext_resource type="Texture2D" uid="uid://bj0nfnlolaeqp" path="res://textures/particles/bubble_particle.png" id="9_jveqn"]
 [ext_resource type="AudioStream" uid="uid://du38vy17ohter" path="res://sounds/goose/damage1.mp3" id="10_8ie16"]
 [ext_resource type="AudioStream" uid="uid://2shluxtooyy" path="res://sounds/goose/honk1.mp3" id="10_q81yi"]
 [ext_resource type="AudioStream" uid="uid://cajrxyp2r1qy2" path="res://sounds/goose/damage2.mp3" id="11_a5wri"]
@@ -274,42 +274,6 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5lt3r"]
 size = Vector2(14, 16)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_defgx"]
-particles_animation = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 16
-particles_anim_loop = true
-
-[sub_resource type="Curve" id="Curve_fn80h"]
-_data = [Vector2(0, 0), 0.0, 0.869511, 0, 0, Vector2(1, 1), 1.03169, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_gol3t"]
-curve = SubResource("Curve_fn80h")
-
-[sub_resource type="Curve" id="Curve_jm0u6"]
-_data = [Vector2(0, 0.0131717), 0.0, 11.7458, 0, 0, Vector2(0.384706, 1), 0.0, 0.0, 0, 0, Vector2(0.822353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_yao1d"]
-curve = SubResource("Curve_jm0u6")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1iiq4"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 20.0
-direction = Vector3(0, -1, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 10.0
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_yao1d")
-color = Color(0.752941, 1, 0.882353, 1)
-anim_speed_min = 1.0
-anim_speed_max = 2.0
-anim_offset_curve = SubResource("CurveTexture_gol3t")
-turbulence_noise_speed = Vector3(1, 0, 0)
-turbulence_noise_speed_random = 0.0
 
 [sub_resource type="Animation" id="Animation_iupn2"]
 length = 0.001
@@ -648,6 +612,9 @@ states/movement/position = Vector2(310, 99.5392)
 transitions = ["Start", "movement", SubResource("AnimationNodeStateMachineTransition_r2vsr"), "movement", "attack", SubResource("AnimationNodeStateMachineTransition_kp71p"), "attack", "movement", SubResource("AnimationNodeStateMachineTransition_1o0vd")]
 graph_offset = Vector2(-366, -98)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcxhf"]
+size = Vector2(14, 1)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 texture_filter = 1
 collision_layer = 2
@@ -680,12 +647,7 @@ polygon = PackedVector2Array(-3, 13, -3, -12, 40, -3)
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_5lt3r")
 
-[node name="PoisonParticles" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_defgx")
-position = Vector2(0, -13)
-emitting = false
-process_material = SubResource("ParticleProcessMaterial_1iiq4")
-texture = ExtResource("9_jveqn")
+[node name="PoisonParticles" parent="." instance=ExtResource("6_mt8oh")]
 
 [node name="PoisonBar" type="Node2D" parent="."]
 position = Vector2(0, -35)
@@ -729,6 +691,16 @@ autoplay = "idle"
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_abp8s")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="StuckDetector" type="Area2D" parent="."]
+position = Vector2(0, -16)
+collision_layer = 65536
+collision_mask = 65536
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StuckDetector"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_mcxhf")
+debug_color = Color(0.7, 0.21, 0, 0.419608)
 
 [connection signal="on_current_changed" from="Health" to="." method="_on_health_changed"]
 [connection signal="on_death" from="Health" to="." method="_on_health_on_death"]

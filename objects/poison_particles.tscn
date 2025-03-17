@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwnvqab55qjkq"]
+
+[ext_resource type="Texture2D" uid="uid://bj0nfnlolaeqp" path="res://textures/particles/bubble_particle.png" id="1_m4rnq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_defgx"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 16
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_fn80h"]
+_data = [Vector2(0, 0), 0.0, 0.869511, 0, 0, Vector2(1, 1), 1.03169, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gol3t"]
+curve = SubResource("Curve_fn80h")
+
+[sub_resource type="Curve" id="Curve_jm0u6"]
+_data = [Vector2(0, 0.0131717), 0.0, 11.7458, 0, 0, Vector2(0.384706, 1), 0.0, 0.0, 0, 0, Vector2(0.822353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_yao1d"]
+curve = SubResource("Curve_jm0u6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1iiq4"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_yao1d")
+color = Color(0.752941, 1, 0.882353, 1)
+anim_speed_min = 1.0
+anim_speed_max = 2.0
+anim_offset_curve = SubResource("CurveTexture_gol3t")
+turbulence_noise_speed = Vector3(1, 0, 0)
+turbulence_noise_speed_random = 0.0
+
+[node name="PoisonParticles" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_defgx")
+position = Vector2(0, -13)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_1iiq4")
+texture = ExtResource("1_m4rnq")

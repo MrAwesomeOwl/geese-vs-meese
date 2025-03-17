@@ -1,0 +1,17 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://demrxhi72sck6"]
+
+[ext_resource type="Texture2D" uid="uid://bi37qhra3yvfx" path="res://textures/ui/scroll_bar/bg_vert_attached.png" id="1_g64vm"]
+
+[resource]
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("1_g64vm")
+texture_margin_left = 4.0
+texture_margin_top = 7.0
+texture_margin_bottom = 9.0
+expand_margin_left = 8.0
+expand_margin_top = 7.0
+expand_margin_right = 7.0
+expand_margin_bottom = 9.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

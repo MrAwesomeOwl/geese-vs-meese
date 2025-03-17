@@ -6,8 +6,10 @@ class_name ButtonMover
 @export var update_position: Array[Control] = []
 @export var move_amount = 2
 @export var update_color_labels: Array[Label] = []
+@export var update_color_modulates: Array[Control] = []
 
 var is_pressed = false
+var is_hovered = false
 var is_up = true
 
 func go_down():
@@ -19,6 +21,10 @@ func go_down():
 		for node in update_color_labels:
 			node.set_meta("original_color",node.get_theme_color("font_color"))
 			node.add_theme_color_override("font_color",button_to_follow.theme["Button/colors/font_pressed_color"])
+		
+		for node in update_color_modulates:
+			node.set_meta("original_color",node.modulate)
+			node.modulate = button_to_follow.theme["Button/colors/font_pressed_color"]
 
 func go_up():
 	if not is_up:
@@ -28,6 +34,9 @@ func go_up():
 				
 		for node in update_color_labels:
 			node.add_theme_color_override("font_color",node.get_meta("original_color"))
+		
+		for node in update_color_modulates:
+			node.modulate = node.get_meta("original_color")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,16 +53,29 @@ func _ready() -> void:
 	)
 	
 	button_to_follow.mouse_exited.connect(func _on_mouse_exited():
+		is_hovered = false
 		if is_pressed:
 			go_up()
 	)
 	
 	button_to_follow.mouse_entered.connect(func _on_mouse_exited():
+		is_hovered = true
 		if is_pressed:
 			go_down()
 	)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+# ugliest code i have ever written
 func _process(delta: float) -> void:
-	pass
+	if button_to_follow.toggle_mode:
+		if is_pressed:
+			if is_hovered:
+				if button_to_follow.button_pressed: go_up()
+				else: go_down()
+			else:
+				if button_to_follow.button_pressed: go_down()
+				else: go_up()
+		else:
+			if button_to_follow.button_pressed: go_down()
+			else: go_up() 

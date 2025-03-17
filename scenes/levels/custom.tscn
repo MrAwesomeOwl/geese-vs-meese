@@ -79,5 +79,3 @@ position = Vector2(642, -528)
 
 [node name="WinArea" parent="." instance=ExtResource("12_3ggy4")]
 position = Vector2(240, -52)
-collision_layer = 3
-collision_mask = 3

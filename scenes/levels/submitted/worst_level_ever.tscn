@@ -1,0 +1,470 @@
+[gd_scene load_steps=14 format=4 uid="uid://uyy50jbcb5l"]
+
+[ext_resource type="Script" path="res://scripts/nodes/unfade_on_load.gd" id="1_p540c"]
+[ext_resource type="Script" path="res://scripts/nodes/level_info.gd" id="2_ydrej"]
+[ext_resource type="Texture2D" uid="uid://b61q1b5aor7ny" path="res://textures/background/GvMWasteland.png" id="3_e434h"]
+[ext_resource type="TileSet" uid="uid://qbjyjk17yc7p" path="res://tilesets/blocks.tres" id="4_88v64"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="5_8fxhg"]
+[ext_resource type="PackedScene" uid="uid://dhrvokr7jba57" path="res://objects/player.tscn" id="6_3kaab"]
+[ext_resource type="PackedScene" uid="uid://burtnq8qlhew0" path="res://scenes/gui.tscn" id="7_py8cr"]
+[ext_resource type="PackedScene" uid="uid://cclnayl672myg" path="res://objects/lose_area.tscn" id="8_c5kow"]
+[ext_resource type="PackedScene" uid="uid://c6x6ypygcib4j" path="res://objects/powerups/heal_powerup.tscn" id="9_e30l7"]
+[ext_resource type="PackedScene" uid="uid://cpb0cuurg75mw" path="res://objects/powerups/poison_powerup.tscn" id="10_1fv6r"]
+[ext_resource type="PackedScene" uid="uid://cpccfvmalc1ea" path="res://objects/victory_pickup.tscn" id="11_rhgk7"]
+[ext_resource type="PackedScene" uid="uid://nktlunqpq8sl" path="res://objects/moose.tscn" id="12_q7sag"]
+[ext_resource type="PackedScene" uid="uid://cm2g6g4p3vinv" path="res://objects/moose_blocker.tscn" id="13_i4esf"]
+
+[node name="Level1" type="Node2D"]
+texture_filter = 1
+
+[node name="UnfadeOnLoad" type="Node" parent="."]
+script = ExtResource("1_p540c")
+
+[node name="LevelInfo" type="Node" parent="."]
+script = ExtResource("2_ydrej")
+
+[node name="Background" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.25, 0.35)
+scroll_offset = Vector2(549, 143)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+texture_filter = 6
+scale = Vector2(0.175796, 0.175796)
+texture = ExtResource("3_e434h")
+
+[node name="Background2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.25, 0.35)
+scroll_offset = Vector2(549, 143)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Background2"]
+texture_filter = 6
+scale = Vector2(0.175796, 0.175796)
+texture = ExtResource("3_e434h")
+
+[node name="Background3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.25, 0.35)
+scroll_offset = Vector2(592, 161)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Background3"]
+texture_filter = 6
+scale = Vector2(0.175796, 0.175796)
+texture = ExtResource("3_e434h")
+
+[node name="BackgroundTiles" type="TileMapLayer" parent="."]
+modulate = Color(0.55, 0.55, 0.55, 1)
+position = Vector2(686, 190)
+tile_set = ExtResource("4_88v64")
+collision_enabled = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD7/wAAAQAGAAQAAAD6/wAAAQAAAAAAAAD6/wEAAQAAAAEAAAD7/wEAAQACAAEAAAD7/wwAAQACAAIAAAD7/wsAAQACAAEAAAD7/woAAQACAAEAAAD7/wkAAQACAAEAAAD7/wgAAQACAAEAAAD7/wcAAQACAAEAAAD7/wYAAQACAAEAAAD7/wUAAQACAAEAAAD7/wQAAQACAAEAAAD7/wMAAQACAAEAAAD7/wIAAQACAAEAAAD6/wwAAQAAAAIAAAD6/wsAAQAAAAEAAAD6/woAAQAAAAEAAAD6/wkAAQAAAAEAAAD6/wgAAQAAAAEAAAD6/wcAAQAAAAEAAAD6/wYAAQAAAAEAAAD6/wUAAQAAAAEAAAD6/wQAAQAAAAEAAAD6/wMAAQAAAAEAAAD6/wIAAQAAAAEAAAD4/wIAAQACAAAAAAD4/wwAAQACAAIAAAD4/wsAAQACAAEAAAD4/woAAQACAAEAAAD4/wkAAQACAAEAAAD4/wgAAQACAAEAAAD4/wcAAQACAAEAAAD4/wYAAQACAAEAAAD4/wUAAQACAAEAAAD4/wQAAQACAAEAAAD4/wMAAQACAAEAAAD3/wwAAQAAAAIAAAD3/wsAAQAAAAEAAAD3/woAAQAAAAEAAAD3/wkAAQAAAAEAAAD3/wgAAQAAAAEAAAD3/wcAAQAAAAEAAAD3/wYAAQAAAAEAAAD3/wUAAQAAAAEAAAD3/wQAAQAAAAEAAAD3/wMAAQAAAAEAAAD3/wIAAQAAAAAAAAD1/wsAAQACAAEAAAD1/woAAQACAAEAAAD1/wkAAQACAAEAAAD1/wgAAQACAAEAAAD1/wcAAQACAAEAAAD1/wYAAQACAAEAAAD1/wUAAQACAAEAAAD1/wQAAQACAAEAAAD1/wMAAQACAAEAAAD1/wIAAQACAAEAAAD1/wEAAQACAAEAAAD1/wAAAQACAAAAAAD0/wsAAQAAAAEAAAD0/woAAQAAAAEAAAD0/wkAAQAAAAEAAAD0/wgAAQAAAAEAAAD0/wcAAQAAAAEAAAD0/wYAAQAAAAEAAAD0/wUAAQAAAAEAAAD0/wQAAQAAAAEAAAD0/wMAAQAAAAEAAAD0/wIAAQAAAAEAAAD0/wEAAQAAAAEAAAD0/wAAAQAAAAAAAAD1/wwAAQACAAIAAAD0/wwAAQAAAAIAAADy/wwAAQACAAIAAADy/wsAAQACAAEAAADy/woAAQACAAEAAADy/wkAAQACAAEAAADy/wgAAQACAAEAAADy/wcAAQACAAEAAADy/wYAAQACAAEAAADy/wUAAQACAAEAAADy/wQAAQACAAEAAADy/wMAAQACAAEAAADy/wIAAQACAAAAAADx/wwAAQAAAAIAAADx/wsAAQAAAAEAAADx/woAAQAAAAEAAADx/wkAAQAAAAEAAADx/wgAAQAAAAEAAADx/wcAAQAAAAEAAADx/wYAAQAAAAEAAADx/wUAAQAAAAEAAADx/wQAAQAAAAEAAADx/wMAAQAAAAEAAADx/wIAAQAAAAAAAADv/wwAAQACAAIAAADv/wsAAQACAAEAAADv/woAAQACAAEAAADv/wkAAQACAAEAAADv/wgAAQACAAEAAADv/wcAAQACAAEAAADv/wYAAQACAAEAAADv/wUAAQACAAEAAADv/wQAAQACAAEAAADv/wMAAQACAAEAAADv/wIAAQACAAEAAADv/wEAAQACAAEAAADv/wAAAQACAAAAAADu/wwAAQAAAAIAAADu/wsAAQAAAAEAAADu/woAAQAAAAEAAADu/wkAAQAAAAEAAADu/wgAAQAAAAEAAADu/wcAAQAAAAEAAADu/wYAAQAAAAEAAADu/wUAAQAAAAEAAADu/wQAAQAAAAEAAADu/wMAAQAAAAEAAADu/wIAAQAAAAEAAADu/wEAAQAAAAEAAADu/wAAAQAAAAAAAAD//wAAAgADAAAAAAD//wEAAgADAAEAAAD//wIAAgADAAEAAAD//wMAAgADAAEAAAD//wQAAgAGAAEAAAAAAAUAAgAHAAMAAAABAAYAAgAHAAUAAAACAAYAAgAHAAYAAAADAAUAAgABAAIAAAAEAAYAAgAHAAUAAAAFAAYAAgAHAAYAAAAGAAUAAgAHAAEAAAAGAAQAAgAGAAAAAAAAAAQAAgAHAAIAAAABAAUAAgAHAAQAAAACAAUAAgABAAQAAAACAAQAAgAAAAAAAAADAAQAAgAFAAMAAAAEAAUAAgACAAQAAAAFAAUAAgAGAAQAAAAEAAQAAgAGAAQAAAADAAMAAgAGAAAAAAAHAAQAAgAHAAEAAAAHAAMAAgADAAEAAAAHAAIAAgADAAEAAAAHAAEAAgAGAAIAAAAHAAAAAgADAAAAAAAIAAEAAgABAAMAAAAJAAEAAgABAAMAAAAKAAEAAgABAAMAAAALAAEAAgAHAAAAAAALAAIAAgADAAEAAAALAAMAAgADAAEAAAALAAQAAgAGAAMAAAALAAUAAgADAAEAAAALAAYAAgAHAAEAAAAKAAQAAgABAAMAAAAJAAQAAgAGAAAAAAAJAAYAAgAGAAEAAAAKAAYAAgABAAMAAAAJAAUAAgADAAEAAAANAAEAAgADAAEAAAANAAIAAgADAAEAAAANAAAAAgADAAEAAAANAP//AgAHAAAAAAAMAP//AgAAAAMAAAANAAMAAgADAAEAAAANAAQAAgADAAEAAAANAAUAAgADAAEAAAANAAYAAgAGAAEAAAAOAAYAAgABAAMAAAAQAP//AgAAAAMAAAARAP//AgAHAAAAAAARAAAAAgADAAEAAAARAAEAAgADAAEAAAARAAIAAgADAAEAAAARAAMAAgADAAEAAAARAAQAAgADAAEAAAARAAUAAgADAAEAAAARAAYAAgAGAAEAAAASAAYAAgABAAMAAAATAAYAAgABAAMAAAATAAIAAgAAAAMAAAAUAAIAAgABAAMAAAAVAAIAAgABAAMAAAAWAAIAAgABAAMAAAAXAAIAAgAHAAAAAAAXAAMAAgADAAEAAAAXAAQAAgAGAAMAAAAXAAUAAgADAAEAAAAXAAYAAgAHAAEAAAAWAAYAAgABAAMAAAAVAAYAAgABAAMAAAAUAAYAAgAHAAMAAAAUAAUAAgADAAEAAAAUAAQAAgAGAAAAAAAVAAQAAgABAAMAAAAWAAQAAgABAAMAAAAPAAYAAgACAAMAAAAYAAUAAAADAAAAAAAYAAYAAAADAAEAAAAYAAcAAAADAAEAAAAYAAgAAAADAAEAAAAYAAkAAAADAAEAAAAYAAoAAAADAAEAAAAYAAsAAAADAAEAAAAYAAwAAAAGAAEAAAAZAAwAAAABAAMAAAAaAAwAAAABAAMAAAAbAAwAAAABAAMAAAAcAAwAAAABAAMAAAAdAAwAAAABAAMAAAAeAAwAAAAHAAEAAAAeAAsAAAADAAEAAAAeAAoAAAADAAEAAAAeAAkAAAADAAEAAAAeAAgAAAADAAEAAAAeAAcAAAADAAEAAAAeAAYAAAADAAEAAAAeAAUAAAADAAAAAAAZAAQAAAADAAMAAAAaAAMAAAADAAMAAAAdAAIAAAADAAMAAAAfAAIAAQABAAMAAAAgAAIAAQABAAMAAAAhAAIAAQABAAMAAAAiAAIAAQABAAMAAAAkAAIAAQABAAMAAAAjAAIAAQABAAMAAAAeAAIAAQAAAAMAAAAlAAIAAQABAAMAAAAmAAIAAQABAAMAAAAnAAIAAQABAAMAAAAoAAIAAQABAAMAAAApAAIAAQABAAMAAAAqAAIAAQABAAMAAAArAAIAAQABAAMAAAAsAAIAAQABAAMAAAAtAAIAAQACAAMAAAAeAP//AQAAAAMAAAAfAP//AQABAAMAAAAgAP//AQABAAMAAAAhAP//AQABAAMAAAAiAP//AQABAAMAAAAjAP//AQABAAMAAAAkAP//AQABAAMAAAAlAP//AQABAAMAAAAmAP//AQABAAMAAAAnAP//AQABAAMAAAAoAP//AQABAAMAAAApAP//AQABAAMAAAAqAP//AQABAAMAAAArAP//AQABAAMAAAAsAP//AQABAAMAAAAtAP//AQACAAMAAAAuAAAAAQAAAAMAAAAuAAMAAQAAAAMAAAAvAAAAAQACAAMAAAAvAAMAAQACAAMAAAAwAAEAAQAAAAMAAAAxAAEAAQACAAMAAAAwAAQAAQAAAAMAAAAxAAQAAQACAAMAAAAyAAIAAQAAAAMAAAAzAAIAAQACAAMAAAAyAAUAAQAAAAMAAAAzAAUAAQACAAMAAAA0AAQAAwAAAAAAAAA1AAQAAwABAAAAAAA2AAQAAwABAAAAAAA3AAQAAwABAAAAAAA4AAQAAwABAAAAAAA5AAQAAwABAAAAAAA6AAQAAwACAAAAAAA9AAMAAwADAAAAAAA+AAIAAwADAAAAAABBAAEAAwADAAAAAABCAAIAAwADAAAAAABEAAAAAwACAAAAAABDAAAAAwAAAAAAAABHAP7/AwAAAAAAAABIAP7/AwACAAAAAABKAP//AwADAAAAAABLAAAAAwADAAAAAABNAAIAAwADAAAAAABOAAEAAwAAAAAAAABQAAIAAwAAAAAAAABPAAEAAwACAAAAAABRAAIAAwABAAAAAABSAAIAAwABAAAAAABTAAIAAwABAAAAAABUAAIAAwABAAAAAABVAAIAAwACAAAAAABVAAMAAwAAAAAAAABWAAMAAwACAAAAAABYAAMAAwADAAAAAAA=")
+tile_set = ExtResource("4_88v64")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(237, 76)
+zoom = Vector2(2, 2)
+limit_left = -350
+limit_bottom = 210
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+editor_draw_limits = true
+script = ExtResource("5_8fxhg")
+
+[node name="Player" parent="." instance=ExtResource("6_3kaab")]
+
+[node name="HUD" parent="." instance=ExtResource("7_py8cr")]
+visible = false
+
+[node name="LoseArea" parent="." instance=ExtResource("8_c5kow")]
+position = Vector2(1056, 209)
+scale = Vector2(150, 3)
+collision_layer = 3
+collision_mask = 3
+
+[node name="HealPowerup" parent="." instance=ExtResource("9_e30l7")]
+position = Vector2(-128, 17)
+
+[node name="PoisonPowerup" parent="." instance=ExtResource("10_1fv6r")]
+position = Vector2(-224, 17)
+EFFECT_LENGTH = 10
+
+[node name="Meese" type="Node2D" parent="."]
+position = Vector2(-528, 528)
+
+[node name="WinArea" parent="." instance=ExtResource("11_rhgk7")]
+position = Vector2(1364, 6)
+
+[node name="Moose" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(454, 172)
+
+[node name="Moose2" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(418, 174)
+
+[node name="Moose3" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(438, 188)
+
+[node name="Moose4" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(413, 192)
+
+[node name="Moose5" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(465, 197)
+
+[node name="Moose6" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(432, 194)
+
+[node name="Moose7" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(415, 179)
+
+[node name="Moose8" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(456, 176)
+
+[node name="Moose9" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(411, 150)
+
+[node name="Moose10" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(433, 151)
+
+[node name="Moose37" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(433, 151)
+
+[node name="Moose11" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(466, 147)
+
+[node name="Moose12" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(409, 123)
+
+[node name="Moose13" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(441, 122)
+
+[node name="Moose15" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(524, 85)
+
+[node name="Moose16" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(556, 86)
+
+[node name="Moose17" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(591, 85)
+
+[node name="Moose18" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(622, 85)
+
+[node name="Moose19" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(659, 90)
+
+[node name="Moose21" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(659, 90)
+
+[node name="Moose20" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(606, 85)
+
+[node name="Moose22" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(572, 90)
+
+[node name="Moose23" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(555, 103)
+
+[node name="Moose24" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(579, 113)
+
+[node name="Moose25" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(624, 172)
+scale = Vector2(15.157, 1.84899)
+
+[node name="Moose36" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(2186, 155)
+scale = Vector2(-74.9096, 0.642498)
+
+[node name="Moose26" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(615, 108)
+
+[node name="Moose27" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(627, 106)
+
+[node name="Moose28" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(646, 106)
+
+[node name="Moose29" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(664, 102)
+
+[node name="Moose30" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(659, 90)
+
+[node name="Moose31" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(659, 90)
+
+[node name="Moose32" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(659, 90)
+rotation = -0.17878
+
+[node name="Moose33" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(659, 90)
+rotation = -0.363017
+
+[node name="Moose34" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(659, 90)
+rotation = -0.785397
+
+[node name="Moose35" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(659, 90)
+rotation = -0.785397
+
+[node name="Moose14" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(463, 123)
+
+[node name="MooseBlocker" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(442, 156)
+scale = Vector2(-44.8561, 0.475157)
+
+[node name="MooseBlocker4" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(442, 156)
+scale = Vector2(-44.8561, 0.475157)
+
+[node name="MooseBlocker2" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(599, 60)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker5" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(598, 74)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker6" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(594, 88)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker7" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(596, 104)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker8" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(611, 114)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker27" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(611, 114)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker28" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(611, 114)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker29" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(680, 118)
+rotation = 3.18057
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker30" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(807, 130)
+rotation = 3.18057
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker31" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(892, 144)
+rotation = 3.18057
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker32" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1015, 149)
+rotation = 3.18057
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker33" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(989, 100)
+rotation = 3.18057
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker34" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(989, 100)
+rotation = 3.18057
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker9" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(855, 110)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker14" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(855, 110)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker10" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(692, 84)
+rotation = 3.17235
+scale = Vector2(-123.521, 1.24807)
+
+[node name="MooseBlocker11" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(794, 105)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker15" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(794, 105)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker12" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(697, 65)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker13" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(846, 111)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker16" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(891, 119)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker17" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(948, 129)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker18" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(957, 111)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker19" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(965, 108)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker20" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(948, 92)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker21" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(928, 88)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker22" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(978, 80)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker35" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1081, 95)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker36" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1122, 112)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker37" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1122, 112)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker23" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1042, 131)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker38" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1116, 135)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker39" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1115, 127)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker40" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1194, 158)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker41" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1192, 147)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker42" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1208, 134)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker43" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1231, 115)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker44" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1234, 100)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker45" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1135, 84)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker46" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1216, 95)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker47" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1236, 98)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker48" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(1236, 98)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker24" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(715, 137)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker25" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(715, 137)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker49" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(715, 137)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker26" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(715, 137)
+rotation = 3.17235
+scale = Vector2(-98.8118, -0.896452)
+
+[node name="MooseBlocker3" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(442, 183)
+scale = Vector2(-44.8561, 0.475157)
+
+[node name="Moose38" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(1394, 173)
+scale = Vector2(-23.4781, 2.94088)
+
+[node name="Moose39" parent="." instance=ExtResource("12_q7sag")]
+position = Vector2(2133, 128)
+scale = Vector2(-23.4781, 2.94088)
+
+[node name="MooseBlocker50" parent="." instance=ExtResource("13_i4esf")]
+position = Vector2(3203, 181)
+scale = Vector2(2370.07, -12.3887)
