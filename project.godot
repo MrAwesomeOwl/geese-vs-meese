@@ -28,6 +28,7 @@ UUID="*res://addons/godot-uuid-8cc945f72f1d238cd1ddea5739e3ef963e5e6cbc/uuid.gd"
 ObjectNameGenerator="*res://autoload/object_name_generator.gd"
 LevelInfo="*res://autoload/level_info.gd"
 ParticleLoader="*res://autoload/particle_loader.tscn"
+LeaderboardClient="*res://autoload/leaderboard_client.gd"
 
 [debug]
 
