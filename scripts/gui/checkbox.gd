@@ -8,7 +8,7 @@ var invisible_texture = preload("res://textures/invisible.png")
 
 @export var is_checked: bool = false:
 	set(value):
-		if $TextureRect:
+		if get_node_or_null("TextureRect"):
 			$TextureRect.visible = value
 		var old_value = value
 		is_checked = value

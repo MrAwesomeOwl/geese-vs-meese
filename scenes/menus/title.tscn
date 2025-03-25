@@ -22,9 +22,9 @@ script/source = "extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	return
-	if OS.has_feature(\"web\"):
-		get_node(\"../Control/2x/Quit\").visible = false
-		get_node(\"../Control/2x/Play\").position.y += 20
+	#if OS.has_feature(\"web\"):
+		#get_node(\"../Control/2x/Quit\").visible = false
+		#get_node(\"../Control/2x/Play\").position.y += 20
 "
 
 [sub_resource type="FontVariation" id="FontVariation_mmlqc"]

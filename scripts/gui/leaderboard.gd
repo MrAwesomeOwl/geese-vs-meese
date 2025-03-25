@@ -8,33 +8,9 @@ var currently_selected_level = null
 var lb_build_req_id: int = 0
 var rebuild_disabled_until: int = 0
 var dont_force_rebuild_wait = false
-
-# really cursed function that allows player names to be retrieved in paralell
-func get_player_name(player_id: String, player_names: Dictionary, progress: Array):
-	var sw_player_result = await (func():
-		var p = SilentWolf.new_players_instance()
-		var request = p.get_player_data(player_id)
-		while true:
-			var r = await request.sw_get_player_data_complete
-			if !r.success || r.player_name == player_id:
-				p.queue_free()
-				return r
-	).call()
-	
-	progress[0] -= 1
-	
-	if !sw_player_result.success: 
-		progress[1] = false
-		return
-	
-	var data = DataManager.sw_deserialie(sw_player_result.player_data)
-	if data.has("display_name") && data.display_name.length() > 0:
-		player_names[player_id] = data.display_name
-	else:
-		player_names[player_id] = data.debug_string.split(" ")[1]
-		player_names[player_id][0] = player_names[player_id][0].to_upper()
+var reload_queued_for_reconnect = false
 		
-func show_failure(error: String, disable_rebuild_for_msec: int = 5000):
+func show_failure(error: String, disable_rebuild_for_msec: int = 500):
 	# remove old leaderboard contents
 	for child in LeaderboardVBox.get_children():
 		child.queue_free()
@@ -53,6 +29,11 @@ func show_failure(error: String, disable_rebuild_for_msec: int = 5000):
 func show_leaderboard(level_id: String):
 	if (Time.get_ticks_msec() - rebuild_disabled_until <= 0) || $Loading.visible == true:
 		return
+		
+	if !LeaderboardClient.is_connected_to_server:
+		reload_queued_for_reconnect = true
+		show_failure("No connection")
+		return
 	
 	$Loading.visible = true	
 	
@@ -64,47 +45,25 @@ func show_leaderboard(level_id: String):
 	var this_build_rq_id = lb_build_req_id
 		
 	#= get leaderboard data =#
-	var sw_scores_result = await SilentWolf.Scores.get_scores(0, "level_"+level_id).sw_get_scores_complete
+	var scores = await LeaderboardClient.get_scores(level_id)
+	scores = scores.filter(func(a): return a[0] != "") # remove unnamed players
 	
-	# limit number of places displayed to 10
-	if !sw_scores_result.success: 
-		print("1",sw_scores_result)
-		show_failure("Slow down!")
-		return
-	
-	sw_scores_result.scores.resize(min(sw_scores_result.scores.size(),10))
+	if scores.size() > 0 && scores[0] is String && scores[0] == "failed":
+		show_failure(scores[1])
 	
 	if this_build_rq_id != lb_build_req_id: return
 	
 	# if nobody has beaten the level yet, show the skill issue text
-	if sw_scores_result.scores.size() == 0:
+	if scores.size() == 0:
 		var template = $SkillIssueTemplate.duplicate()
 		template.visible = true
 		$Loading.visible = false
 		LeaderboardVBox.add_child(template)
 		return
-	
-	var player_names = {} #key: id, value: display name
-	var pending_requests = [sw_scores_result.scores.size(),true]
-	
-	# get player names	
-	await (func():
-		var i = 0;
-		for score in sw_scores_result.scores:
-			i += 1
-			get_player_name(score.player_name,player_names,pending_requests)
-			if i % 5 == 0:
-				await Util.wait(.2)
-			
-		while pending_requests[0] > 0:
-			await Engine.get_main_loop().process_frame
-			if pending_requests[1] == false: return
-			if this_build_rq_id != lb_build_req_id: return
-	).call()
-	
-	if pending_requests[1] == false:
-		show_failure("Slow down!")
-		return
+	else:
+		scores.sort_custom(func(a, b):
+			return a[1] < b[1]
+		)
 	
 	if this_build_rq_id != lb_build_req_id: 
 		return
@@ -115,8 +74,9 @@ func show_leaderboard(level_id: String):
 	$Loading.visible = false
 	
 	var place: int = 0
-	for score in sw_scores_result.scores:
-		if !player_names.has(score.player_name): continue
+	for score in scores:
+		var username = score[0] as String
+		var time = score[1] as float
 		place += 1
 		#= create info line =#
 		var entry
@@ -125,9 +85,8 @@ func show_leaderboard(level_id: String):
 		elif place == 3: entry = $ThirdPlaceTemplate.duplicate()
 		else:			 entry = $NthPlaceTemplate.duplicate()
 		
-		entry.get_node("VBoxContainer/Player/Anchor/Player").text = player_names[score.player_name]
-		# scores are stored as msec * -1 since SilentWolf always puts higher numbers in higher places
-		entry.get_node("VBoxContainer/Time").text = SpeedrunTimer.get_time_string(-score.score,false)
+		entry.get_node("VBoxContainer/Player/Anchor/Player").text = username
+		entry.get_node("VBoxContainer/Time").text = SpeedrunTimer.get_time_string(time,false)
 		if place > 3:
 			var place_string = str(place)
 			entry.get_node("VBoxContainer/Place/Anchor/Place").text = place_string
@@ -136,7 +95,7 @@ func show_leaderboard(level_id: String):
 		LeaderboardVBox.add_child(entry)
 		
 		#= create separator =#
-		if place < sw_scores_result.scores.size():
+		if place < scores.size():
 			var separator
 			if   place < 3:  separator = $BigSeparatorTemplate.duplicate()
 			elif place == 3: separator = $BigSeparatorBottomTemplate.duplicate()
@@ -144,11 +103,6 @@ func show_leaderboard(level_id: String):
 			
 			separator.visible = true
 			LeaderboardVBox.add_child(separator)
-		
-	# dont let leaderboard change for a few seconds after this one is loaded
-	if !dont_force_rebuild_wait:
-		rebuild_disabled_until = Time.get_ticks_msec() + 2000
-	dont_force_rebuild_wait = false
 		
 	#print(" FINAL RESULT = = ",player_names)
 		
@@ -182,9 +136,9 @@ func _ready() -> void:
 				show_leaderboard(id)
 		)
 	
-	SilentWolf.on_connection_failure.connect(func _on_sw_connection_failure():
-		print("Connection failure handled")
-		show_failure("Slow down!")	
+	LeaderboardClient.on_successfully_connected.connect(func():
+		if reload_queued_for_reconnect:
+			show_leaderboard(currently_selected_level)
 	)
 	
 	call_deferred("reload_state")

@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var started_at_msec: int = -INF
+var started_at_msec: int = -99999999
 var length_msec: int = 0
 @onready var start_color: Color = $ColorRect.color
 var goal_color: Color
@@ -15,7 +15,7 @@ func fade(color: Color, time_sec: float, from_color = null, color_when_finished 
 		start_color = $ColorRect.color
 	
 	started_at_msec = Time.get_ticks_msec()
-	length_msec = time_sec * 1000
+	length_msec = int(time_sec * 1000.0)
 	
 	goal_color = color
 	

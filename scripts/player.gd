@@ -19,6 +19,7 @@ var time_jump_buffered_until = 0 #msec
 var poison_time_remaining = 0.0
 var max_poison_time = 0.0
 var poison_bar_enabled = false
+var queued_facing_direction
 
 @onready var last_is_on_floor = is_on_floor()
 
@@ -142,7 +143,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, SPEED * direction, SPEED*SNAPPINESS * delta)
 		
 		# change facing direction
-		if not facing_direction_locked:
+		if facing_direction_locked:
+			queued_facing_direction = direction
+		else:
 			facing_direction = direction
 			
 		# play walk anim
@@ -153,6 +156,9 @@ func _physics_process(delta: float) -> void:
 			$WalkSound.play()
 			time_last_walk_sound_played = Time.get_ticks_msec()
 	else:
+		if not facing_direction_locked && queued_facing_direction:
+			facing_direction = queued_facing_direction
+			queued_facing_direction = null
 		velocity.x = move_toward(velocity.x, 0, SPEED*SNAPPINESS * delta)
 		animation_tree["parameters/movement/playback"].travel("idle")
 		

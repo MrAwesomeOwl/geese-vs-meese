@@ -1,2 +1,0 @@
-This plugin has been modified to allow for mulitple parallel player data get operations!
-This game relies on those modifications meaning using the stock SilentWolf plugin won't work.

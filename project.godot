@@ -18,7 +18,6 @@ config/icon="res://icon.png"
 
 [autoload]
 
-SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 DataManager="*res://autoload/data_manager.gd"
 Util="*res://autoload/util.gd"
 MusicManager="*res://autoload/music_manager.tscn"

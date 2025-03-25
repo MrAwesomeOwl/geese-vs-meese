@@ -8,9 +8,10 @@ func apply_changes():
 	LeaderboardClient.send_packet({"type":"changeName","newName":text})
 
 func update_connection_state():
-	if LeaderboardClient.connection_open:
-		if text == "" && has_meta("stored_text"):
-			text = get_meta("stored_text")
+	if LeaderboardClient.is_connected_to_server:
+		#if text == "" && has_meta("stored_text"):
+			#text = get_meta("stored_text")
+		text = DataManager.lb_player_info.username
 		placeholder_text = "Your Name (Click)"
 		editable = true
 	else:
@@ -21,14 +22,15 @@ func update_connection_state():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	update_connection_state()
 	LeaderboardClient.on_disconnected.connect(update_connection_state)
 	LeaderboardClient.on_successfully_connected.connect(update_connection_state)
+	update_connection_state()
 	
 	if !DataManager.is_lb_player_info_loaded:
 		await DataManager.on_lb_player_info_loaded
 	text = DataManager.lb_player_info.username
 	last_text = text
+	update_connection_state()
 
 func _on_focus_exited() -> void:
 	apply_changes()

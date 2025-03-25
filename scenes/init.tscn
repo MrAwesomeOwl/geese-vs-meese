@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://jrsicwri0eyv"]
+[gd_scene load_steps=11 format=3 uid="uid://jrsicwri0eyv"]
 
 [ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://fonts/jersey_10/Jersey10-Regular.ttf" id="1_28cux"]
 [ext_resource type="Script" path="res://scripts/init_script.gd" id="1_famsl"]
@@ -10,6 +10,125 @@ font_names = PackedStringArray("Times New Roman")
 [sub_resource type="FontVariation" id="FontVariation_kwx2g"]
 fallbacks = Array[Font]([SubResource("SystemFont_ktgsw")])
 base_font = ExtResource("1_28cux")
+
+[sub_resource type="Gradient" id="Gradient_hvios"]
+colors = PackedColorArray(0, 0, 0, 1, 0.39, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ai8u7"]
+gradient = SubResource("Gradient_hvios")
+width = 1
+height = 512
+fill_from = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_1t0ft"]
+resource_name = "no_safari"
+length = 10.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SafariBG:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SafariLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nxibg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SafariBG:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SafariLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xd2lm"]
+_data = {
+"RESET": SubResource("Animation_nxibg"),
+"no_safari": SubResource("Animation_1t0ft")
+}
 
 [node name="Init" type="CanvasLayer"]
 script = ExtResource("1_famsl")
@@ -39,7 +158,79 @@ theme_override_fonts/font = SubResource("FontVariation_kwx2g")
 theme_override_font_sizes/font_size = 52
 text = "don't wanna get my github blocked :("
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[node name="SafariBG" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ai8u7")
+
+[node name="Control" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.146552, 0.146552)
+
+[node name="displeasement" type="Label" parent="Control"]
+modulate = Color(1, 1, 1, 0.192157)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -613.5
+offset_top = -187.0
+offset_right = 613.5
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.26, 0.26, 1)
+theme_override_fonts/font = SubResource("FontVariation_kwx2g")
+theme_override_font_sizes/font_size = 100
+text = "the mere suggestion displeases me"
+horizontal_alignment = 1
+
+[node name="asfd" type="Label" parent="Control"]
+modulate = Color(1, 1, 1, 0.192157)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -613.5
+offset_top = -112.0
+offset_right = 613.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.26, 0.26, 1)
+theme_override_fonts/font = SubResource("FontVariation_kwx2g")
+theme_override_font_sizes/font_size = 100
+text = "(the game doesn't work on safari and i'm too lazy to fix it)"
+horizontal_alignment = 1
+
+[node name="SafariLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.26, 0.26, 1)
+theme_override_fonts/font = SubResource("FontVariation_kwx2g")
+theme_override_font_sizes/font_size = 100
+text = "do not use safari."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -50,3 +241,10 @@ grow_vertical = 2
 texture = ExtResource("3_r5glp")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xd2lm")
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

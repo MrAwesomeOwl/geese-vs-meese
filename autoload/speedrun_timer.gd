@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var is_running: bool = false
 var started_at_time_msec: int = 0
+## msec
 var current_time: int = 0
 
 @onready var label: RichTextLabel = $Main/Label
@@ -26,7 +27,7 @@ func get_time_string(msec: int, small_decimal: bool = true,force_minutes: bool =
 	
 	var minutes = floorf(time_sec/60)
 	var seconds = time_sec - (minutes*60)
-	var subsecs = 99-floorf((time_sec*1000+1000 - msec)/10)
+	var subsecs = 100-floorf((time_sec*1000+1000 - msec)/10)
 	
 	var strmin = str(minutes)
 	var strsec = str(seconds)
