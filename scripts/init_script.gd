@@ -7,9 +7,10 @@ func _ready():
 		get_tree().change_scene_to_file("res://scenes/menus/title.tscn")
 		return
 		
-	var user_agent = (JavaScriptBridge.eval("navigator.userAgent") as String)
-	if (user_agent.find("Mac") > -1 && user_agent.find("Safari") > -1):
+	var is_safari = JavaScriptBridge.eval("window.safari !== undefined")
+	if is_safari:
 		await Fader.fade("#00000000",0)
+		get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 		$AnimationPlayer.play("no_safari")
 	else:
 		$HTTPRequest.request_completed.connect(_on_request_completed)

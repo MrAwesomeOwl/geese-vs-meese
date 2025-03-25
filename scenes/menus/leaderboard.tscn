@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://scripts/gui/button_mover.gd" id="6_81egt"]
 [ext_resource type="Script" path="res://scripts/gui/leaderboard.gd" id="8_1xwtl"]
 [ext_resource type="PackedScene" uid="uid://css1k1nb8e6fh" path="res://objects/gui/scroll_container.tscn" id="8_wagvr"]
-[ext_resource type="FontFile" uid="uid://bwu06ofw0ktuo" path="res://fonts/speedrun_timer/speedrun-timer.ttf" id="9_6wwcx"]
-[ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://fonts/jersey_10/Jersey10-Regular.ttf" id="9_ctxhx"]
+[ext_resource type="FontFile" uid="uid://bwu06ofw0ktuo" path="res://Fonts/speedrun_timer/speedrun-timer.ttf" id="9_6wwcx"]
+[ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://Fonts/jersey_10/Jersey10-Regular.ttf" id="9_ctxhx"]
 [ext_resource type="Texture2D" uid="uid://jrf844c5okwe" path="res://textures/ui/trophy.png" id="9_pckvk"]
 [ext_resource type="Texture2D" uid="uid://t05urjm5niye" path="res://textures/ui/refresh_icon.png" id="12_ew7sc"]
 [ext_resource type="Texture2D" uid="uid://b7160ll8tcyqr" path="res://textures/ui/leaderboard_hint_arrow.png" id="12_xhght"]
@@ -242,6 +242,7 @@ theme_override_constants/margin_top = 25
 modulate = Color(0.47451, 0.403922, 0.333333, 1)
 layout_mode = 2
 theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("9_ctxhx")
 text = "Skill issues abound!
 (no victors yet)"
 horizontal_alignment = 1
@@ -260,6 +261,7 @@ theme_override_constants/margin_top = 25
 modulate = Color(1, 0.49, 0.49, 1)
 layout_mode = 2
 theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("9_ctxhx")
 text = "Error:
 Slow down!!"
 horizontal_alignment = 1
@@ -373,6 +375,7 @@ offset_right = 140.0
 offset_bottom = 11.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_ctxhx")
 theme_override_font_sizes/font_size = 19
 text = "Chromebook Test asj"
 vertical_alignment = 1
@@ -486,6 +489,7 @@ offset_right = 122.0
 offset_bottom = 11.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_ctxhx")
 theme_override_font_sizes/font_size = 19
 text = "Lord o' the Seas (yar)"
 vertical_alignment = 1
@@ -598,6 +602,7 @@ offset_right = 122.0
 offset_bottom = 11.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_ctxhx")
 theme_override_font_sizes/font_size = 19
 text = "You're Mother"
 vertical_alignment = 1
@@ -698,6 +703,7 @@ offset_right = 122.0
 offset_bottom = 11.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_ctxhx")
 theme_override_font_sizes/font_size = 19
 text = "Greg from Walmart"
 vertical_alignment = 1
@@ -733,6 +739,7 @@ theme_override_constants/margin_top = 30
 modulate = Color(0.47451, 0.403922, 0.333333, 1)
 layout_mode = 2
 theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("9_ctxhx")
 text = "Select a level"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -824,6 +831,7 @@ offset_right = 245.0
 offset_bottom = 143.0
 scale = Vector2(0.5, 0.5)
 theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("9_ctxhx")
 theme_override_font_sizes/font_size = 40
 text = "Loading"
 horizontal_alignment = 1

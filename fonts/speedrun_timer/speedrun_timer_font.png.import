@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bi8qfvjrvqfkx"
-path="res://.godot/imported/speedrun_timer_font.png-ac5cdf83bec21128b69159e6d968d136.ctex"
+path="res://.godot/imported/speedrun_timer_font.png-88950c8014fa14e8794144b6c634635d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fonts/speedrun_timer/speedrun_timer_font.png"
-dest_files=["res://.godot/imported/speedrun_timer_font.png-ac5cdf83bec21128b69159e6d968d136.ctex"]
+source_file="res://Fonts/speedrun_timer/speedrun_timer_font.png"
+dest_files=["res://.godot/imported/speedrun_timer_font.png-88950c8014fa14e8794144b6c634635d.ctex"]
 
 [params]
 

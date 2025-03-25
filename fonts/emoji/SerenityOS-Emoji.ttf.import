@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bxlt4w7q64u6r"
-path="res://.godot/imported/SerenityOS-Emoji.ttf-65c5442077346f48786b5324c7e8e8e2.fontdata"
+path="res://.godot/imported/SerenityOS-Emoji.ttf-47f57dba51473e1a14699297e6d79b3b.fontdata"
 
 [deps]
 
-source_file="res://fonts/emoji/SerenityOS-Emoji.ttf"
-dest_files=["res://.godot/imported/SerenityOS-Emoji.ttf-65c5442077346f48786b5324c7e8e8e2.fontdata"]
+source_file="res://Fonts/emoji/SerenityOS-Emoji.ttf"
+dest_files=["res://.godot/imported/SerenityOS-Emoji.ttf-47f57dba51473e1a14699297e6d79b3b.fontdata"]
 
 [params]
 
