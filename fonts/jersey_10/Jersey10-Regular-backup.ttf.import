@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://tw7gvbo8l04v"
-path="res://.godot/imported/Jersey10-Regular-backup.ttf-f00a5295ff30abddb5040b4de96d050b.fontdata"
+path="res://.godot/imported/Jersey10-Regular-backup.ttf-c1048f8c7a787be2ddeb3d868e63b328.fontdata"
 
 [deps]
 
-source_file="res://Fonts/jersey_10/Jersey10-Regular-backup.ttf"
-dest_files=["res://.godot/imported/Jersey10-Regular-backup.ttf-f00a5295ff30abddb5040b4de96d050b.fontdata"]
+source_file="res://fonts/jersey_10/Jersey10-Regular-backup.ttf"
+dest_files=["res://.godot/imported/Jersey10-Regular-backup.ttf-c1048f8c7a787be2ddeb3d868e63b328.fontdata"]
 
 [params]
 

@@ -40,18 +40,30 @@ const levels := {
 		"display_name": "Castle",
 		"author": "Eshan",
 		"scene_path": "res://scenes/levels/submitted/castle.tscn"
+	},
+	"tower_of_torment": {
+		"display_name": "Torment :(",
+		"author": "Pritha & Joey",
+		"scene_path": "res://scenes/levels/tower_of_torment.tscn"
+	},
+	"volcano": {
+		"display_name": "Volcano",
+		"author": "Pritha & Joey",
+		"scene_path": "res://scenes/levels/volcano.tscn"
 	}
 }
 
 const level_order = [
 	"desert",
 	"arena",
+	"volcano",
 	"the_drop",
 	"classic",
 	"why_just_why",
 	"cavern",
 	"castle",
-	"worst_level_ever"
+	"worst_level_ever",
+	"tower_of_torment",
 ]
 
 var scene_to_id_map := {}

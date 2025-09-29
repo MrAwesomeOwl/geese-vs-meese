@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cw5a1eegtjcf1"
-path="res://.godot/imported/Handjet-Thin.ttf-00f31ec4538d1015099ef8d91f606688.fontdata"
+path="res://.godot/imported/Handjet-Thin.ttf-755c511813e349ae117453e63927254d.fontdata"
 
 [deps]
 
-source_file="res://Fonts/Handjet/static/Handjet-Thin.ttf"
-dest_files=["res://.godot/imported/Handjet-Thin.ttf-00f31ec4538d1015099ef8d91f606688.fontdata"]
+source_file="res://fonts/handjet/static/Handjet-Thin.ttf"
+dest_files=["res://.godot/imported/Handjet-Thin.ttf-755c511813e349ae117453e63927254d.fontdata"]
 
 [params]
 

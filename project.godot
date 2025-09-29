@@ -92,6 +92,7 @@ restart={
 2d_physics/layer_9="enemyBlocker"
 2d_physics/layer_10="playerBlocker"
 2d_physics/layer_17="solid_tiles"
+2d_physics/layer_18="lava_tiles"
 
 [rendering]
 

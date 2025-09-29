@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://dhrvokr7jba57"]
+[gd_scene load_steps=77 format=3 uid="uid://dhrvokr7jba57"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7j0db"]
 [ext_resource type="Script" path="res://scripts/nodes/healthStat.gd" id="2_fo48x"]
@@ -271,6 +271,12 @@ animations = [{
 "name": &"run",
 "speed": 20.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oikke"]
+size = Vector2(15, 15.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqtwr"]
+size = Vector2(4, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5lt3r"]
 size = Vector2(14, 16)
@@ -643,6 +649,20 @@ collision_mask = 4
 position = Vector2(0, -9)
 polygon = PackedVector2Array(-3, 13, -3, -12, 40, -3)
 
+[node name="LavaHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 131072
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LavaHitbox"]
+position = Vector2(0, -8.75)
+shape = SubResource("RectangleShape2D_oikke")
+debug_color = Color(0.97, 0.161667, 0, 0.180392)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LavaHitbox"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_cqtwr")
+debug_color = Color(0.97, 0.161667, 0, 0.180392)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_5lt3r")
@@ -702,5 +722,14 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_mcxhf")
 debug_color = Color(0.7, 0.21, 0, 0.419608)
 
+[node name="LavaRaycast" type="RayCast2D" parent="."]
+position = Vector2(0, -11)
+enabled = false
+collision_mask = 131072
+
+[node name="Center" type="Node2D" parent="."]
+position = Vector2(0, -11)
+
 [connection signal="on_current_changed" from="Health" to="." method="_on_health_changed"]
 [connection signal="on_death" from="Health" to="." method="_on_health_on_death"]
+[connection signal="body_entered" from="LavaHitbox" to="." method="_on_lava_hitbox_body_entered"]

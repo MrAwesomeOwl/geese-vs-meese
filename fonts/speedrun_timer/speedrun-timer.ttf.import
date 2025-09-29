@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bwu06ofw0ktuo"
-path="res://.godot/imported/speedrun-timer.ttf-e885fb24b67d4542cf250f7f80d322be.fontdata"
+path="res://.godot/imported/speedrun-timer.ttf-9c4dde3f4c5d4588a2def3d8de5b21ff.fontdata"
 
 [deps]
 
-source_file="res://Fonts/speedrun_timer/speedrun-timer.ttf"
-dest_files=["res://.godot/imported/speedrun-timer.ttf-e885fb24b67d4542cf250f7f80d322be.fontdata"]
+source_file="res://fonts/speedrun_timer/speedrun-timer.ttf"
+dest_files=["res://.godot/imported/speedrun-timer.ttf-9c4dde3f4c5d4588a2def3d8de5b21ff.fontdata"]
 
 [params]
 

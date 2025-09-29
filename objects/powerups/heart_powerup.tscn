@@ -102,13 +102,13 @@ script = ExtResource("1_ojkoj")
 
 [node name="PowerupParticles" parent="." instance=ExtResource("2_tebda")]
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3ajre")
+
 [node name="Visuals" type="Sprite2D" parent="."]
 texture = ExtResource("3_lcyhh")
 offset = Vector2(0, 0.5)
 script = ExtResource("4_dbxrk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_3ajre")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

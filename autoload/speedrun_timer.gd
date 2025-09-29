@@ -29,6 +29,11 @@ func get_time_string(msec: int, small_decimal: bool = true,force_minutes: bool =
 	var seconds = time_sec - (minutes*60)
 	var subsecs = 100-floorf((time_sec*1000+1000 - msec)/10)
 	
+	if subsecs >= 100:
+		subsecs -= 100
+		seconds += 1
+	
+	
 	var strmin = str(minutes)
 	var strsec = str(seconds)
 	var strsub = str(subsecs)

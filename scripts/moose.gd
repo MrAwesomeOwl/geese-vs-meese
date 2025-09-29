@@ -1,3 +1,4 @@
+@icon("res://textures/moose/still_frame.png")
 extends CharacterBody2D
 
 ## how fast the moose should move
@@ -8,6 +9,8 @@ extends CharacterBody2D
 
 ## how much knockback to deal to the player when hitting them
 @export var KNOCKBACK = 250.0
+
+@export var NAME: String = ""
 
 ## what direction to start out moving. [br]
 ## -1 is left, 1 is right
@@ -49,6 +52,10 @@ func change_direction():
 			
 func _ready():
 	$Body.scale.x = direction
+	$Body/Animations.speed_scale = SPEED/40
+	if NAME != "":
+		$FloatingText.visible = true
+		$FloatingText.text = NAME
 	poison_damage_loop()
 
 func _physics_process(delta: float) -> void:
@@ -56,6 +63,7 @@ func _physics_process(delta: float) -> void:
 		modulate.a -= delta*1.5
 		modulate.r += delta/2
 		$Body/Animations.rotation_degrees += delta*20
+		$FloatingText.visible = false
 	else:
 		# if moose is touching a wall, flip its move direction
 		if is_on_wall(): 
@@ -72,10 +80,11 @@ func _physics_process(delta: float) -> void:
 					change_direction()
 			
 		# actual movement
-		velocity.x = move_toward(velocity.x,direction * SPEED,SPEED * 10 * delta)
+		velocity.x = move_toward(velocity.x,direction * SPEED,40 * 10 * delta)
 		
 		# make moose face the correct direction
 		$Body.scale.x = direction
+		$FloatingText.global_position = $FloatingTextPosition.global_position
 		
 	# gravity
 	if not is_on_floor():
@@ -119,6 +128,7 @@ func _on_death() -> void:
 
 # flash red and play sound when taking damage
 func _on_health_changed(new_health: float, old_health: float) -> void:
+	if !get_tree(): return
 	if new_health < old_health:
 		$DamageSound.play()
 		if damage_caused_by_poison:

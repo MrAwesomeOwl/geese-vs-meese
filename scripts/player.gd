@@ -18,11 +18,12 @@ var time_last_walk_sound_played = 0 #msec
 var time_jump_buffered_until = 0 #msec
 var poison_time_remaining = 0.0
 var max_poison_time = 0.0
+var has_won = false
 var poison_bar_enabled = false
 var queued_facing_direction
 
 @onready var last_is_on_floor = is_on_floor()
-
+@onready var tile_map: TileMapLayer = get_tree().get_current_scene().get_node("TileMapLayer")
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 ## knocks back the player
@@ -85,7 +86,6 @@ func _process(delta: float) -> void:
 	$Body.scale.y = Util.smooth_step($Body.scale.y,1,0.8,delta)
 	
 	if Time.get_ticks_msec() > 2000:
-		var tile_map = get_tree().get_current_scene().get_node("TileMapLayer") as TileMapLayer
 		var player_tile_coord = tile_map.local_to_map(tile_map.to_local(global_position + Vector2(0,-2)))
 		#var floor_tile_data = tile_map.get_cell_tile_data(player_tile_coord + Vector2i(0,1))
 		if (tile_map.get_cell_tile_data(player_tile_coord + Vector2i(0,1)) or tile_map.get_cell_tile_data(player_tile_coord + Vector2i(-1,1)) or tile_map.get_cell_tile_data(player_tile_coord + Vector2i(1,1))) and $StuckDetector.get_overlapping_bodies().size() > 0:
@@ -98,7 +98,7 @@ func _process(delta: float) -> void:
 			#print()
 	
 	# restart button
-	if Input.is_action_just_pressed("restart"):
+	if Input.is_action_just_pressed("restart") && !has_won:
 		get_tree().call_deferred("change_scene_to_file", LevelInfo.current_level_path)
 	
 	# poison powerup stuff
@@ -161,6 +161,7 @@ func _physics_process(delta: float) -> void:
 			queued_facing_direction = null
 		velocity.x = move_toward(velocity.x, 0, SPEED*SNAPPINESS * delta)
 		animation_tree["parameters/movement/playback"].travel("idle")
+
 		
 	# if the player is taking knockback, override the velocity with that
 	if knockback_vector.length() > 0:
@@ -197,3 +198,34 @@ func _on_health_changed(new_health: float, old_health: float) -> void:
 func _on_health_on_death():
 	SpeedrunTimer.end_timer(SpeedrunTimer.TIMER_COLOR.LOST)
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/menus/lose.tscn")
+
+
+func _on_lava_hitbox_body_entered(body: Node2D) -> void:
+	var closest_tile_world_pos: Vector2 = Vector2(99999999,99999999)
+	
+	var did_damage = 0
+	var tile_size = tile_map.tile_set.tile_size.x;
+	var tile_pos = tile_map.local_to_map(tile_map.to_local(global_position))
+	for x in range(tile_pos.x-1,tile_pos.x+2):
+		for y in range(tile_pos.y-2,tile_pos.y+3):
+			var tile_data = tile_map.get_cell_tile_data(Vector2i(x,y))
+			if tile_data == null: continue
+			var damage = tile_data.get_custom_data("damage")
+			if damage == 0: continue
+			did_damage = 1
+			
+			# get knockback dir
+			var tile_world_pos = tile_map.to_global(tile_map.map_to_local(Vector2(x,y)))
+			
+			if (tile_world_pos.distance_to($Center.global_position) < closest_tile_world_pos.distance_to($Center.global_position)):
+				closest_tile_world_pos = tile_world_pos
+				
+	if did_damage > 0:
+		$Health.damage(did_damage);
+		$LavaRaycast.target_position = (closest_tile_world_pos - $Center.global_position) * 1.1
+		$LavaRaycast.force_raycast_update()
+		var normal = $LavaRaycast.get_collision_normal();
+		if normal.y > 0: normal.y = 0;
+		if normal.x != 0: velocity.x = normal.x * 250
+		velocity.y += normal.y * 250
+		#take_knockback(normal * 250,.1);

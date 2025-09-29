@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b617fbt0a2yai"
-path="res://.godot/imported/basis33.ttf-1f3faee5111fc9acb9ae786c065b25b3.fontdata"
+path="res://.godot/imported/basis33.ttf-68c9b7493bbf6257c02cfe04c8085d06.fontdata"
 
 [deps]
 
-source_file="res://Fonts/basis33/basis33.ttf"
-dest_files=["res://.godot/imported/basis33.ttf-1f3faee5111fc9acb9ae786c065b25b3.fontdata"]
+source_file="res://fonts/basis33/basis33.ttf"
+dest_files=["res://.godot/imported/basis33.ttf-68c9b7493bbf6257c02cfe04c8085d06.fontdata"]
 
 [params]
 

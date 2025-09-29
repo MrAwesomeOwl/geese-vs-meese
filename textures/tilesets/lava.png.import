@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi8qfvjrvqfkx"
-path="res://.godot/imported/speedrun_timer_font.png-ac5cdf83bec21128b69159e6d968d136.ctex"
+uid="uid://68mjpn0cq1k0"
+path="res://.godot/imported/lava.png-a91e7d6d25dd9320ef74e8862d82f71e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fonts/speedrun_timer/speedrun_timer_font.png"
-dest_files=["res://.godot/imported/speedrun_timer_font.png-ac5cdf83bec21128b69159e6d968d136.ctex"]
+source_file="res://textures/tilesets/lava.png"
+dest_files=["res://.godot/imported/lava.png-a91e7d6d25dd9320ef74e8862d82f71e.ctex"]
 
 [params]
 
