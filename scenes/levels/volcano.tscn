@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=4 uid="uid://6oo3j1jgk73k"]
 
-[ext_resource type="Script" path="res://scripts/nodes/unfade_on_load.gd" id="1_sjei6"]
-[ext_resource type="Script" path="res://scripts/nodes/level_info.gd" id="2_skmtj"]
+[ext_resource type="Script" uid="uid://db62hdic4uxwd" path="res://scripts/nodes/unfade_on_load.gd" id="1_sjei6"]
+[ext_resource type="Script" uid="uid://bqxxj14satnvf" path="res://scripts/nodes/level_info.gd" id="2_skmtj"]
 [ext_resource type="Texture2D" uid="uid://b61q1b5aor7ny" path="res://textures/background/GvMWasteland.png" id="3_ljoxt"]
 [ext_resource type="TileSet" uid="uid://qbjyjk17yc7p" path="res://tilesets/blocks.tres" id="4_0u85i"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="5_vao82"]
+[ext_resource type="Script" uid="uid://bdth50c5b01e4" path="res://scripts/camera.gd" id="5_vao82"]
 [ext_resource type="PackedScene" uid="uid://dhrvokr7jba57" path="res://objects/player.tscn" id="6_luo86"]
 [ext_resource type="PackedScene" uid="uid://burtnq8qlhew0" path="res://scenes/gui.tscn" id="7_gir6f"]
 [ext_resource type="PackedScene" uid="uid://cclnayl672myg" path="res://objects/lose_area.tscn" id="8_xan52"]

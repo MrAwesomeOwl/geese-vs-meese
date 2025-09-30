@@ -1,16 +1,16 @@
 [gd_scene load_steps=20 format=3 uid="uid://dicb6bupwsr3"]
 
 [ext_resource type="PackedScene" uid="uid://dqwiglj3hrfrm" path="res://objects/gui/button.tscn" id="1_51fl4"]
-[ext_resource type="Script" path="res://scripts/nodes/unfade_on_load.gd" id="1_difke"]
+[ext_resource type="Script" uid="uid://db62hdic4uxwd" path="res://scripts/nodes/unfade_on_load.gd" id="1_difke"]
 [ext_resource type="Theme" uid="uid://c3lgl44jh5ekr" path="res://themes/title_text.tres" id="1_oq5rf"]
 [ext_resource type="Texture2D" uid="uid://c8a2rfvdabfns" path="res://textures/background/GvMStart.png" id="2_3wasl"]
 [ext_resource type="Theme" uid="uid://cmsx7o4hobgk3" path="res://themes/button_icon.tres" id="5_oowh4"]
-[ext_resource type="Script" path="res://scripts/gui/scene_changer_button.gd" id="5_rv8u1"]
-[ext_resource type="Script" path="res://scripts/gui/button_mover.gd" id="6_81egt"]
-[ext_resource type="Script" path="res://scripts/gui/leaderboard.gd" id="8_1xwtl"]
+[ext_resource type="Script" uid="uid://b0crt1jse55fb" path="res://scripts/gui/scene_changer_button.gd" id="5_rv8u1"]
+[ext_resource type="Script" uid="uid://cxcf2uavp7dry" path="res://scripts/gui/button_mover.gd" id="6_81egt"]
+[ext_resource type="Script" uid="uid://n6amnm4rcauc" path="res://scripts/gui/leaderboard.gd" id="8_1xwtl"]
 [ext_resource type="PackedScene" uid="uid://css1k1nb8e6fh" path="res://objects/gui/scroll_container.tscn" id="8_wagvr"]
-[ext_resource type="FontFile" uid="uid://bwu06ofw0ktuo" path="res://Fonts/speedrun_timer/speedrun-timer.ttf" id="9_6wwcx"]
-[ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://Fonts/jersey_10/Jersey10-Regular.ttf" id="9_ctxhx"]
+[ext_resource type="FontFile" uid="uid://bwu06ofw0ktuo" path="res://fonts/speedrun_timer/speedrun-timer.ttf" id="9_6wwcx"]
+[ext_resource type="FontFile" uid="uid://cl1ga01yfj0qe" path="res://fonts/jersey_10/Jersey10-Regular.ttf" id="9_ctxhx"]
 [ext_resource type="Texture2D" uid="uid://jrf844c5okwe" path="res://textures/ui/trophy.png" id="9_pckvk"]
 [ext_resource type="Texture2D" uid="uid://t05urjm5niye" path="res://textures/ui/refresh_icon.png" id="12_ew7sc"]
 [ext_resource type="Texture2D" uid="uid://b7160ll8tcyqr" path="res://textures/ui/leaderboard_hint_arrow.png" id="12_xhght"]
@@ -86,7 +86,7 @@ horizontal_alignment = 1
 
 [node name="KJGFH" parent="Control" instance=ExtResource("1_51fl4")]
 visible = false
-layout_mode = 2
+layout_mode = 0
 offset_left = -180.0
 offset_top = 40.5
 offset_right = -124.0
@@ -172,7 +172,7 @@ LeaderboardVBox = NodePath("Players/MarginContainer/ScrollContainer/MarginContai
 [node name="LevelButtonTemplate" parent="Control/Leaderboard" instance=ExtResource("1_51fl4")]
 visible = false
 custom_minimum_size = Vector2(0, 17)
-layout_mode = 2
+layout_mode = 0
 offset_left = -204.25
 offset_top = -55.0
 offset_right = -146.25
@@ -222,7 +222,7 @@ vertical_alignment = 2
 [node name="SeparatorTemplate" type="ColorRect" parent="Control/Leaderboard"]
 visible = false
 custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
+layout_mode = 0
 offset_left = -32.0
 offset_top = -26.0
 offset_right = 106.0
@@ -231,7 +231,7 @@ color = Color(0.352941, 0.305882, 0.266667, 1)
 
 [node name="SkillIssueTemplate" type="MarginContainer" parent="Control/Leaderboard"]
 visible = false
-layout_mode = 2
+layout_mode = 0
 offset_left = -32.0
 offset_top = -30.0
 offset_right = 106.0
@@ -250,7 +250,7 @@ vertical_alignment = 1
 
 [node name="ErrorTemplate" type="MarginContainer" parent="Control/Leaderboard"]
 visible = false
-layout_mode = 2
+layout_mode = 0
 offset_left = -32.0
 offset_top = -30.0
 offset_right = 106.0
@@ -270,7 +270,7 @@ vertical_alignment = 1
 [node name="BigSeparatorTemplate" type="MarginContainer" parent="Control/Leaderboard"]
 visible = false
 custom_minimum_size = Vector2(0, 3)
-layout_mode = 2
+layout_mode = 0
 offset_left = -32.0
 offset_top = -30.0
 offset_right = 106.0
@@ -286,7 +286,7 @@ color = Color(0.352941, 0.305882, 0.266667, 1)
 [node name="BigSeparatorBottomTemplate" type="MarginContainer" parent="Control/Leaderboard"]
 visible = false
 custom_minimum_size = Vector2(0, 3)
-layout_mode = 2
+layout_mode = 0
 offset_left = -32.0
 offset_top = -26.0
 offset_right = 106.0
@@ -302,7 +302,7 @@ color = Color(0.352941, 0.305882, 0.266667, 1)
 [node name="FirstPlaceTemplate" type="MarginContainer" parent="Control/Leaderboard"]
 visible = false
 modulate = Color(1, 1, 0.4, 1)
-layout_mode = 2
+layout_mode = 0
 offset_left = -32.0
 offset_top = -30.0
 offset_right = 106.0
@@ -415,7 +415,7 @@ expand_mode = 1
 
 [node name="SecondPlaceTemplate" type="MarginContainer" parent="Control/Leaderboard"]
 visible = false
-layout_mode = 2
+layout_mode = 0
 offset_left = -32.0
 offset_top = -30.0
 offset_right = 106.0
@@ -461,8 +461,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("9_6wwcx")
 theme_override_font_sizes/font_size = 9
-text = "2
-"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -529,7 +528,7 @@ expand_mode = 1
 [node name="ThirdPlaceTemplate" type="MarginContainer" parent="Control/Leaderboard"]
 visible = false
 modulate = Color(1, 0.576333, 0.38, 1)
-layout_mode = 2
+layout_mode = 0
 offset_left = -32.0
 offset_top = -26.0
 offset_right = 106.0
@@ -642,7 +641,7 @@ expand_mode = 1
 [node name="NthPlaceTemplate" type="MarginContainer" parent="Control/Leaderboard"]
 visible = false
 modulate = Color(0.74, 0.74, 0.74, 1)
-layout_mode = 2
+layout_mode = 0
 offset_left = -32.0
 offset_top = -26.0
 offset_right = 106.0

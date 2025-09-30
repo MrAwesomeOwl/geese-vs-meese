@@ -12,7 +12,7 @@ config_version=5
 
 config/name="geese vs meese"
 run/main_scene="res://scenes/init.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
+config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/image="res://splash.png"
 config/icon="res://icon.png"
 
@@ -39,6 +39,12 @@ window/size/viewport_width=1024
 window/size/viewport_height=576
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=2
+
+[file_customization]
+
+folder_colors={
+"res://objects/": "yellow"
+}
 
 [global_group]
 

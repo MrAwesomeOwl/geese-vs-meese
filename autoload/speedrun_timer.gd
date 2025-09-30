@@ -34,9 +34,9 @@ func get_time_string(msec: int, small_decimal: bool = true,force_minutes: bool =
 		seconds += 1
 	
 	
-	var strmin = str(minutes)
-	var strsec = str(seconds)
-	var strsub = str(subsecs)
+	var strmin = str(int(minutes))
+	var strsec = str(int(seconds))
+	var strsub = str(int(subsecs))
 	
 	if (minutes > 0 or force_minutes) and strsec.length() < 2: strsec = "0"+strsec
 	if strsub.length() < 2: strsub = "0"+strsub
